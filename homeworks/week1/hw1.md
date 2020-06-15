@@ -13,12 +13,12 @@
     - 將要 commit 的內容進行 stage
     - 此處指令 `.` 指所有變更過的對象
 
-5. `git commit -m "commit message"`
+5. `git commit -m "'commit message'"`
     - 進行 commit 
     - `-m ""` → 對本次變更的內容進行簡單描述
 
 6. `git push -u origin week-1`
-    - 推送 commit 內容至遠端分支
+    - 推送 commit 內容至遠端
     - `origin` → 如果遠端不存在 `week-1` 分支，就創建一個
     - `-u` → 設定 upstream 方便之後 `push` 不必再指定分支
 
