@@ -53,5 +53,5 @@
     - 建立 branch 的同時切換至建立好的新分支
 
 - 當課綱內容有所改動時
-    - 將更新過後 https://github.com/Lidemy/mentor-program-4th.git `repo` 的內容 `pull` 至本地
-    - 將本地的內容 `push` 至個人的 GitHub 遠端 - ex : https://github.com/Lidemy/mentor-program-4th-WooooHuan.git
+    - 將更新過後 https://github.com/Lidemy/mentor-program-4th.git repo 的內容 `pull` 至本地
+    - 將本地的內容 `push` 至個人的 GitHub 遠端 ex : https://github.com/Lidemy/mentor-program-4th-WooooHuan.git
