@@ -26,6 +26,11 @@ function repeat(str, times) {
 // 替 tmp 進行遞迴累加 str 的內容
 // 回傳 tmp
 
+console.log('-----------join-----------');
+console.log(join([1, 2, 3], ''));
+console.log(join(["a", "b", "c"], "!"));
+console.log(join(["a", 1, "b", 2, "c", 3], ','));
 
-console.log(join(['a', 'b', 'c'], '!'));
+console.log('----------repeat----------');
 console.log(repeat('a', 5));
+console.log(repeat('yoyo', 2));

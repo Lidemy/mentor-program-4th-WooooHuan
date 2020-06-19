@@ -3,8 +3,8 @@ function search(arr, n) {
     var r = arr.length - 1;
 
     while(l <= r) {
-        var i = parseInt((l + r) / 2);
-        if(arr[i] === n){
+        var i = Math.floor((l + r) / 2);
+        if(arr[i] === n) {
             return i;
         } else if(arr[i] > n) {
             r = --i;
