@@ -16,27 +16,18 @@ function getBinaryArr(i) {
 // 將整數參數換為二進制，存於陣列後回傳
 
 function add(a, b) {
-    let arrA = getBinaryArr(a);
+    let arrA = getBinaryArr(a);                                         // 將輸入 a, b 二值轉為二進制陣列
     let arrB = getBinaryArr(b);
-    let tempArr = [], c = 0, result = '';
+    let tempArr = [], c = 0, result = '';                               // 宣告一些變數暫存內容
 
-    while (Math.max(arrA.length, arrB.length) !== 0 ) {
-        let tmp = fullAdder(arrA.pop() || 0, arrB.pop() || 0, c);
-        c = tmp[1];
-        tempArr.push(tmp[0]);
+    while (Math.max(arrA.length, arrB.length) !== 0 ) {                 // 建立 while 迴圈，終止條件為 a, b 陣列長度都已為 0
+        let tmp = fullAdder(arrA.pop() || 0, arrB.pop() || 0, c);       // 將 a, b 陣列透過 pop() 方法將資料逐項取出，連同進位資訊輸入加法器，如果取出資料為 undefined 則取 0
+        c = tmp[1];                                                     // 由變數 c 暫存加法運算的進位值，用於下一輪的加法運算
+        tempArr.push(tmp[0]);                                           // 將位元相加結果存入陣列
     }
-    if (c === 1 ) tempArr.push(c);
+    if (c === 1 ) tempArr.push(c);                                      // 迴圈完成後，如果最後一次計算仍有進位，將進位存入陣列
     
-    return parseInt(tempArr.reverse().join(''), 2);
-}
-// 將輸入 a, b 二值轉為二進制陣列
-// 宣告一些變數暫存內容
-// 建立 while 迴圈，終止條件為 a, b 陣列長度都已為 0
-// 將 a, b 陣列透過 pop() 方法將資料逐項取出
-// 使用 || 實作 pop() 不出資訊時輸入 0 的方法
-// 將取出的資料做為全加器的輸入，進行加法運算，將結果存進 tempArr 中
-// 由變數 c 暫存加法運算的進位值，用於下一輪的加法運算
-// 當迴圈完成時，最後一次 c 腳位不為 0, 則將進位 push 進 tempArr 中
-// 對 tempArr 進行 10 進位還原並回傳該值
+    return parseInt(tempArr.reverse().join(''), 2);                     // 對 tempArr 進行 10 進位還原並回傳該值
+}                                                                       // 除了註解以外，已確認沒有使用四則運算的運算子
 
 console.log(add(123, 456));

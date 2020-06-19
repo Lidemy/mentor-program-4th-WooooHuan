@@ -22,7 +22,6 @@ function repeat(str, times) {
 }
 
 // 宣告空字串 tmp 作為 str 的副本
-// 宣告 last 來暫存從 arr pop() 出來的資料
 // 替 tmp 進行遞迴累加 str 的內容
 // 回傳 tmp
 

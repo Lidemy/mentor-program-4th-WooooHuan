@@ -6,4 +6,4 @@ function printStars(n) {
 
 printStars(5);
 
-//for loop
+//for loop 基本應用
