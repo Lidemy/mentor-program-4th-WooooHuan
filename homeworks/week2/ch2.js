@@ -18,7 +18,7 @@ function getBinaryArr(i) {
 function add(a, b) {
     let arrA = getBinaryArr(a);                                         // 將輸入 a, b 二值轉為二進制陣列
     let arrB = getBinaryArr(b);
-    let tempArr = [], c = 0, result = '';                               // 宣告一些變數暫存內容
+    let tempArr = [], c = 0;                                            // 宣告一些變數暫存內容
 
     while (Math.max(arrA.length, arrB.length) !== 0 ) {                 // 建立 while 迴圈，終止條件為 a, b 陣列長度都已為 0
         let tmp = fullAdder(arrA.pop() || 0, arrB.pop() || 0, c);       // 將 a, b 陣列透過 pop() 方法將資料逐項取出，連同進位資訊輸入加法器，使用短路迴避 undefined
