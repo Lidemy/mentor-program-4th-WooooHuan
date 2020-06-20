@@ -3,11 +3,11 @@ function multiply(a, b) {
     let lB = b.length;  //獲取字串 b 長度
     let result = [];    //計算暫存用陣列
     
-    // 由於個位數位在陣列最後一個元素，所以使用遞減迴圈
-    for (let i = lA - 1; i >= 0; i--) {                 // 陣列 A 自個位數逐項調用
-        for (let j = lB - 1; j >= 0; j--) {             // 陣列 B 自個位數逐項調用
+    // 由於個位數位在字串最後一個元素，所以使用遞減迴圈
+    for (let i = lA - 1; i >= 0; i--) {                 // 字串 A 自個位數逐項調用
+        for (let j = lB - 1; j >= 0; j--) {             // 字串 B 自個位數逐項調用
             let k = i + j;                              // 設 i 位數乘以 j 位數的結果為 s, 則 s 的位數為 n + m 或 n + m + 1, 設 n + m 為 k（乘法結果為 k 或 k + 1位）
-            let c = (result[k + 1] || 0);               // 將 c 值賦予前一輪寫入的進位值，由於首次調用會出現 undefined, 若結果為 undefined 則調用 0（實測後好像可忽略，不影響結果）
+            let c = (result[k + 1] || 0);               // 將 c 值賦予前一輪寫入的進位值，由於首次調用會出現 undefined, 使用短路迴避（實測後好像可忽略，不影響結果）
             let mul = a[i] * b[j] + c;                  // 將該輪的 a, b 數進行相乘，同時加上進位值 c
             result[k] = Math.floor(mul / 10);           // 擷取結果的十位數，放入陣列供下一輪作為進位值調用
             result[k + 1] = mul % 10;                   // 擷取結果的各位數，放入陣列中記錄（該輪計算完成！）
