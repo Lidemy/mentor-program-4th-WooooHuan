@@ -13,7 +13,7 @@ function fullAdder(a, b, c) {
 function getBinaryArr(i) {
     return i.toString(2).split('');
 }
-// 將整數參數換為二進制，存於陣列後回傳
+// 將整數參數轉換為二進制，存於陣列後回傳
 
 function add(a, b) {
     let arrA = getBinaryArr(a);                                         // 將輸入 a, b 二值轉為二進制陣列
