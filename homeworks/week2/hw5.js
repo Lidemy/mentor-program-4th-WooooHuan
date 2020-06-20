@@ -1,4 +1,5 @@
 function join(arr, concatStr) {
+    if (arr.length === 0) return '';
     let tmp = '';
     let last = arr.pop();
     arr.forEach(e => tmp += e + concatStr);
@@ -6,6 +7,7 @@ function join(arr, concatStr) {
     return tmp;
 }
 
+// 仿造 join() 接受空陣列時一律回傳空字串
 // 宣告空字串 tmp 作為暫存用途
 // 宣告 last 來暫存從 arr pop() 出來的資料
 // 替 tmp 進行遞迴累加，製作字串夾心

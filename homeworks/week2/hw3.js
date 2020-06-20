@@ -4,7 +4,7 @@ function reverse(str) {
     arr.forEach(e => tmp = e + tmp);
     console.log(tmp);
 }
-// 使用 split() 分割字串轉換為陣列
+// 使用 split() 分割字串轉換為陣列（方便使用 foreach）
 // 宣告一個空字串 tmp
 // 透過 forEach() 以逆向累加方式向 tmp 賦值
 // 輸出 tmp
