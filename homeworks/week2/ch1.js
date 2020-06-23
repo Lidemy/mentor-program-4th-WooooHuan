@@ -7,9 +7,9 @@ function search(arr, n) {
         if(arr[i] === n) {                      // 判斷 arr[i] 值是否等於 n 值, 是則回傳 i 值
             return i;                           
         } else if(arr[i] > n) {                 // 若 arr[i] 值不等於 n 值, 視情況變更左右邊界值以縮小範圍
-            r = --i;                            // 重複執行，直到 arr[i] 值等於 n 值或是 l > r, 迴圈結束，回傳結果
+            r = i - 1;                           // 重複執行，直到 arr[i] 值等於 n 值或是 l > r, 迴圈結束，回傳結果
         } else {
-            l = ++i;
+            l = i + 1;
         }
     }
     return -1;
