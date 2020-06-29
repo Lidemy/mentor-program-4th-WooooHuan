@@ -1,9 +1,11 @@
-var readline = require('readline');
-var rl = readline.createInterface({input:process.stdin});
-var lines = [];
-rl.on('line', line => lines.push(line));
-rl.on('close', () => solve(lines));
+const readline = require('readline');
 
-function solve(lines) {
-    console.log();
+const rl = readline.createInterface({ input: process.stdin });
+const lines = [];
+
+function input(inputInfo) {
+  console.log(inputInfo);
 }
+
+rl.on('line', line => lines.push(line));
+rl.on('close', () => input(lines));
