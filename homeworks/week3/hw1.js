@@ -8,12 +8,12 @@ function solve(n, symbol = '*') {
   for (let i = 2; i <= n; i += 1) {
     result += `\n${symbol.repeat(i)}`;
   }
-  console.log(result);
+  return (result);
 }
 
-function input(inputInfo) {
-  solve(parseInt(inputInfo[0], 10));
+function io(input) {
+  console.log(solve(parseInt(input[0], 10)));
 }
 
 rl.on('line', line => lines.push(line));
-rl.on('close', () => input(lines));
+rl.on('close', () => io(lines));

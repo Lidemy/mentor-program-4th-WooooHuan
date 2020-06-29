@@ -14,10 +14,10 @@ function solve(from, end) {
   }
 }
 
-function input(inputInfo) {
-  const info = inputInfo[0].split(' ').map(x => parseInt(x, 10));
-  solve(info[0], info[1]);
+function io(input) {
+  const range = input[0].split(' ').map(x => parseInt(x, 10));
+  solve(range[0], range[1]);
 }
 
 rl.on('line', line => lines.push(line));
-rl.on('close', () => input(lines));
+rl.on('close', () => io(lines));

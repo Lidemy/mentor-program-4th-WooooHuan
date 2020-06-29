@@ -11,12 +11,12 @@ function solve(n) {
   } return n === 2;
 }
 
-function input(inputInfo) {
-  const info = inputInfo.map(x => parseInt(x, 10));
+function io(input) {
+  const info = input.map(x => parseInt(x, 10));
   for (let i = 1; i <= info[0]; i += 1) {
     console.log(solve(info[i]) ? 'Prime' : 'Composite');
   }
 }
 
 rl.on('line', line => lines.push(line));
-rl.on('close', () => input(lines));
+rl.on('close', () => io(lines));
