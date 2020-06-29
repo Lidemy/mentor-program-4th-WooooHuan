@@ -6,7 +6,7 @@ const lines = [];
 function solve(n, symbol = '*') {
   let result = symbol;
   for (let i = 2; i <= n; i += 1) {
-    result += `\n ${symbol.repeat(i)}`;
+    result += `\n${symbol.repeat(i)}`;
   }
   console.log(result);
 }
