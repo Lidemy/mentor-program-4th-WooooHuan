@@ -4,10 +4,10 @@ const rl = readline.createInterface({ input: process.stdin });
 const lines = [];
 
 function solve(from, end) {
-  for (let i = from; i < end + 1; i + 1) {
+  for (let i = from; i < end + 1; i += 1) {
     let tmp = 0;
     const str = i.toString();
-    for (let j = 0; j < str.length; j + 1) {
+    for (let j = 0; j < str.length; j += 1) {
       tmp += parseInt(str[j], 10) ** str.length;
     }
     if (tmp.toString() === str) console.log(i);
