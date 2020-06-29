@@ -17,7 +17,7 @@ function solve(from, end) {
 }
 
 function input(inputInfo) {
-  const info = inputInfo.split(' ').map(x => parseInt(x, 10));
+  const info = inputInfo[0].split(' ').map(x => parseInt(x, 10));
   solve(info[0], info[1]);
 }
 

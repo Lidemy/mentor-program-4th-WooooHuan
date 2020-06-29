@@ -12,7 +12,7 @@ function solve(n, symbol = '*') {
 }
 
 function input(inputInfo) {
-  solve(parseInt(inputInfo, 10));
+  solve(parseInt(inputInfo[0], 10));
 }
 
 rl.on('line', line => lines.push(line));
