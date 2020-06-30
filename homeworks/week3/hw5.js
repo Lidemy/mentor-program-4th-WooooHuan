@@ -10,7 +10,7 @@ function compare(a, b, k) {
 
 function solve(a, b, k) {
   if (a.length === b.length) {
-    for (let i = 0; i < a.length; i++) {
+    for (let i = 0; i<a.length; i++) {
       if (parseInt(a[i]) !== parseInt(b[i])) return compare(a, b, k);
     }
     return 'DRAW';
@@ -25,4 +25,4 @@ function io(input) {
 }
 
 rl.on('line', line => lines.push(line));
-rl.on('close', () => io(lines));
+rl.on('close', () => io(lines) );
