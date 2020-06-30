@@ -4,10 +4,7 @@ const rl = readline.createInterface({ input: process.stdin });
 const lines = [];
 
 function solve(str) {
-  const half = str.length / 2;
-  const firstHalf = str.substring(0, Math.floor(half));
-  const secondHalf = str.substring(Math.ceil(half), str.length);
-  return firstHalf === secondHalf.split('').reverse().join('');
+  return str === str.split('').reverse().join('');
 }
 
 function io(input) {
