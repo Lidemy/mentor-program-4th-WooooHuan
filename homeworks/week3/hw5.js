@@ -4,14 +4,14 @@ const rl = readline.createInterface({ input: process.stdin });
 const lines = [];
 
 function compare(a, b, k) {
-  result = k > 0 ? a > b : a < b;
+  const result = k > 0 ? a > b : a < b;
   return result ? 'A' : 'B';
 }
 
 function solve(a, b, k) {
   if (a.length === b.length) {
-    for (let i = 0; i<a.length; i++) {
-      if (parseInt(a[i]) !== parseInt(b[i])) return compare(a, b, k);
+    for (let i = 0; i < a.length; i += 1) {
+      if (parseInt(a[i], 10) !== parseInt(b[i], 10)) return compare(a, b, k);
     }
     return 'DRAW';
   } return compare(a.length, b.length, k);
@@ -25,4 +25,4 @@ function io(input) {
 }
 
 rl.on('line', line => lines.push(line));
-rl.on('close', () => io(lines) );
+rl.on('close', () => io(lines));
