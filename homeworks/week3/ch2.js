@@ -1,57 +1,39 @@
-const fakeInput = ['3 10', '9 100', '5 60', '2 70'];
-const limit = Number(fakeInput[0].split(' ')[1]);
+const readline = require('readline');
 
-function sumProperty(arr, prop) {
-  return arr.length > 0 ? arr.map(e => e[prop]).reduce((a, b) => a + b) : 0;
-}
+const rl = readline.createInterface({ input: process.stdin });
+const lines = [];
+const priceArr = [];
+const weightArr = [];
+const bagP = [];
+const bagW = [];
+let limit = 0;
 
-function Item(price, weight) {
-  this.price = Number(price);
-  this.weight = Number(weight);
-}
-
-function Bag(items) {
-  this.items = items;
-  this.limit = limit;
-  this.getPrice = () => sumProperty(this.items, 'price');
-  this.getWeight = () => sumProperty(this.items, 'weight');
-  this.isWorkable = () => this.getWeight() <= this.limit;
-  this.putInItem = x => this.items.push(x);
-}
-
-function getItems(arr) {
-  const items = [];
-  for (let i = 1; i < arr.length; i += 1) {
-    const prop = arr[i].split(' ');
-    items.push(new Item(prop[1], prop[0]));
-  } return items;
-}
-
-function getBags(items, index = 0, bags = []) {
-  const tmpBags = [new Bag([items[index]])];
-  for (let i = 0; i < bags.length; i += 1) {
-    tmpBags.push(new Bag(bags[i].items.concat(tmpBags[0].items)));
+function putInBag(p, w) {
+  if (w > limit) return;
+  for (let i = 0; i < bagP.length; i += 1) {
+    if (w === bagW[i] && p <= bagP[i]) return;
   }
-  const currentBags = bags.concat(tmpBags);
-  if (index + 1 >= items.length) {
-    return currentBags;
-  } return getBags(items, index + 1, currentBags);
+  bagP.push(p);
+  bagW.push(w);
 }
 
-function solve(bags) {
-  let result = 0;
-  for (let i = 0; i < bags.length; i += 1) {
-    if (bags[i].isWorkable()) result = Math.max(result, bags[i].getPrice());
-  } return result;
+function solve() {
+  for (let i = 0; i < lines.length - 1; i += 1) {
+    const round = bagP.length;
+    for (let j = -1; j < round; j += 1) {
+      putInBag(priceArr[i] + (bagP[j] || 0), weightArr[i] + (bagW[j] || 0));
+    }
+  } return Math.max.apply(null, bagP);
 }
 
 function io(input) {
-  const items = getItems(input);
-  const bags = getBags(items);
-  console.log(solve(bags));
-  for (let i = 0; i < bags.length; i += 1) {
-    console.log(`price : ${bags[i].getPrice()}  weight : ${bags[i].getWeight()}  workable : ${bags[i].isWorkable()}`);
+  limit = Number(input[0].split(' ')[1]);
+  for (let i = 1; i < input.length; i += 1) {
+    priceArr.push(Number(input[i].split(' ')[1]));
+    weightArr.push(Number(input[i].split(' ')[0]));
   }
+  console.log(solve());
 }
 
-io(fakeInput);
+rl.on('line', line => lines.push(line));
+rl.on('close', () => io(lines));
