@@ -4,8 +4,9 @@ const rl = readline.createInterface({ input: process.stdin });
 const lines = [];
 
 function solve(n) {
+  const sqrtCache = Math.sqrt(n);
   if (n > 2) {
-    for (let i = 2; i < n; i += 1) {
+    for (let i = 2; i <= sqrtCache; i += 1) {
       if (n % i === 0) return false;
     } return true;
   } return n === 2;
