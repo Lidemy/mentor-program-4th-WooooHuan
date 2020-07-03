@@ -97,7 +97,7 @@ function findSignsExitWayPos(signA, signB, signAPos = [0, 0, 0]) {
       return getAroundTargetPos(posA, '.') || getAroundTargetPos(posB, '.');
     }
   } return false;
-} // 輸代表入口的兩個英文字母，回傳出口的 '.' 座標
+} // 輸入代表入口的兩個英文字母，回傳出口的 '.' 座標
 
 function getTheOtherSidePos(pos) {
   const signA = getSign(pos);
