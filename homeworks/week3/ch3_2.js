@@ -9,13 +9,13 @@ let startPos;
 let goalPos;
 let reuslt = 0;
 
-function setSign(pos, sign = ' ') {
-  maze3D[pos[2]][pos[0]][pos[1]] = sign;
-} // 輸入座標，寫入地圖在該座標的內容（字符）
-
 function getSign(pos) {
   return maze3D[pos[2]][pos[0]][pos[1]];
 } // 輸入座標，回傳地圖在該座標的內容（字符）
+
+function setSign(pos, sign = ' ') {
+  maze3D[pos[2]][pos[0]][pos[1]] = sign;
+} // 輸入座標，寫入地圖在該座標的內容（字符）
 
 function isOutside(pos) {
   return pos[0] < 35 || pos[0] > 87 || pos[1] < 35 || pos[1] > 93;
@@ -33,6 +33,13 @@ function removeKeyGate(lv) {
     }
   }
 } // 移除第二層以上的關鍵出入口
+
+function checkKeyGatePos(signA, signB, posA, posB) {
+  if ((signA === 'A' && signB === 'A') || (signA === 'Z' && signB === 'Z')) {
+    keyGatePos.push(posA);
+    keyGatePos.push(posB);
+  }
+} // 檢查並紀錄關鍵出入口的座標，供二層以上的迷宮移除用
 
 function checkMaze(lv) {
   if (maze3D[lv] === undefined) {
@@ -90,10 +97,7 @@ function findSignsExitWayPos(signA, signB, signAPos = [0, 0, 0]) {
       const posB = getAroundTargetPos(signACasePosArr[i]);
       setSign(posA, '-');
       setSign(posB, '-');
-      if ((signA === 'A' && tmpSignB === 'A') || (signA === 'Z' && tmpSignB === 'Z')) {
-        keyGatePos.push(posA);
-        keyGatePos.push(posB);
-      }
+      if (keyGatePos.length < 4) checkKeyGatePos(signA, tmpSignB, posA, posB);
       return getAroundTargetPos(posA, '.') || getAroundTargetPos(posB, '.');
     }
   } return false;
@@ -118,11 +122,11 @@ function navigate(agent) {
   for (let i = 0; i < aroundPos.length; i += 1) {
     const nextSign = getSign(aroundPos[i]);
     if (nextSign === '.') {
-      agents.push([aroundPos[i][0], aroundPos[i][1], agent[2], agent[3] + 1]);
+      agents.push(aroundPos[i].concat([agent[3] + 1]));
     } else if (/[A-Z]/.test(nextSign)) {
       if (agent[2] !== 0 || !isOutside(aroundPos[i])) {
         const exitPos = getTheOtherSidePos(aroundPos[i]);
-        agents.push([exitPos[0], exitPos[1], exitPos[2], agent[3] + 1]);
+        agents.push(exitPos.concat([agent[3] + 1]));
       }
     }
   } return 0;
