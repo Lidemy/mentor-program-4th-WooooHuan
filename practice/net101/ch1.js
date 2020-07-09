@@ -1,11 +1,31 @@
 const request = require('request');
+const process = require('process');
 
+const input = process.argv.slice(2);
+const line = '============\n';
+const infoList = [];
 
-/*
-function main() {
+function Stream(strID, chID, chName, views) {
+  this.strID = strID;
+  this.chID = chID;
+  this.chName = chName;
+  this.views = views;
+  this.getPrice = () => sumProperty(this.items, 'price');
+  this.getWeight = () => sumProperty(this.items, 'weight');
+  this.isWorkable = () => this.getWeight() <= this.limit;
+  this.putInItem = x => this.items.push(x);
+
+  const streamID = `Stream ID: ${streamInfo[i]._id}\n`;
+  const channelID = `Channel ID: ${streamInfo[i].channel._id}\n`;
+  const channelName = `Channel Name: ${streamInfo[i].channel.display_name}`;
+  const views = `Views: ${streamInfo[i].channel.views}`;
+  const result = 
+}
+
+function getStreams(game, limit, offset = 0) {
   request({
     method: 'GET',
-    url: 'https://api.twitch.tv/kraken/games/top',
+    url: `https://api.twitch.tv/kraken/search/streams?query=${game}&limit=100&offset=${offset}`,
     headers: {
       'Client-ID': 'jl04gehwmgpr795vsgeajymfb4bk95',
       Accept: 'application/vnd.twitchtv.v5+json',
@@ -13,45 +33,29 @@ function main() {
   },
   (error, response, body) => {
     if (error) { console.log('Request error!'); return; }
-    const infoList = JSON.parse(body).top;
-    infoList.forEach(e => console.log(`${e.viewers} ${e.game.name}`));
-  });
-}*/
-
-function getGame() {
-  request({
-    method: 'GET',
-    url: 'https://api.twitch.tv/kraken/search/games?query=overwatch',
-    headers: {
-      'Client-ID': 'jl04gehwmgpr795vsgeajymfb4bk95',
-      Accept: 'application/vnd.twitchtv.v5+json',
-    },
-  },
-  (error, response, body) => {
-    if (error) { console.log('Request error!'); return; }
-    const info = JSON.parse(body);
-    console.log(JSON.parse(body));
+    const streamInfo = JSON.parse(body).streams;
+    for (let i = 0; i < streamInfo.length; i += 1) {
+      
+    }
+    console.log(offset + streamInfo.length);
+    getStreams(game, limit, offset + streamInfo.length);
   });
 }
 
-//getGame();
+getStreams('overwatch', 200, 100);
 
-function getStreams() {
-  request({
-    method: 'GET',
-    url: ' https://api.twitch.tv/kraken/search/streams?query=overwatch',
-    headers: {
-      'Client-ID': 'jl04gehwmgpr795vsgeajymfb4bk95',
-      Accept: 'application/vnd.twitchtv.v5+json',
-    },
-  },
-  (error, response, body) => {
-    if (error) { console.log('Request error!'); return; }
-    const info = JSON.parse(body);
-    console.log(JSON.parse(body));
-  });
-}
 
-getStreams();
 
-//main();
+
+      /*const divider = `(${i + 1 + offset})${line}`;
+      const streamID = `Stream ID: ${streamInfo[i]._id}\n`;
+      const channelID = `Channel ID: ${streamInfo[i].channel._id}\n`;
+      const channelName = `Channel Name: ${streamInfo[i].channel.display_name}`;
+      const views = `Views: ${streamInfo[i].channel.views}`;
+      const result = 
+
+      infoList.push(divider + streamID + channelID + channelName + views);
+      if (infoList.length === limit) {
+        infoList.forEach(e => console.log(e));
+        return;
+      }*/
