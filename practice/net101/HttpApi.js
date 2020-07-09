@@ -6,10 +6,10 @@ const process = require('process');
   (error, response, body) => console.log(body)
 ); */
 
-request(
+/* request(
   'https://reqres.in/api/users/689',
   (error, response, body) => console.log(body)
-);
+); */
 
 /* request(
   `https://reqres.in/api/users/${process.argv[2]}`,
@@ -26,3 +26,14 @@ request(
   },
   (error, response, body) => console.log(body),
 )*/
+
+/* request.patch(
+  {
+    url:'https://reqres.in/api/users/2',
+    form: {
+      name:'TestName',
+      job:'TestJob',
+    },
+  },
+  (error, response, body) => console.log(body),
+) */
