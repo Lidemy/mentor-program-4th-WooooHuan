@@ -10,7 +10,7 @@ function solve(n) {
 }
 
 function io(input) {
-  (solve(parseInt(input[0], 10)));
+  solve(parseInt(input[0], 10));
 }
 
 rl.on('line', line => lines.push(line));
