@@ -10,7 +10,7 @@ function main() {
     },
   },
   (error, response, body) => {
-    if (error) { console.log('Request error!'); return; }
+    if (error || response.statusCode >= 400) { console.log('Request error!'); return; }
     const infoList = JSON.parse(body).top;
     infoList.forEach(e => console.log(`${e.viewers} ${e.game.name}`));
   });

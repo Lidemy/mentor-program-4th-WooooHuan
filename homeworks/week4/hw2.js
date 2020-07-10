@@ -13,7 +13,7 @@ function isNaturalNumber(str) {
 
 function list() {
   request.get(`${baseUrl}?_limit=20`, (error, response, body) => {
-    if (error) { console.log(reqErr); return; }
+    if (error || response.statusCode >= 400) { console.log(reqErr); return; }
     JSON.parse(body).forEach(book => console.log(`${book.id} ${book.name}`));
   });
 }
@@ -22,7 +22,7 @@ function read() {
   const id = input[1];
   if (!isNaturalNumber(id)) { console.log(unAcErr); return; }
   request.get(`${baseUrl}/${id}`, (error, response, body) => {
-    if (error) { console.log(reqErr); return; }
+    if (error || response.statusCode >= 400) { console.log(reqErr); return; }
     console.log(JSON.parse(body).name ? JSON.parse(body).name : 'Not exist.');
   });
 }
@@ -31,7 +31,7 @@ function del() {
   const id = input[1];
   if (!isNaturalNumber(id)) { console.log(unAcErr); return; }
   request.delete(`${baseUrl}/${id}`, (error, response, body) => {
-    if (error) { console.log(reqErr); return; }
+    if (error || response.statusCode >= 400) { console.log(reqErr); return; }
     console.log(`Now the book that id is ${id} has been deleted.`);
   });
 }
@@ -44,7 +44,7 @@ function create() {
     form: { name },
   },
   (error, response, body) => {
-    if (error) { console.log(reqErr); return; }
+    if (error || response.statusCode >= 400) { console.log(reqErr); return; }
     console.log(`Now the book named "${name}" has been created.`);
   });
 }
@@ -58,7 +58,7 @@ function update() {
     form: { name },
   },
   (error, response, body) => {
-    if (error) { console.log(reqErr); return; }
+    if (error || response.statusCode >= 400) { console.log(reqErr); return; }
     if (!JSON.parse(body).name) { console.log('Not exist.'); return; }
     console.log(`Now the book that id is ${id} has been renamed to "${name}".`);
   });

@@ -1,10 +1,8 @@
-/* eslint-disable no-unused-vars */
 const request = require('request');
 const process = require('process');
 
 const baseUrl = 'https://restcountries.eu/rest/v2/name/';
 const line = '============\n';
-const reqErr = 'Request error!';
 const input = process.argv.slice(2);
 
 function exportInfo(info) {
@@ -20,7 +18,7 @@ function getCountryInfo() {
 
   request(`${baseUrl}${input[0]}`, (error, response, body) => {
     const info = JSON.parse(body)[0];
-    if (error) { console.log(reqErr); return; }
+    if (error || response.statusCode >= 400) { console.log('Request error!'); return; }
     if (info === undefined) { console.log('找不到國家資訊'); return; }
     exportInfo(info);
   });
