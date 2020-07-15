@@ -170,4 +170,55 @@ request.get({
 ---
 
 ## Level 12
+
 > http://lidemy-http-challenge.herokuapp.com/lv12?token={r3d1r3c7}
+
+- 依題意訪問 https://lidemy-http-challenge.herokuapp.com/api/v3/deliver_token 
+- 得到訊息：我已經把運送要用的 token 給你囉，請你仔細找找
+- 已知結果有進行轉址，轉址後的結果為 https://lidemy-http-challenge.herokuapp.com/api/v3/deliver_token_result
+- 苦無頭緒只好開啟瀏覽器查轉址紀錄
+
+- ![](./assets/lv12.png)
+
+- ~~意外收穫下一關 Token~~
+
+---
+
+## Level 13
+
+> http://lidemy-http-challenge.herokuapp.com/lv13?token={qspyz}
+
+- 依題意訪問 https://lidemy-http-challenge.herokuapp.com/api/v3/logs
+- 得到訊息：此 request 不是來自菲律賓，禁止存取系統資訊。
+- 設定菲律賓 Proxy
+- ![](./assets/lv13.png)
+- 得到 token {SEOisHard}
+
+---
+
+## Level 14
+
+> http://lidemy-http-challenge.herokuapp.com/lv14?token={SEOisHard}
+
+- 依題意訪問 https://lidemy-http-challenge.herokuapp.com/api/v3/index
+- 沒發現什麼特別之處，依照 hint 指示爬文如何偽裝 google
+- 從 google 提供的[文件](https://support.google.com/webmasters/answer/1061943?hl=zh-Hant)找到符合需求的代理字串
+
+```js
+request.get({
+  url: `https://lidemy-http-challenge.herokuapp.com/api/v3/index`,
+  headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)' }
+})
+```
+
+- 得到了由 google bot 訪問時所見的[首頁資訊](./assets/lv14.html)，下一關的 token {ILOVELIdemy!!!} 藏於其中
+
+---
+
+## Level 15
+
+> http://lidemy-http-challenge.herokuapp.com/lv15?token={ILOVELIdemy!!!}
+
+
+
+
