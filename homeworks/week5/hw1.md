@@ -2,7 +2,7 @@
 
 # lidemy http challenge
 
-## Links
+## API Links
 - API v1: https://gist.github.com/aszx87410/3873b3d9cbb28cb6fcbb85bf493b63ba
 - API v2: https://gist.github.com/aszx87410/1e5e5105c1c35197f55c485a88b0328a
 - API v3: https://gist.github.com/aszx87410/0b0d3cabf32c4e44084fadf5180d0cf4
@@ -219,6 +219,4 @@ request.get({
 
 > http://lidemy-http-challenge.herokuapp.com/lv15?token={ILOVELIdemy!!!}
 
-
-
-
+- 通關囉！發現在[通關感言](https://gist.github.com/aszx87410/1dbde92876ba253a45654988ca829ebb)中有不少第四期的學生，手腳真的很快...|||
