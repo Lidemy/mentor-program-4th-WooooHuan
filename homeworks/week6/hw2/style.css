@@ -1,25 +1,15 @@
+/*
 .debug *, .debug {
   outline: 1px solid magenta;
-}
-
-
-body {
-  background-color: f5f5f5;
-}
-/*
-.form {
-  position: relative;
-  width: 645;
-  background-color: white;
 }*/
 
+body {
+  background-color: #f5f5f5;
+}
+
 .formArea {
-  transform: translate(-50%, -50%);
-  position: absolute;
+  margin:0 auto;
   width: 645px;
-  top: 50%;
-  left: 50%;
- 
 }
 
 .topBlock {
@@ -32,13 +22,90 @@ body {
   margin-top: 0px;
   height: 1085px;
   box-shadow: 1.8px 2.4px 5px rgba(0, 0, 0, 0.3);
-  background: yellowgreen;
+  background: white;
+}
+
+.formContent {
+  margin-left: 42px;
+  margin-right: 42px;
 }
 
 .formTitle {
   position: absolute;
   margin-top: 54px;
-  margin-left: 42px;
   font-size: 36px;
+  font-weight: bold;
   letter-spacing: -1.8px;
 }
+
+.tl {
+  position: absolute;
+  height: 40px;
+  margin-top: 121px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.necessary {
+  position: absolute;
+  margin-top: 180px;
+  font-size: 16px;
+  color: #e74149;
+}
+
+.nicknameTitle {
+  font-size: 20px;
+  color: black;
+}
+
+.sign {
+  color: #e74149;
+}
+
+.inputGroup__nickname {
+  position: absolute;
+  margin-top: 250px;
+}
+
+.inputGroup__mail {
+  position: absolute;
+  margin-top: 359px;
+}
+
+.inputGroup__phone {
+  position: absolute;
+  margin-top: 469px;
+}
+
+.inputGroup__howDoYouKnow {
+  position: absolute;
+  margin-top: 722px;
+}
+
+.inputField {
+  position: absolute;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+input[type="text"],
+input[type="email"] {
+  border:1px #d0d0d0 solid;
+  width: 287px;
+  height: 23px;
+}
+
+::placeholder {
+  color: #afafaf;
+}
+
+:-ms-input-placeholder {
+  color: #afafaf;
+}
+
+::-ms-input-placeholder {
+  color: #afafaf;;
+}
+
