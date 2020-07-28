@@ -55,7 +55,7 @@ body {
   color: #e74149;
 }
 
-.nicknameTitle {
+.elementTitle {
   font-size: 20px;
   color: black;
 }
@@ -64,25 +64,32 @@ body {
   color: #e74149;
 }
 
+.inputList {
+  position: absolute;
+  height: 600px;
+  margin-top: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+/*
 .inputGroup__nickname {
   position: absolute;
-  margin-top: 250px;
 }
 
 .inputGroup__mail {
   position: absolute;
-  margin-top: 359px;
 }
 
 .inputGroup__phone {
   position: absolute;
-  margin-top: 469px;
 }
 
 .inputGroup__howDoYouKnow {
   position: absolute;
-  margin-top: 722px;
-}
+}*/
+
+
 
 .inputField {
   position: absolute;
@@ -90,11 +97,31 @@ body {
   font-size: 16px;
 }
 
+.inputRadio {
+  position: absolute;
+  height: 100px;
+}
+
+.inputGroup {
+  height: 100px;
+  background: blue;
+}
+
+.inputRadioElement {
+  margin-top: 24px;
+  font-size: 14px;
+}
+
 input[type="text"],
 input[type="email"] {
-  border:1px #d0d0d0 solid;
+  border: 1px #d0d0d0 solid;
   width: 287px;
   height: 23px;
+}
+
+.othersDescription {
+  margin-top: 12px;
+  font-size: 14px;
 }
 
 ::placeholder {
@@ -108,4 +135,3 @@ input[type="email"] {
 ::-ms-input-placeholder {
   color: #afafaf;;
 }
-
