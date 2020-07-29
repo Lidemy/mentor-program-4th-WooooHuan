@@ -6,14 +6,6 @@ body {
   color: #afafaf;
 }
 
-:-ms-input-placeholder {
-  color: #afafaf;
-}
-
-::-ms-input-placeholder {
-  color: #afafaf;;
-}
-
 .sign {
   color: #e74149;
 }
@@ -132,6 +124,21 @@ body {
   font-size: 14px;
 }
 
+.footerLine {
+  margin-top: 64px;
+  height: 3px;
+  background: #fad312;
+}
+
+footer {
+  padding-top: 26px;
+  padding-bottom: 21px;
+  color: #999999;
+  text-align: center;
+  font-size: 13px;
+  background: black;
+}
+
 input[type="text"],
 input[type="email"] {
   border: 1px #d0d0d0 solid;
@@ -142,7 +149,7 @@ input[type="email"] {
 input[type="submit"] {
   width: 92px;
   height: 40px;
-    cursor:pointer;
+  cursor:pointer;
   background: #fad312;
   border-radius: 3px;
   border-style: none;
