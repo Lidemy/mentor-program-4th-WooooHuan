@@ -1,0 +1,156 @@
+body {
+  background: #f5f5f5;
+}
+
+::placeholder {
+  color: #afafaf;
+}
+
+.sign {
+  color: #e74149;
+}
+
+.formArea {
+  margin: 0 auto;
+  width: 645px;
+}
+
+.formTopBlock {
+  height: 8px;
+  margin-top: 121px;
+  background: #fad312;
+}
+
+.formBackground {
+  height: 1085px;
+  margin-top: 0px;
+  box-shadow: 1.8px 2.4px 5px rgba(0, 0, 0, 0.3);
+  background: white;
+}
+
+.formContent {
+  margin-left: 42px;
+  margin-right: 42px;
+}
+
+.formTitle {
+  position: absolute;
+  margin-top: 54px;
+  font-size: 36px;
+  font-weight: bold;
+  letter-spacing: -1.8px;
+}
+
+.timeAndLocation {
+  position: absolute;
+  height: 40px;
+  margin-top: 121px;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.necessaryLable {
+  position: absolute;
+  margin-top: 180px;
+  font-size: 16px;
+  color: #e74149;
+}
+
+.elementTitle {
+  text-decoration: none;
+  font-size: 20px;
+  color: black;
+}
+
+.inputList {
+  position: absolute;
+  height: 680px;
+  margin-top: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inputTextElement {
+  height: 64px;
+  width: 565px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inputRadioElement {
+  height: 92px;
+  width: 565px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.radioElement {
+  font-size: 14px;
+}
+
+.inputOthersElement {
+  height: 90px;
+  width: 565px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.othersComment {
+  position: absolute;
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.inputField {
+  font-size: 16px;
+}
+
+.inputSubmit {
+  position: absolute;
+  margin-top: 976px;
+  font-size: 14px;
+}
+
+.submitComment {
+  position: absolute;
+  width: 565px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.footerLine {
+  margin-top: 64px;
+  height: 3px;
+  background: #fad312;
+}
+
+footer {
+  padding-top: 26px;
+  padding-bottom: 21px;
+  color: #999999;
+  text-align: center;
+  font-size: 13px;
+  background: black;
+}
+
+input[type="text"],
+input[type="email"] {
+  border: 1px #d0d0d0 solid;
+  width: 287px;
+  height: 20px;
+}
+
+input[type="submit"] {
+  width: 92px;
+  height: 40px;
+  cursor:pointer;
+  background: #fad312;
+  border-radius: 3px;
+  border-style: none;
+}
