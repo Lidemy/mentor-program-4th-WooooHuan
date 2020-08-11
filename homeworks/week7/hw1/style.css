@@ -25,6 +25,10 @@ input[type="submit"] {
   font-size: 15px;
 }
 
+input[type="radio"] {
+  font-size: 14px;
+}
+
 .emphasize {
   color: #e74149;
 }
@@ -80,6 +84,7 @@ body {
 }
 
 .content-input-group {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -92,7 +97,6 @@ body {
 }
 
 .content-extra {
-  position: relative;
   height: 90px;
 }
 
@@ -104,18 +108,21 @@ body {
   font-size: 16px;
 }
 
-.input-radio {
-  font-size: 14;
-}
-
 .input-extra-info {
   position: absolute;
   top: 30px;
   font-size: 14px;
 }
 
-.input-radio {
+.input-radio-cover {
   font-size: 14px;
+}
+
+.input-hint {
+  position: absolute;
+  bottom: -24px;
+  font-size: 14px;
+  color: #e74149;
 }
 
 .content-input-submit {
