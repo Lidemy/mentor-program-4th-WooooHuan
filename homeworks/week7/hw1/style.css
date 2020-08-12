@@ -134,6 +134,39 @@ body {
   font-size: 14px;
 }
 
+.hint-icon {
+  position: relative;
+  display: none;
+  align-items: center;
+  top: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: #e74149 solid 2px;
+  margin-left: 2px;
+  margin-right: 10px;
+}
+
+.icon-above {
+  position: absolute;
+  transform: translate(-50%, 0%);
+  left: 50%;
+  top: 2px;
+  width: 2px;
+  height: 6px;
+  background-color: #e74149;
+}
+
+.icon-below {
+  position: absolute;
+  transform: translate(-50%, 0%);
+  left: 50%;
+  top: 10px;
+  width: 2px;
+  height: 2px;
+  background-color: #e74149;
+}
+
 .footer-line {
   margin-top: 64px;
   height: 3px;
