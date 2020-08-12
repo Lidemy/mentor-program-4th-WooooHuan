@@ -4,18 +4,18 @@ const phoneText = "phone-text";
 const signUpType = "sign-up-type";
 const knowsText = "knows-text";
 const extraText = "extra-text";
-const necessaryHint = "此處為必填欄位！";
-let result = "";
+const necessaryHint = "這是必填問題！";
 
 document.querySelector("button").addEventListener("click", onClicked);
 
 function onClicked() {
   const inputList = document.querySelectorAll(".content-input-group")
+  const result = [];
   for (input of inputList) {
     const title = input.getElementFromChild(input, "input-title", true);
-    
     const inputElement = getElementFromChild(input, "input", false);
-    result += `${getInputInfo(inputElement)}\n`;
+    const inputInfo = getInputInfo(inputElement);
+    result.push(`${title}：${inputInfo}`);
   }
 }
 
@@ -44,14 +44,14 @@ function getInputText (name) {
 }
 
 function getInputInfo (inputElement) {
-
   switch (inputElement.type) {
     case "text" :
-      
-      break;
+      return getElementFromChild(inputElement, "input-text", true).value;
     case "radio" : 
-      ;
-      break;
+      const radioList = document.querySelectorAll(".input-radio");
+      for (radio of radioList) {
+        if (radio.checked) return
+      }
     default : console.log("somthing bad happened :(");
   }
 }
