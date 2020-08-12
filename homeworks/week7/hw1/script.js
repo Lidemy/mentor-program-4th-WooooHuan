@@ -24,21 +24,18 @@ function isLegal(element) {
   const legal = getInputInfo(element).length > 0;
   const inputHint = getChildElem(element, 'input-hint');
   if (inputHint) {
-    const hintIcon = getChildElem(inputHint, 'hint-icon');
-    const hintText = getChildElem(inputHint, 'hint-text');
-    hintIcon.style.display = legal ? 'none' : 'inline-block';
-    hintText.innerText = legal ? '' : '這是必填問題';
+    inputHint.style.display = legal ? 'none' : 'block';
     return legal;
   } return true;
 }
 
 document.querySelector('.submit-btn').addEventListener('click', () => {
-  const inputList = document.querySelectorAll('.content-input-group');
+  const inputElemList = document.querySelectorAll('.content-input-group');
   const result = [];
   let legal = true;
-  for (const input of inputList) {
-    legal = isLegal(input) && legal;
-    result.push(`${getTitle(input)}：${getInputInfo(input)}`);
+  for (const inputElem of inputElemList) {
+    legal = isLegal(inputElem) && legal;
+    result.push(`${getTitle(inputElem)}：${getInputInfo(inputElem)}`);
   }
   if (legal) alert(result.join('\n'));
 });

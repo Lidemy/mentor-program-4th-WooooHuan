@@ -120,10 +120,9 @@ body {
 }
 
 .input-hint {
+  display: none;
   position: absolute;
   bottom: -24px;
-  font-size: 14px;
-  color: #e74149;
 }
 
 .content-input-submit {
@@ -135,9 +134,14 @@ body {
   font-size: 14px;
 }
 
+.hint-text {
+  font-size: 14px;
+  color: #e74149;
+}
+
 .hint-icon {
   position: relative;
-  display: none;
+  display: inline-block;
   align-items: center;
   top: 4px;
   width: 18px;
