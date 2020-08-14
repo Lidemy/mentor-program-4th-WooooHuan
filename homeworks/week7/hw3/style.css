@@ -134,3 +134,7 @@ body {
   height: 32px;
   margin-left: 12px;
 }
+
+.task-template {
+  display: none;
+}

@@ -16,7 +16,7 @@
         <div class="list-title">📝Todo List</div>
         <div class="list-new-task">
           <input class="new-task-input common-concave" type="text" placeholder="Write a title for the new task">
-          <button class="new-task-btn common-btn">📄</button>
+          <button class="new-task-btn common-btn" value="newBtn">📄</button>
         </div>
         <div class="list-tasks">
           <div class="task-element">
@@ -24,8 +24,8 @@
             <div class="task-content">
               <div class="task-sign">📌</div>
               <div class="task-text">hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello </div>
-              <button class="task-btn common-btn">✔️</button>
-              <button class="task-btn common-btn">❌</button>
+              <button class="task-btn common-btn" value="checkBtn">✔️</button>
+              <button class="task-btn common-btn" value="delBtn">❌</button>
             </div>
           </div>
           <div class="task-element">
@@ -33,8 +33,8 @@
             <div class="task-content">
               <div class="task-sign">📌</div>
               <div class="task-text">hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello </div>
-              <button class="task-btn common-btn">✔️</button>
-              <button class="task-btn common-btn">❌</button>
+              <button class="task-btn common-btn" value="checkBtn">✔️</button>
+              <button class="task-btn common-btn" value="delBtn">❌</button>
             </div>
           </div>
           <div class="task-element">
@@ -42,13 +42,23 @@
             <div class="task-content">
               <div class="task-sign">📌</div>
               <div class="task-text">hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello </div>
-              <button class="task-btn common-btn">✔️</button>
-              <button class="task-btn common-btn">❌</button>
+              <button class="task-btn common-btn" value="checkBtn">✔️</button>
+              <button class="task-btn common-btn" value="delBtn">❌</button>
             </div>
           </div>
         </div>
       </div>
 		</div>
-	</div>
+  </div>
+  <div class="task-element task-template">
+    <div class="new-task-divider common-concave"></div>
+    <div class="task-content">
+      <div class="task-sign">📌</div>
+      <div class="task-text"></div>
+      <button class="task-btn common-btn" value="checkBtn">✔️</button>
+      <button class="task-btn common-btn" value="delBtn">❌</button>
+    </div>
+  </div>
+  <script src="./script.js"></script>
 </body>
 </html>
