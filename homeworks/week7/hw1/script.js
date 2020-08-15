@@ -36,6 +36,5 @@ document.querySelector('.submit-btn').addEventListener('click', () => {
   for (const inputElem of inputElemList) {
     legal = isLegal(inputElem) && legal;
     result.push(`${getTitle(inputElem)}：${getInputInfo(inputElem)}`);
-  }
-  if (legal) alert(result.join('\n'));
+  } if (legal) alert(result.join('\n'));
 });

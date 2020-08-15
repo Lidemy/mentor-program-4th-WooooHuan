@@ -1,6 +1,6 @@
-/* eslint-disable */ 
+/* eslint-disable */
 const listMainNode = document.querySelector('.list-main');
-const newTaskTitle =  document.querySelector('.new-task-input');
+const newTaskTitle = document.querySelector('.new-task-input');
 const taskTemplate = document.querySelector('.task-template');
 
 function getNewTaskTitle() {
@@ -25,9 +25,9 @@ function switchSign(element, signA, signB) {
   element.innerText = element.classList.contains('checked') ? signA : signB;
 }
 
-function newBtn(element) {
-  if (newTaskTitle.value.length < 1) { 
-    alert('Task title is empty!'); 
+function newBtn() {
+  if (newTaskTitle.value.length < 1) {
+    alert('Task title is empty!');
     return;
   } setNewTask();
 }
