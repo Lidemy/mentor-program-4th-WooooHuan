@@ -119,7 +119,8 @@ body {
   font-size: 14px;
 }
 
-.input-hint {
+.input-hint,
+.format-hint {
   display: none;
   position: absolute;
   bottom: -24px;

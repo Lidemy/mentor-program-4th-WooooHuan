@@ -29,10 +29,20 @@ function isLegal(element) {
   } return true;
 }
 
+function checkFormat(rule, id) {
+  const textElem = document.querySelector(id);
+  if (textElem.value.length < 1) return false;
+  const hint = getChildElem(textElem.parentNode, 'format-hint');
+  const legal = rule.test(textElem.value);
+  hint.style.display = legal ? 'none' : 'block';
+  return legal;
+}
+
 document.querySelector('.submit-btn').addEventListener('click', () => {
   const inputElemList = document.querySelectorAll('.content-input-group');
   const result = [];
-  let legal = true;
+  let legal = checkFormat(/^.+@.+\./, '#email-text');
+  legal = checkFormat(/^09\d{8}$/, '#phone-text') && legal;
   for (const inputElem of inputElemList) {
     legal = isLegal(inputElem) && legal;
     result.push(`${getTitle(inputElem)}：${getInputInfo(inputElem)}`);
