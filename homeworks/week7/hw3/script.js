@@ -9,27 +9,36 @@ function getNewTaskTitle() {
   return taskTitle;
 }
 
-function setTaskTitle(parentNode, content) {
-  parentNode.getElementsByClassName('task-text')[0].innerText = content;
+function getElement(parentNode, className) {
+  return parentNode.getElementsByClassName(className)[0];
 }
 
 function setNewTask() {
   const clone = taskTemplate.cloneNode(true);
   clone.classList.remove('task-template');
-  setTaskTitle(clone, getNewTaskTitle());
+  getElement(clone, 'task-text').innerText = getNewTaskTitle();
   listMainNode.appendChild(clone);
+}
+
+function switchSign(element, signA, signB) {
+  element.classList.toggle('checked');
+  element.innerText = element.classList.contains('checked') ? signA : signB;
 }
 
 function newBtn(element) {
   if (newTaskTitle.value.length < 1) { 
-    alert('The task title is empty!'); 
+    alert('Task title is empty!'); 
     return;
   } setNewTask();
 }
 
 function checkBtn(element) {
-  element.classList.toggle("checked-btn");
-  element.parentNode.getElementsByClassName('task-text')[0]
+  const signElem = getElement(element.parentNode, 'task-sign');
+  const textElem = getElement(element.parentNode, 'task-text');
+  signElem.classList.toggle('checked-sign');
+  textElem.classList.toggle('checked-text');
+  switchSign(signElem, '🏁', '🚩');
+  switchSign(element, '↩️', '✔️');
 }
 
 function delBtn(element) {
@@ -39,4 +48,9 @@ function delBtn(element) {
 listMainNode.addEventListener('click', (e) => {
   const fn = window[e.target.value];
   if (typeof fn === 'function') fn(e.target);
+});
+
+listMainNode.addEventListener('keyup', (e) => {
+  const keyUp = e.key === 'Enter' || e.keyCode === 13;
+  if (keyUp && newTaskTitle.value.length > 1) newBtn();
 });

@@ -27,12 +27,10 @@ li {
   transition: background 0.1s;
 }
 
-li.active,
 li:hover {
   background: #ff7286;
 }
 
-li.active > a,
 li:hover > a {
   color: #fefefe;
 }
@@ -76,8 +74,9 @@ li > a {
 }
 
 footer {
-  margin-top: 41px;
+  margin-top: 10%;
 }
+
 
 .footer-top {
   padding: 32px;
