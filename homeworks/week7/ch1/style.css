@@ -1,0 +1,131 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.no-transition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+
+.carousel-mask {
+  overflow-x: hidden;
+}
+
+.carousel-root {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  left: 0vw;
+  transition-property: left;
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(1, 0, 0.33, 1);
+}
+
+.page-elem {
+  display: flex;
+  min-width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-size: 108px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.pages {
+  display: none;
+}
+
+#page-1 {
+  background-color: rgb(0, 70, 59);
+}
+
+#page-2 {
+  background-color: #695353
+}
+
+#page-3 {
+  background-color: #342674
+}
+
+#page-4 {
+  background-color: #892d2d;
+}
+
+.btn-group {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+.arrow-btn-cover {
+  position: relative;
+  align-self: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.arrow-btn {
+  width: 96px;
+  height: 128px;
+  margin: 64px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.arrow-btn::before {
+  position: absolute;
+  content: "";
+  top: 96px;
+  left: 96px;
+  font-size: 0;
+  border-top: transparent solid 32px;
+  border-bottom: transparent solid 32px;
+}
+
+#left-btn::before {
+  border-right: rgba(255, 255, 255, 0.8) solid 32px;
+}
+
+#right-btn::before  {
+  border-left: rgba(255, 255, 255, 0.8) solid 32px;
+}
+
+.bottom-btn-group {
+  display: flex;
+  justify-content: center;
+  align-self: flex-end;
+  flex-grow: 1;
+  flex-shrink: 1;
+  margin-bottom: 64px;
+}
+
+.box-btn {
+  flex-grow: 1;
+  flex-shrink: 1;
+  max-width: 64px;
+  height: 12px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.33);
+  transition: background-color 0.4s;
+}
+
+.target-btn {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.box-btn,
+.arrow-btn {
+  border: 0;
+  outline: none;
+}
+
+.box-btn:hover,
+.arrow-btn:hover {
+  cursor: pointer;
+}

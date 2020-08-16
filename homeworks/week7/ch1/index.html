@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8">
+  	<title>Carousel</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="./normalize.css" />
+	  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+	<div class="carousel-mask">
+		<div class="carousel-root no-transition" style="left: 0vw">
+		</div>
+	</div>
+	<div class="pages">
+		<div class="page-elem" id="page-1"><p>1</p></div>
+		<div class="page-elem" id="page-2"><p>2</p></div>
+		<div class="page-elem" id="page-3"><p>3</p></div>
+		<div class="page-elem" id="page-4"><p>4</p></div>
+		<div class="page-elem" id="page-5"><p>5</p></div>
+	</div>
+	<div class="btn-group">
+		<div class="arrow-btn-cover">
+			<button class="arrow-btn" id="left-btn" value="leftBtn">
+		</div>
+		<div class="bottom-btn-group">
+			<button class="box-btn target-btn" id="btn-0" value="bottomBtn-0"></button>
+			<button class="box-btn" id="btn-1" value="bottomBtn-1"></button>
+			<button class="box-btn" id="btn-2" value="bottomBtn-2"></button>
+			<button class="box-btn" id="btn-3" value="bottomBtn-3"></button>
+		</div>
+		<div class="arrow-btn-cover">
+			<button class="arrow-btn" id="right-btn" value="rightBtn">
+		</div>
+	</div>
+	<script src="./script.js"></script>
+</body>
+</html>

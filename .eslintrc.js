@@ -20,6 +20,9 @@ module.exports = {
     'react',
   ],
   rules: {
-    "no-console": "off"
+    "consistent-return": "off",
+    "no-console": "off",
+    "no-alert": "off",
+    "no-restricted-syntax": "off"
   },
 };
