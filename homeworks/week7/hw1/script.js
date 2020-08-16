@@ -31,8 +31,11 @@ function isLegal(element) {
 
 function checkFormat(rule, id) {
   const textElem = document.querySelector(id);
-  if (textElem.value.length < 1) return false;
   const hint = getChildElem(textElem.parentNode, 'format-hint');
+  if (textElem.value.length < 1) {
+    hint.style.display = 'none';
+    return false;
+  }
   const legal = rule.test(textElem.value);
   hint.style.display = legal ? 'none' : 'block';
   return legal;
