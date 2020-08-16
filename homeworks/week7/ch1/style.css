@@ -6,28 +6,38 @@
 
 .carousel-mask {
   display: flex;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .carousel-elem {
-  position: relative;
-  display: flex;
+  display: none;
   min-width: 100vw;
   height: 100vh;
-  left: 0;
+  left: 0vw;
   justify-content: center;
   align-items: center;
   font-size: 108px;
   transition: left 1s;
   color: rgba(255, 255, 255, 0.8);
+  transition-property: left;
+  transition-duration: 0s;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 #page-1 {
-  background-color: rgb(0, 88, 59);
+  background-color: rgb(0, 70, 59);
 }
 
-#page-1:active {
-  left: -100vw;
+#page-2 {
+  background-color: #695353
+}
+
+#page-3 {
+  background-color: #342674
+}
+
+#page-4 {
+  background-color: #892d2d;
 }
 
 .btn-group {
@@ -62,13 +72,12 @@
   border-top: transparent solid 32px;
   border-bottom: transparent solid 32px;
 }
-/*	<div class="arrow-icon" id="arrow-prev" value="prevBtn"></div></button>*/
 
-#prev-btn::before {
+#left-btn::before {
   border-right: rgba(255, 255, 255, 0.8) solid 32px;
 }
 
-#next-btn::before  {
+#right-btn::before  {
   border-left: rgba(255, 255, 255, 0.8) solid 32px;
 }
 
