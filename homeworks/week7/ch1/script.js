@@ -1,6 +1,6 @@
 /* eslint-disable */
 const pages = [];
-for (page of document.body.getElementsByClassName('page-elem')) pages.push(page);
+for (const page of document.body.getElementsByClassName('page-elem')) pages.push(page);
 const pagesGroup = document.querySelector('.pages');
 const boxBtn = document.body.getElementsByClassName('box-btn');
 const root = document.querySelector('.carousel-root');
@@ -49,7 +49,7 @@ function leftBtn() {
 
 function rightBtn() {
   onAnimStart(currentIndex + 1);
-} 
+}
 
 setInterval(() => {
   if (!blockClick) rightBtn();
@@ -59,4 +59,4 @@ document.querySelector('.btn-group').addEventListener('click', (e) => {
   if (blockClick || !e.target.value) return;
   const fn = window[e.target.value.split('-')[0]];
   if (typeof fn === 'function') fn(e.target);
-}); 
+});
