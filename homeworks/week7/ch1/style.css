@@ -4,6 +4,13 @@
   box-sizing: border-box;
 }
 
+.no-transition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+
 .carousel-mask {
   overflow-x: hidden;
 }
@@ -11,10 +18,11 @@
 .carousel-root {
   display: flex;
   position: relative;
+  justify-content: center;
   left: 0vw;
   transition-property: left;
-  transition-duration: 0s;
-  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  transition-duration: 0.4s;
+  transition-timing-function: cubic-bezier(1, 0, 0.33, 1);
 }
 
 .page-elem {
@@ -104,6 +112,11 @@
   height: 12px;
   margin: 16px;
   background: rgba(255, 255, 255, 0.33);
+  transition: background-color 0.4s;
+}
+
+.target-btn {
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .box-btn,

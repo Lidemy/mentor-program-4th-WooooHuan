@@ -2,43 +2,46 @@
 const pages = [];
 for (page of document.body.getElementsByClassName('page-elem')) pages.push(page);
 const pagesGroup = document.querySelector('.pages');
+const boxBtn = document.body.getElementsByClassName('box-btn');
 const root = document.querySelector('.carousel-root');
 root.appendChild(pages[0]);
+const dummyPage = pages[4];
 let blockClick = false;
 let currentIndex = 0;
 let nextIndex = 0;
 
-console.log(pages);
-
 function sortPages(n) {
-  root.appendChild(pages[nextIndex]);
-  if (n > currentIndex) root.appendChild(pages[currentIndex]);
+  root.appendChild(n < currentIndex ? pages[nextIndex] : dummyPage);
+  root.appendChild(pages[currentIndex]);
+  root.appendChild(n < currentIndex ? dummyPage : pages[nextIndex]);
 }
 
 function onAnimStart(n) {
   blockClick = true;
   nextIndex = n < 0 ? 3 : n % 4;
   sortPages(n);
-  root.left = n > currentIndex ? '0vw' : '-100vw';
-  root.style.transitionDuration = '0.5s';
-  root.left = n > currentIndex ? '100vw' : '0vw';
+  root.classList.remove('no-transition');
+  root.style.left = n < currentIndex ? '100vw' : '-100vw';
+  boxBtn[nextIndex].classList.add('target-btn');
+  boxBtn[currentIndex].classList.remove('target-btn');
   setTimeout(() => {
     onAnimEnd();
-  }, 600);
+  }, 500);
 }
 
 function onAnimEnd() {
-  console.log(pages);
-  console.log(pages[currentIndex]);
-  pagesGroup.appendChild(pages[currentIndex]);
-  currentIndex = nextIndex;
-  root.style.transitionDuration = '0s';
-  root.left = '0vw';
   blockClick = false;
+  pagesGroup.appendChild(pages[currentIndex]);
+  pagesGroup.appendChild(dummyPage);
+  currentIndex = nextIndex;
+  root.classList.add('no-transition');
+  root.style.left = '0vw';
 }
 
 function bottomBtn(element) {
-  console.log(element);
+  const btnIndex = Number(element.value.split('-')[1]);
+  if (currentIndex === btnIndex) return;
+  onAnimStart(btnIndex);
 }
 
 function leftBtn() {
@@ -50,7 +53,7 @@ function rightBtn() {
 }
 
 document.querySelector('.btn-group').addEventListener('click', (e) => {
-  if (!e.target.value || blockClick) return;
+  if (blockClick || !e.target.value) return;
   const fn = window[e.target.value.split('-')[0]];
   if (typeof fn === 'function') fn(e.target);
 });
