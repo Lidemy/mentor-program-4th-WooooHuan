@@ -24,9 +24,7 @@ function onAnimStart(n) {
   root.style.left = n < currentIndex ? '100vw' : '-100vw';
   boxBtn[nextIndex].classList.add('target-btn');
   boxBtn[currentIndex].classList.remove('target-btn');
-  setTimeout(() => {
-    onAnimEnd();
-  }, 500);
+  setTimeout(onAnimEnd, 500);
 }
 
 function onAnimEnd() {
@@ -36,6 +34,7 @@ function onAnimEnd() {
   currentIndex = nextIndex;
   root.classList.add('no-transition');
   root.style.left = '0vw';
+  autoCarousel();
 }
 
 function bottomBtn(element) {
@@ -50,10 +49,14 @@ function leftBtn() {
 
 function rightBtn() {
   onAnimStart(currentIndex + 1);
-}
+} 
+
+setInterval(() => {
+  if (!blockClick) rightBtn();
+}, 5000);
 
 document.querySelector('.btn-group').addEventListener('click', (e) => {
   if (blockClick || !e.target.value) return;
   const fn = window[e.target.value.split('-')[0]];
   if (typeof fn === 'function') fn(e.target);
-});
+}); 
