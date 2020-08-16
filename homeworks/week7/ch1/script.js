@@ -1,57 +1,39 @@
 /* eslint-disable */
+const pages = [];
+for (page of document.body.getElementsByClassName('page-elem')) pages.push(page);
+const pagesGroup = document.querySelector('.pages');
+const root = document.querySelector('.carousel-root');
+root.appendChild(pages[0]);
+let blockClick = false;
 let currentIndex = 0;
 let nextIndex = 0;
-let blockClick = false;
-const root = document.querySelector('.carousel-mask');
-const pages = document.body.getElementsByClassName('carousel-elem');
-pages[0].style.display = 'flex';
 
-function currentPage() {
-  return pages[currentIndex];
-}
+console.log(pages);
 
-function nextPage() {
-  return pages[nextIndex];
-}
-
-function trimNextIndex(index) {
-  return index < 0 ? 3 : index % 4;
-}
-
-function setPagesTransition(isPlaying) {
-  for (page of pages) page.style.transitionDuration = isPlaying ? '0.5s' : '0s';
-}
-
-function sortPages() {
-  if (n > currentIndex) {
-    root.appendChild.nextPage();
-  } else {
-
-  }
+function sortPages(n) {
+  root.appendChild(pages[nextIndex]);
+  if (n > currentIndex) root.appendChild(pages[currentIndex]);
 }
 
 function onAnimStart(n) {
   blockClick = true;
-  nextIndex = trimNextIndex(n);
+  nextIndex = n < 0 ? 3 : n % 4;
   sortPages(n);
-  //root.appendChild(n > currentIndex ? nextPage());
-
-
-
-  nextPage().style.left = n > currentIndex ? '100vw' : '-100vw';
-  nextPage().style.display = 'flex';
-  setPagesTransition(true);
-  //currentPage().style.left = n > currentIndex ? '-100vw' : '100vw';
-  nextPage().style.left = '0vw';
-  /*setTimeout(() => {
+  root.left = n > currentIndex ? '0vw' : '-100vw';
+  root.style.transitionDuration = '0.5s';
+  root.left = n > currentIndex ? '100vw' : '0vw';
+  setTimeout(() => {
     onAnimEnd();
-  }, 600);*/
+  }, 600);
 }
 
 function onAnimEnd() {
-  currentPage().style.display = 'none';
+  console.log(pages);
+  console.log(pages[currentIndex]);
+  pagesGroup.appendChild(pages[currentIndex]);
   currentIndex = nextIndex;
-  setPagesTransition(false);
+  root.style.transitionDuration = '0s';
+  root.left = '0vw';
   blockClick = false;
 }
 

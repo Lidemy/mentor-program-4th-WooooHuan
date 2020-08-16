@@ -5,23 +5,30 @@
 }
 
 .carousel-mask {
-  display: flex;
   overflow-x: hidden;
 }
 
-.carousel-elem {
-  display: none;
-  min-width: 100vw;
-  height: 100vh;
+.carousel-root {
+  display: flex;
+  position: relative;
   left: 0vw;
-  justify-content: center;
-  align-items: center;
-  font-size: 108px;
-  transition: left 1s;
-  color: rgba(255, 255, 255, 0.8);
   transition-property: left;
   transition-duration: 0s;
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.page-elem {
+  display: flex;
+  min-width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-size: 108px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.pages {
+  display: none;
 }
 
 #page-1 {
