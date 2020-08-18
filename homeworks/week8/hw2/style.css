@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  outline: none;
+}
+
+::placeholder {
+  color: #afafaf;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  min-width: 100vw;
+  min-height: 100vh;
+  background: #008080;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.common-convex {
+  border-width: 2px;
+  border-style: solid;
+  border-color: white #393939 #393939 white;
+}
+
+.common-concave {
+  border-width: 2px;
+  border-style: solid;
+  border-color:#393939 white white #393939;
+}
+
+.common-btn {
+  position: relative;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #a0a0a0 #4c4c4c #4c4c4c #a0a0a0;
+  background: #bdbdbd;
+}
+
+.common-btn::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: white #858585 #858585 white;
+  background: transparent;
+}
+
+.common-btn:active {
+  border-color:#4c4c4c #a0a0a0 #a0a0a0 #4c4c4c;
+  padding-left: 3px;
+  padding-top: 3px;
+}
+
+.common-btn:active::before {
+  border-color:#858585 white white #858585;
+}
+
+.window-root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 120px auto;
+  max-width: 1280px;
+  min-width: 600px;
+  background: #bdbdbd;
+}
+
+.title-bar {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  margin: 2px;
+  padding-left: 4px;
+  font-weight: bold;
+  color: white;
+  background: #000181;
+}
+
+.tabs-root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 8px 8px 32px;
+}
+
+.tabs-bar {
+  display: flex;
+  height: 24px;
+}
+
+.tab-btn {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-width: 2px;
+  border-style: solid;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-color: white #393939 #bdbdbd white;
+  background: #bdbdbd;
+}
+
+.tab-btn:hover {
+  cursor: pointer;
+}
+
+.tab-title {
+  margin: 2px 8px;
+}
+
+.tab-patch {
+  flex: 1;
+  display: flex;
+  width: calc(100% + 4px);
+  margin-top: -2px;
+  margin-left: -2px;
+  border-width: 2px;
+  box-sizing: content-box;
+}
+
+.patch-left {
+  width: 2px;
+  height: 4px;
+  background: white;
+}
+
+.patch-right {
+  width: 2px;
+  height: 4px;
+  background: #393939;
+}
+
+.patch-center {
+  flex: 1;
+  height: 4px;
+  background: #bdbdbd;
+}
+
+.tab-content {
+  flex: 1;
+}
