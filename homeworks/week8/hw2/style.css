@@ -123,6 +123,7 @@ body {
 
 .tab-title {
   margin: 2px 8px 0px;
+  pointer-events: none;
 }
 
 .tab-patch {
@@ -175,7 +176,6 @@ body {
 
 .img-preview {
   flex: 1;
-  background-color: #393939;
 }
 
 .stream-data {
