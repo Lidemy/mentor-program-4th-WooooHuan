@@ -61,6 +61,7 @@ function initTabs(data) {
     clone.classList.remove('tab-template');
     getElement(clone, 'tab-title').innerText = name;
     tabsRoot.appendChild(clone);
+    if (i > 0) getElement(clone, 'tab-patch').classList.add('hidden'); // 處理 tab 相關
   } 
 }
 
