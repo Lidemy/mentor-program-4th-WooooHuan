@@ -14,7 +14,7 @@
     <div class="title-bar">🕹️ Most Watched Games on Twitch</div>
     <div class="tabs-root">
       <div class="tabs-bar">
-        <button class="tab-btn tab-template" value="tabBtn">
+        <button class="tab-btn hidden" id="tab-template" value="tabBtn">
           <div class="tab-buffer"></div>
           <div class="tab-title"></div>
           <div class="tab-buffer"></div>
@@ -26,12 +26,11 @@
         </button>
       </div>
       <div class="tab-content common-convex">
-        <div class="stream-element common-concave stream-template">
+        <div class="stream-element common-concave hidden" id="stream-template">
           <img class="img-preview" src="">
+          <div class="stream-deliver common-convex"></div>
           <div class="stream-data">
-            <div class="stream-avatar">
-              <img class="img-avatar" src="">
-            </div>
+            <img class="img-avatar" src="">
             <div class="stream-info">
               <div class="stream-title">title</div>
               <div class="stream-channel">channel</div>

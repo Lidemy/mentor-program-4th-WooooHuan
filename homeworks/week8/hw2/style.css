@@ -18,8 +18,6 @@ body {
   background: #008080;
 }
 
-.tab-template,
-.stream-template,
 .hidden {
   display: none !important;
 }
@@ -72,8 +70,8 @@ body {
   display: flex;
   flex-direction: column;
   margin: 120px auto;
-  max-width: 1280px;
-  min-width: 405px;
+  max-width: 1600px;
+  min-width: 450px;
   background: #bdbdbd;
 }
 
@@ -168,14 +166,21 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 300px;
-  min-height: 240px;
+  min-width: 320px;
   margin: 15px;
   background-color: #bdbdbd;
 }
 
 .img-preview {
   flex: 1;
+  height: 180px;
+  object-fit: cover;
+}
+
+.stream-deliver {
+  flex: 1;
+  border-left: 0;
+  border-right: 0;
 }
 
 .stream-data {
@@ -186,8 +191,9 @@ body {
 }
 
 .img-avatar {
-  height: 64px;
   width: 64px;
+  height: 64px;
+  object-fit: cover;
 }
 
 .stream-info {
@@ -200,27 +206,42 @@ body {
   font-size: 18px;
   font-weight: bold;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .stream-channel {
-  padding: 4px 8px;
+  padding: 8px 8px;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-
-
-@media(max-width: 404px) {
-  body {
-    display: flex;
-    justify-content: flex-start;
-    min-width: 100vw;
-    min-height: 100vh;
-    background: #008080;
+@media(max-width: 1454px) {
+  .stream-element {
+    min-width: 480px;
+    margin: 15px;
   }
+    
+  .img-preview {
+    height: 320px;
+  }
+}
 
-  .window-root {
-    margin: 0;
+@media(max-width: 1080px) {
+  .stream-element {
+    min-width: 540px;
+    margin: 15px;
+  }
+    
+  .img-preview {
+    height: 480px;
+  }
+}
+
+@media(max-width: 640px) {
+  .stream-element {
+    min-width: 360px;
+    margin: 15px;
+  }
+    
+  .img-preview {
+    height: 240px;
   }
 }

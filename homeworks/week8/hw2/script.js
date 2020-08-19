@@ -1,11 +1,12 @@
 /* eslint-disable */
 const tabsRoot = document.querySelector('.tabs-bar');
-const tabTemplate = document.querySelector('.tab-template');
+const tabTemplate = document.querySelector('#tab-template');
 const streamRoot = document.querySelector('.tab-content');
-const streamTamplate = document.querySelector('.stream-template');
+const streamTamplate = document.querySelector('#stream-template');
 const apiUrl = 'https://api.twitch.tv/kraken';
 const errMsg = '系統不穩定，請再試一次';
-let streamList;
+let tabList = [];
+let streamList = [];
 let lastPatchNode;
 
 function getElement(parentNode, className) {
@@ -16,33 +17,35 @@ function showError() {
   alert(errMsg);
 }
 
-function updateStreams(data) {
-
-}
-
 function initStreams(data) {
-  for (let i = 0; i < 20; i++) {
-    const clone = tabTemplate.cloneNode(true);
-    clone.classList.remove('tab-template');
-    tabsRoot.appendChild(clone);
-    if (i === 0) {
-      lastPatchNode = getElement(clone, 'tab-patch');
-      lastPatchNode.classList.remove('hidden');
-    }
+  console.log(data);
+  if (streamList.length === 0) cloneTemplate(streamTamplate, 20, streamRoot, streamList);
+  const streams = data.streams;
+  for (let i = 0; i < streamList.length; i++) {
+    getElement(streamList[i], 'img-preview').src = streams[i].preview.large;
+    getElement(streamList[i], 'img-avatar').src = streams[i].channel.logo;
   }
 }
 
 function initTabs(data) {
-  for (let i = 0; i < 5; i++) {
-    const name = data.top[i].game.name;
-    const clone = tabTemplate.cloneNode(true);
-    clone.classList.remove('tab-template');
-    getElement(clone, 'tab-title').innerText = name;
-    tabsRoot.appendChild(clone);
+  cloneTemplate(tabTemplate, 5, tabsRoot, tabList);
+  for (let i = 0; i < tabList.length; i++) {
+    const name =  data.top[i].game.name;
+    getElement(tabList[i], 'tab-title').innerText = name;
     if (i === 0) {
-      lastPatchNode = getElement(clone, 'tab-patch');
+      lastPatchNode = getElement(tabList[i], 'tab-patch');
       lastPatchNode.classList.remove('hidden');
     }
+  } getStreams(data.top[0].game.name);
+}
+
+function cloneTemplate(target, count, root, list) {
+  for (let i = 0; i < count; i++) {
+    const clone = target.cloneNode(true);
+    clone.classList.remove('hidden');
+    clone.removeAttribute('id');
+    root.appendChild(clone);
+    list.push(clone);
   }
 }
 
