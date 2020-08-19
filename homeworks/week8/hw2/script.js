@@ -1,11 +1,13 @@
 /* eslint-disable */
-const contentNode = document.querySelector('.content-sec');
-const listNode = document.querySelector('.list-content');
-const prizeNode = document.querySelector('.prize-content');
-const prizeText = document.querySelector('.prize-text');
-const apiUrl = 'https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery';
+const tabBtnsRoot = document.querySelector('.tabs-bar');
+const tabBtns = document.body.getElementsByClassName('tab-btn'); //可省
+let lastPatchNode = getElement(tabBtns[0], 'tab-patch');
+const apiUrl = 'https://api.twitch.tv/kraken';
 const errMsg = '系統不穩定，請再試一次';
-let blockClick = false;
+
+function getElement(parentNode, className) {
+  return parentNode.getElementsByClassName(className)[0];
+}
 
 function inRange(x, min, max) {
   return ((x - min) * (x - max) <= 0);
@@ -13,25 +15,17 @@ function inRange(x, min, max) {
 
 function showError() {
   alert(errMsg);
-  blockClick = false;
 }
 
-function showAwards(prize) {
-  switch (prize) {
-    case 'FIRST': prizeText.innerText = '頭獎！日本東京來回雙人遊！'; break;
-    case 'SECOND': prizeText.innerText = '貳獎！ 90 吋電視一台！'; break;
-    case 'THIRD': prizeText.innerText = '參獎！知名 YouTuber 簽名握手會入場券一張！'; break;
-    case 'NONE': prizeText.innerText = '沒中ㄛ，ㄏㄏ'; break;
-    default: showError(); return;
-  }
-  listNode.classList.toggle('hidden');
-  prizeNode.classList.toggle('hidden');
-  contentNode.classList.add(`${prize.toLowerCase()}-bg`);
+function showStreams(data) {
+  console.log(data);
 }
 
-function initRequest() {
-  const req = new XMLHttpRequest();
-  req.open('GET', apiUrl, true);
+function getStreams(name) {
+  var req = new XMLHttpRequest();
+  req.open('GET', url + '/streams?game=' + encodeURIComponent(name), true);
+  req.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
+  req.setRequestHeader('Client-ID', 'jl04gehwmgpr795vsgeajymfb4bk95');
   req.send();
   req.onload = () => {
     if (inRange(req.status, 200, 399)) {
@@ -41,27 +35,31 @@ function initRequest() {
       } catch (err) {
         showError();
         return;
-      }
-      if (!data.prize) {
-        showError();
-        return;
-      }
-      showAwards(data.prize);
+      } showStreams(data);
     } else {
       showError();
     }
   };
-  req.onerror = () => {
-    showError();
-  };
 }
 
-document.querySelector('.lottery-btn').addEventListener('click', () => {
-  if (blockClick) return;
-  blockClick = true;
-  initRequest();
-});
+/*function setNewTask() {
+  const clone = taskTemplate.cloneNode(true);
+  clone.classList.remove('task-template');
+  getElement(clone, 'task-text').innerText = getNewTaskTitle();
+  listMainNode.appendChild(clone);
+}*/
 
-document.querySelector('.retry-btn').addEventListener('click', () => {
-  window.location.reload();
+function tabBtn(element, n) {
+  const patchNode = getElement(element, 'tab-patch');
+  patchNode.classList.toggle('hidden');
+  lastPatchNode.classList.toggle('hidden');
+  lastPatchNode = patchNode;
+}
+
+tabBtnsRoot.addEventListener('click', (e) => {
+  console.log(e.target);
+  if (!e.target.value) return;
+  const targetInfo = e.target.value.split('-');
+  const fn = window[targetInfo[0]];
+  if (typeof fn === 'function') fn(e.target, targetInfo[1]);
 });

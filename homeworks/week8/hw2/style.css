@@ -18,7 +18,8 @@ body {
   background: #008080;
 }
 
-.hidden {
+.hidden,
+.stream-template {
   display: none !important;
 }
 
@@ -71,7 +72,7 @@ body {
   flex-direction: column;
   margin: 120px auto;
   max-width: 1280px;
-  min-width: 600px;
+  min-width: 405px;
   background: #bdbdbd;
 }
 
@@ -99,6 +100,7 @@ body {
 }
 
 .tab-btn {
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -116,16 +118,17 @@ body {
 
 .tab-title {
   margin: 2px 8px;
+  pointer-events: none;
 }
 
 .tab-patch {
-  flex: 1;
   display: flex;
   width: calc(100% + 4px);
   margin-top: -2px;
   margin-left: -2px;
   border-width: 2px;
   box-sizing: content-box;
+  pointer-events: none;
 }
 
 .patch-left {
@@ -142,10 +145,78 @@ body {
 
 .patch-center {
   flex: 1;
-  height: 4px;
+  height: 6px;
   background: #bdbdbd;
 }
 
 .tab-content {
   flex: 1;
+  display: inline-flex;
+  flex-wrap: wrap;
+  padding: 15px 15px;
+}
+
+.stream-element {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  min-height: 240px;
+  margin: 15px;
+  background-color: #bdbdbd;
+}
+
+.img-preview {
+  flex: 1;
+  background-color: #393939;
+}
+
+.stream-data {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.img-avatar {
+  height: 64px;
+  width: 64px;
+}
+
+.stream-info {
+  position: relative;
+  max-width: calc(100% - 64px);
+
+
+}
+
+.stream-title {
+  padding: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stream-channel {
+  padding: 4px 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+@media(max-width: 404px) {
+  body {
+    display: flex;
+    justify-content: flex-start;
+    min-width: 100vw;
+    min-height: 100vh;
+    background: #008080;
+  }
+
+  .window-root {
+    margin: 0;
+  }
 }
