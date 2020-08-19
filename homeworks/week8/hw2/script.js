@@ -21,9 +21,8 @@ function showStreams(data) {
   console.log(data);
 }
 
-function getStreams(name) {
-  var req = new XMLHttpRequest();
-  req.open('GET', url + '/streams?game=' + encodeURIComponent(name), true);
+function sendRequest(req, reqUrl, cb) {
+  req.open('GET', reqUrl, true);
   req.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
   req.setRequestHeader('Client-ID', 'jl04gehwmgpr795vsgeajymfb4bk95');
   req.send();
@@ -35,11 +34,23 @@ function getStreams(name) {
       } catch (err) {
         showError();
         return;
-      } showStreams(data);
+      } cb(data);
     } else {
       showError();
     }
   };
+}
+
+function getStreams(name) {
+  const req = new XMLHttpRequest();
+  const reqUrl = `${apiUrl}/streams?game=${encodeURIComponent(name)}&limit=20`;
+  sendRequest(req, reqUrl, showStreams);
+}
+
+function getGames() {
+  const req = new XMLHttpRequest();
+  const reqUrl = `${apiUrl}/games/top?limit=5`;
+  sendRequest(req, reqUrl, showStreams);
 }
 
 /*function setNewTask() {
@@ -62,4 +73,14 @@ tabBtnsRoot.addEventListener('click', (e) => {
   const targetInfo = e.target.value.split('-');
   const fn = window[targetInfo[0]];
   if (typeof fn === 'function') fn(e.target, targetInfo[1]);
+});
+
+///////////
+
+document.querySelector('.games').addEventListener('click', (e) => {
+  getGames();
+});
+
+document.querySelector('.streams').addEventListener('click', (e) => {
+  getStreams('Just Chatting');
 });
