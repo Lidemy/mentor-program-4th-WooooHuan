@@ -1,5 +1,7 @@
 /* eslint-disable */
-const tabBtnsRoot = document.querySelector('.tabs-bar');
+const tabsRoot = document.querySelector('.tabs-bar');
+const tabTemplate = document.querySelector('.tab-template');
+const streamTamplate = document.querySelector('.stream-template');
 const tabBtns = document.body.getElementsByClassName('tab-btn'); //可省
 let lastPatchNode = getElement(tabBtns[0], 'tab-patch');
 const apiUrl = 'https://api.twitch.tv/kraken';
@@ -16,6 +18,10 @@ function inRange(x, min, max) {
 function showError() {
   alert(errMsg);
 }
+/*
+function initTabs(data) {
+
+}*/
 
 function showStreams(data) {
   console.log(data);
@@ -47,12 +53,24 @@ function getStreams(name) {
   sendRequest(req, reqUrl, showStreams);
 }
 
-function getGames() {
-  const req = new XMLHttpRequest();
-  const reqUrl = `${apiUrl}/games/top?limit=5`;
-  sendRequest(req, reqUrl, showStreams);
+function initTabs(data) {
+  for (let i = 0; i < 5; i++) {
+    const name = data.top[i].game.name;
+    const clone = tabTemplate.cloneNode(true);
+    clone.value = name;
+    clone.classList.remove('tab-template');
+    getElement(clone, 'tab-title').innerText = name;
+    tabsRoot.appendChild(clone);
+  } 
 }
 
+function getGamesInfo() {
+  const req = new XMLHttpRequest();
+  const reqUrl = `${apiUrl}/games/top?limit=10`;
+  sendRequest(req, reqUrl, initTabs);
+}
+
+getGamesInfo();
 /*function setNewTask() {
   const clone = taskTemplate.cloneNode(true);
   clone.classList.remove('task-template');
@@ -67,8 +85,7 @@ function tabBtn(element, n) {
   lastPatchNode = patchNode;
 }
 
-tabBtnsRoot.addEventListener('click', (e) => {
-  console.log(e.target);
+tabsRoot.addEventListener('click', (e) => {
   if (!e.target.value) return;
   const targetInfo = e.target.value.split('-');
   const fn = window[targetInfo[0]];
@@ -78,7 +95,7 @@ tabBtnsRoot.addEventListener('click', (e) => {
 ///////////
 
 document.querySelector('.games').addEventListener('click', (e) => {
-  getGames();
+  getGamesInfo();
 });
 
 document.querySelector('.streams').addEventListener('click', (e) => {

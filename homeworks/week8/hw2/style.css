@@ -18,8 +18,9 @@ body {
   background: #008080;
 }
 
-.hidden,
-.stream-template {
+.tab-template,
+.stream-template,
+.hidden {
   display: none !important;
 }
 
@@ -96,11 +97,11 @@ body {
 
 .tabs-bar {
   display: flex;
-  height: 24px;
+  min-height: 24px;
 }
 
 .tab-btn {
-  flex-shrink: 0;
+  flex-shrink: 1;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -112,18 +113,23 @@ body {
   background: #bdbdbd;
 }
 
+.tab-buffer {
+  flex: 1;
+}
+
 .tab-btn:hover {
   cursor: pointer;
 }
 
 .tab-title {
-  margin: 2px 8px;
-  pointer-events: none;
+  margin: 2px 8px 0px;
 }
 
 .tab-patch {
+  position: absolute;
   display: flex;
   width: calc(100% + 4px);
+  top: calc(100% + 2px);
   margin-top: -2px;
   margin-left: -2px;
   border-width: 2px;
@@ -187,8 +193,6 @@ body {
 .stream-info {
   position: relative;
   max-width: calc(100% - 64px);
-
-
 }
 
 .stream-title {
