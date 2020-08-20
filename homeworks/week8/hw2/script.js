@@ -5,58 +5,19 @@ const strmRoot = document.querySelector('.tab-content');
 const strmTamplate = document.querySelector('#stream-template');
 const apiUrl = 'https://api.twitch.tv/kraken';
 const errMsg = '系統不穩定，請再試一次';
-let curGame = '';
-let tabList = [];
+const tabList = [];
 let strmList = [];
 let dataList = [];
-let lastPatchNode;
+let curGame = '';
 let reqCount = 20;
+let lastPatchNode;
 
 function showError() {
   alert(errMsg);
 }
 
-function resetStrmData() {
-  dataList = [];
-  reqCount = 20;
-  for (strm of strmList) {
-    strm.remove();
-  } strmList = [];
-}
-
 function getElem(parentNode, className) {
   return parentNode.getElementsByClassName(className)[0];
-}
-
-function initStrms(data) {
-  dataList = dataList.concat(data.streams);
-  if (dataList.length < reqCount) {
-    getStrms(curGame);
-    return;
-  }   
-  const lastListLength = strmList.length;
-  cloneTemplate(strmTamplate, reqCount - lastListLength, strmRoot, strmList);
-  for (let i = lastListLength; i < reqCount; i++) {
-    getElem(strmList[i], 'img-preview').src = dataList[i].preview.large;
-    getElem(strmList[i], 'img-avatar').src = dataList[i].channel.logo;
-    getElem(strmList[i], 'stream-title').innerText = dataList[i].channel.status;
-    getElem(strmList[i], 'stream-channel').innerText = `id : ${dataList[i].channel.name}
-      viewers : ${dataList[i].viewers}`;
-  }
-}
-
-function initTabs(data) {
-  cloneTemplate(tabTemplate, 5, tabsRoot, tabList);
-  for (let i = 0; i < tabList.length; i++) {
-    const name =  data.top[i].game.name;
-    getElem(tabList[i], 'tab-title').innerText = name;
-    if (i === 0) {
-      lastPatchNode = getElem(tabList[i], 'tab-patch');
-      lastPatchNode.classList.remove('hidden');
-      curGame = name;
-      getStrms(name);
-    }
-  } 
 }
 
 function cloneTemplate(target, count, root, list) {
@@ -78,7 +39,7 @@ function sendRequest(req, reqUrl, cb) {
     if ((req.status - 200) * (req.status - 399) <= 0) {
       let data;
       try { data = JSON.parse(req.response); }
-      catch (err) { showError(); return; } 
+      catch (err) { showError(); return; }
       cb(data);
     } else {
       showError();
@@ -86,10 +47,51 @@ function sendRequest(req, reqUrl, cb) {
   };
 }
 
+function resetStrmData() {
+  dataList = [];
+  reqCount = 20;
+  for (const strm of strmList) {
+    strm.remove();
+  } strmList = [];
+}
+
+function initStrms(data) {
+  dataList = dataList.concat(data.streams);
+  if (dataList.length < reqCount) {
+    getStrms(curGame);
+    return;
+  }
+  const lastListLength = strmList.length;
+  cloneTemplate(strmTamplate, reqCount - lastListLength, strmRoot, strmList);
+  for (let i = lastListLength; i < reqCount; i++) {
+    getElem(strmList[i], 'img-preview').src = dataList[i].preview.large;
+    getElem(strmList[i], 'img-avatar').src = dataList[i].channel.logo;
+    getElem(strmList[i], 'stream-title').innerText = dataList[i].channel.status;
+    getElem(strmList[i], 'stream-channel').innerText = `id : ${dataList[i].channel.name}
+      viewers : ${dataList[i].viewers}`;
+  }
+}
+
 function getStrms(name) {
   const req = new XMLHttpRequest();
-  const reqUrl = `${apiUrl}/streams?game=${encodeURIComponent(name)}&limit=100&offset=${dataList.length}`;
+  const gameProp = `game=${encodeURIComponent(name)}`;
+  const reqProps = `&limit=100&offset=${dataList.length}`;
+  const reqUrl = `${apiUrl}/streams?${gameProp}${reqProps}`;
   sendRequest(req, reqUrl, initStrms);
+}
+
+function initTabs(data) {
+  cloneTemplate(tabTemplate, 5, tabsRoot, tabList);
+  for (let i = 0; i < tabList.length; i++) {
+    const name = data.top[i].game.name;
+    getElem(tabList[i], 'tab-title').innerText = name;
+    if (i === 0) {
+      lastPatchNode = getElem(tabList[i], 'tab-patch');
+      lastPatchNode.classList.remove('hidden');
+      curGame = name;
+      getStrms(name);
+    }
+  }
 }
 
 function updatePatch(newTabElem) {
@@ -123,4 +125,4 @@ window.onload = () => {
   const req = new XMLHttpRequest();
   const reqUrl = `${apiUrl}/games/top`;
   sendRequest(req, reqUrl, initTabs);
-}
+};
