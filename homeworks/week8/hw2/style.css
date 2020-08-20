@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  border: none;
   box-sizing: border-box;
   font-family: sans-serif;
   outline: none;
@@ -186,14 +185,13 @@ body {
 .stream-data {
   position: relative;
   width: 100%;
-  height: 64px;
   display: flex;
   align-items: center;
 }
 
 .img-avatar {
-  width: 64px;
   height: 64px;
+  width: 64px;
   object-fit: cover;
 }
 
@@ -206,15 +204,18 @@ body {
   padding: 8px 8px 4px;
   font-size: 18px;
   font-weight: bold;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .stream-channel {
   padding: 4px 8px 8px;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 
 @media(max-width: 1454px) {
   .stream-element {
