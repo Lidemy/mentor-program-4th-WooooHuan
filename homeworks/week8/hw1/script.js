@@ -1,3 +1,4 @@
+/* eslint-disable */
 const contentNode = document.querySelector('.content-sec');
 const listNode = document.querySelector('.list-content');
 const prizeNode = document.querySelector('.prize-content');
@@ -35,24 +36,19 @@ function initRequest() {
   req.onload = () => {
     if (inRange(req.status, 200, 399)) {
       let data;
-      try {
-        data = JSON.parse(req.response);
-      } catch (err) {
-        showError();
-        return;
-      }
+      try { data = JSON.parse(req.response); }
+      catch (err) { showError(); return; }
+
       if (!data.prize) {
         showError();
         return;
-      }
-      showAwards(data.prize);
+      } showAwards(data.prize);
+
     } else {
       showError();
     }
   };
-  req.onerror = () => {
-    showError();
-  };
+  req.onerror = () => showError();
 }
 
 document.querySelector('.lottery-btn').addEventListener('click', () => {
