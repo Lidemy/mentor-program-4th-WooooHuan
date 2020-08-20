@@ -1,15 +1,15 @@
 /* eslint-disable */
 const tabsRoot = document.querySelector('.tabs-bar');
 const tabTemplate = document.querySelector('#tab-template');
-const streamRoot = document.querySelector('.tab-content');
-const streamTamplate = document.querySelector('#stream-template');
+const strmRoot = document.querySelector('.tab-content');
+const strmTamplate = document.querySelector('#stream-template');
 const apiUrl = 'https://api.twitch.tv/kraken';
 const errMsg = '系統不穩定，請再試一次';
 let tabList = [];
-let streamList = [];
+let strmList = [];
 let lastPatchNode;
 
-function getElement(parentNode, className) {
+function getElem(parentNode, className) {
   return parentNode.getElementsByClassName(className)[0];
 }
 
@@ -17,13 +17,15 @@ function showError() {
   alert(errMsg);
 }
 
-function initStreams(data) {
+function initStrms(data) {
   console.log(data);
-  if (streamList.length === 0) cloneTemplate(streamTamplate, 20, streamRoot, streamList);
-  const streams = data.streams;
-  for (let i = 0; i < streamList.length; i++) {
-    getElement(streamList[i], 'img-preview').src = streams[i].preview.large;
-    getElement(streamList[i], 'img-avatar').src = streams[i].channel.logo;
+  if (strmList.length === 0) cloneTemplate(strmTamplate, 20, strmRoot, strmList);
+  const strms = data.streams;
+  for (let i = 0; i < strmList.length; i++) {
+    getElem(strmList[i], 'img-preview').src = strms[i].preview.large;
+    getElem(strmList[i], 'img-avatar').src = strms[i].channel.logo;
+    getElem(strmList[i], 'stream-title').innerText = strms[i].channel.status;
+    getElem(strmList[i], 'stream-channel').innerText = strms[i].channel.name;
   }
 }
 
@@ -31,12 +33,12 @@ function initTabs(data) {
   cloneTemplate(tabTemplate, 5, tabsRoot, tabList);
   for (let i = 0; i < tabList.length; i++) {
     const name =  data.top[i].game.name;
-    getElement(tabList[i], 'tab-title').innerText = name;
+    getElem(tabList[i], 'tab-title').innerText = name;
     if (i === 0) {
-      lastPatchNode = getElement(tabList[i], 'tab-patch');
+      lastPatchNode = getElem(tabList[i], 'tab-patch');
       lastPatchNode.classList.remove('hidden');
     }
-  } getStreams(data.top[0].game.name);
+  } getStrms(data.top[0].game.name);
 }
 
 function cloneTemplate(target, count, root, list) {
@@ -66,14 +68,14 @@ function sendRequest(req, reqUrl, cb) {
   };
 }
 
-function getStreams(name) {
+function getStrms(name) {
   const req = new XMLHttpRequest();
   const reqUrl = `${apiUrl}/streams?game=${encodeURIComponent(name)}`;
-  sendRequest(req, reqUrl, initStreams);
+  sendRequest(req, reqUrl, initStrms);
 }
 
 function updateTab(newTabElem) {
-  const newPatchNode = getElement(newTabElem, 'tab-patch');
+  const newPatchNode = getElem(newTabElem, 'tab-patch');
   lastPatchNode.classList.toggle('hidden');
   newPatchNode.classList.toggle('hidden');
   lastPatchNode = newPatchNode;
@@ -81,11 +83,10 @@ function updateTab(newTabElem) {
 
 function tabBtn(element) {
   updateTab(element);
-  getStreams(getElement(element, 'tab-title').innerText);
+  getStrms(getElem(element, 'tab-title').innerText);
 }
 
 document.body.addEventListener('click', (e) => {
-  console.log(e.target);
   if (!e.target.value) return;
   const fn = window[e.target.value];
   if (typeof fn === 'function') fn(e.target);
@@ -96,12 +97,3 @@ window.onload = () => {
   const reqUrl = `${apiUrl}/games/top`;
   sendRequest(req, reqUrl, initTabs);
 }
-
-///////////////////
-
-/*function setNewTask() {
-  const clone = taskTemplate.cloneNode(true);
-  clone.classList.remove('task-template');
-  getElement(clone, 'task-text').innerText = getNewTaskTitle();
-  listMainNode.appendChild(clone);
-}*/

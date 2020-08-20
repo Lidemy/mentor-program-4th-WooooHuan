@@ -207,11 +207,13 @@ body {
   font-size: 18px;
   font-weight: bold;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .stream-channel {
   padding: 4px 8px 8px;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media(max-width: 1454px) {
