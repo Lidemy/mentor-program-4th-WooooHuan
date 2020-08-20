@@ -124,32 +124,3 @@ window.onload = () => {
   const reqUrl = `${apiUrl}/games/top`;
   sendRequest(req, reqUrl, initTabs);
 }
-
-/*
-let count = 0;
-let datalist = [];
-let requestCount = 500;
-
-test(0);
-function test(offset) {
-  const name = 'League of Legends';
-  const req = new XMLHttpRequest();
-  const reqUrl = `${apiUrl}/streams?game=${encodeURIComponent(name)}&limit=100&offset=${offset}`;
-
-  req.open('GET', reqUrl, true);
-  req.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
-  req.setRequestHeader('Client-ID', 'jl04gehwmgpr795vsgeajymfb4bk95');
-  req.send();
-  req.onload = () => {
-    data = JSON.parse(req.response);
-    datalist = datalist.concat(data.streams);
-    if (datalist.length < requestCount) {
-      test(datalist.length);
-      return;
-    } else {
-      for (let i = 0; i < requestCount; i++) {
-        console.log(i + ' : ' + datalist[i].viewers);
-      }
-    }
-  };
-}*/
