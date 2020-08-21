@@ -6,10 +6,12 @@ const strmTamplate = document.querySelector('#stream-template');
 const apiUrl = 'https://api.twitch.tv/kraken';
 const errMsg = '系統不穩定，請再試一次';
 const tabList = [];
+const limit = 10;
 let strmList = [];
 let dataList = [];
 let curGame = '';
 let reqCount = 20;
+let limitCount = 0;
 let lastPatchNode;
 
 function showError() {
@@ -57,10 +59,11 @@ function resetStrmData() {
 
 function initStrms(data) {
   dataList = dataList.concat(data.streams);
-  if (dataList.length < reqCount) {
+  if (dataList.length < reqCount && limitCount < limit) {
     getStrms(curGame);
+    limitCount++;
     return;
-  }
+  } limitCount = 0;
   const lastListLength = strmList.length;
   cloneTemplate(strmTamplate, reqCount - lastListLength, strmRoot, strmList);
   for (let i = lastListLength; i < reqCount; i++) {
