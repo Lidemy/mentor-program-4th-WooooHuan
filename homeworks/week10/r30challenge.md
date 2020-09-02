@@ -82,6 +82,8 @@
 
 > token = emojicute
 
+<br>
+
 ---
 
 ### Lv. 7 - [系統] 請找到放在包包深處的餅乾 tokentoken 資訊
@@ -91,6 +93,8 @@
 - 將內容 `%7Bcookieyumyum%7D` 進行 url 碼的還原，得到 {cookieyumyum}
 
 > token = cookieyumyum
+
+<br>
 
 ---
 
