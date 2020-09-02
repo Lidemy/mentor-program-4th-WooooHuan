@@ -18,7 +18,7 @@
 
 ---
 
-Week 7
+### Week 7
 
 - 開始逐漸上手的一週，對在瀏覽器環境運行 js 感到新鮮
 
@@ -28,13 +28,13 @@ Week 7
 
 - 在 [作業一](https://lidemy.github.io/mentor-program-4th-WooooHuan/homeworks/week7/hw1/) 做了一些嘗試
 
-    - 練習使用 [regex](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Guide/Regular_Expressions) 進行字串內容處理，驗證輸入的正確性
+    - 練習使用 regex 進行字串內容處理，驗證輸入的正確性
 
     - 用 CSS 畫警告圖示（~~挺有趣的~~
 
-    - 開始留意不同解析度環境的 layout 適配
-
     - 盡可能避免在 script 中，宣告網頁顯示用的文字內容，練習如何從 html 中獲取各種資訊
+
+    <br>
     
 - 在 [作業二](https://lidemy.github.io/mentor-program-4th-WooooHuan/homeworks/week7/hw2/) 嘗試之前學到的 CSS 動態效果
 
@@ -46,9 +46,34 @@ Week 7
 
     - 跟使用者互動有關的元素，還是盡可能地用 transition, 避免使用 animation, 後者在互動時的動態銜接方面，吃力不討好
 
-    - 在作業中偷渡的問題，被助教華麗的無視了
+    <br>
 
-- 在 [作業三](https://lidemy.github.io/mentor-program-4th-WooooHuan/homeworks/week7/hw2/) 嘗試將 CSS 進行更多發揮
 
-    -
+- 在 [作業三](https://lidemy.github.io/mentor-program-4th-WooooHuan/homeworks/week7/hw3/) 嘗試將 CSS 進行更多發揮
 
+    - 大部分的時間都在用 CSS 刻 windows 95 style 的介面
+
+    - 為了讓按鈕的立體感盡量還原 win 95 的樣貌，用了偽元素來多畫一次 border
+
+    - 開始留意各種解析度環境的 layout 適配以及空間不足時的縮放對策
+
+    - 用 CSS 逐步完成構想好的畫面，這個過程特別好玩
+
+    <br>
+
+- 在 [挑戰題](https://lidemy.github.io/mentor-program-4th-WooooHuan/homeworks/week7/ch1/) 嘗試了一些沒用過的 js 功能
+
+    - 在交作業之際，看見挑戰題的需求好像沒有很難，就先隨便兜看看
+
+    - 在有了雛型之後，開始著手重構，用了一個有點類似物件池的方式實現了這次的換頁功能
+
+    - 為了實現自動捲動，嘗試了一些跟時間有關的 js 功能，感覺可以拿來做很多其它應用，先記在牆上
+
+    <br>
+
+---
+
+### Week 8
+
+
+---
