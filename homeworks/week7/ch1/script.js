@@ -34,7 +34,6 @@ function onAnimEnd() {
   currentIndex = nextIndex;
   root.classList.add('no-transition');
   root.style.left = '0vw';
-  autoCarousel();
 }
 
 function bottomBtn(element) {
