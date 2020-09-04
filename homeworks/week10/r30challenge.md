@@ -78,7 +78,7 @@
 
 - 由於內容實在太多，使用搜尋功能輸入 token 試水溫
 
-- 在第二個搜尋結果找到疑似 token 的內容： `__IamToken: "emojicute"` 
+- 在第二個搜尋結果找到疑似 token 的內容： `__IamToken: "emojicute"`
 
 > token = emojicute
 
@@ -224,9 +224,11 @@ if(id !== '888888') {
 
 - 根據系統通知，輸入 4 碼數字到 token 等候回應，回應較長則視為部分內容正確。
 
-- 由於沒什麼耐性一直等回應讀秒，從 0000 試誤到 9999，得知嫌疑數字為 1, 3, 5, 7
+- 由於沒什麼耐性一直等回應讀秒，從 0000, 1111, nnnn... 試誤到 9999，得知嫌疑數字為 1, 3, 5, 7
 
-- 再以 0001, 0010, 0100, 1000 測試數字正確位置即可（範圍會越縮越小
+- 再以 0001, 0010, 0100, 1000 測試數字正確位置即可
+
+- 最衰只要 19 個步驟就能得出正解
 
 > token = 5371
 
@@ -236,6 +238,89 @@ if(id !== '888888') {
 
 ### Lv. 14 - [系統] 前往 lv15: 請解開畫面中的時間密碼，校正異世界的座標軸
 
-- 待補
+- 根據系統通知，查看 html 中被註解掉的 php 片段
+
+```php
+function isTokenValid($token) {
+  $h = date('H');
+  $m = date('i');
+  $a = $h * $m + 42;
+  $count = 0;
+  for($i = 0; $i < 8; $i++) {
+    $count += ord($token[$i]) - 65;
+  }
+  if ($count <= 100) {
+    return false;
+  }
+  return $a % $count === 0;
+}
+```
+
+- 整理一下規則，寫了一個可以輸出全天有效時間與對應 token 的 js 腳本
+
+```js
+function isTokenValid(token, h, m) {
+  let a = h * m + 42;
+  let count = 0;
+  for (let i = 0; i < 8; i++) {
+    count += token[i].charCodeAt(0) - 65;
+  }
+  if (count <= 100) return false;
+  return (a % count) === 0;
+} // 改寫 php 的原生內容
+
+function getToken(n) {
+  let quo = Math.ceil(n / 8);
+  let qc = String.fromCharCode(Math.ceil(n / 8) + 65);
+  let rc = String.fromCharCode((n % quo) + 65);
+  return qc.repeat(7) + rc;
+} // 進行無腦但符合條件的轉化，將生成的 token 回傳
+
+function decode(h, m, a) {
+  for (let k = 101; k < 200; k++) {
+    if ((a % k) === 0) {
+      let token = getToken(k);
+      if (isTokenValid(token, h, m)) {
+        console.log(`count: ${k} -> "${token}" -> ${h} : ${m} `);
+      }
+    }
+  }
+} // 在指定的範圍內過濾出 token (字符只考慮 A-Z 的組合)
+
+function awake() {
+  for (let i = 0; i < 24; i++) {
+    for (let j = 0; j < 60; j++) {
+      let a = i * j + 42;
+      if (a <= 100) continue;
+      decode(i, j, a);
+    }
+  }
+} // 將 24 小時制時間，輸入至 decode()
+
+awake();
+
+```
+
+- 輸出範例：
+
+    - count: 102 -> "NNNNNNNL" -> 2 : 30 
+
+    - count: 106 -> "OOOOOOOI" -> 2 : 32 
+
+    - count: 108 -> "OOOOOOOK" -> 2 : 33
+
+> token = 根據時間有所不同，詳見 [decode.js](./assets/decode.js)
 
 <br> 
+
+---
+
+### Lv. 15 - 破關啦！
+
+![img](./assets/R30L15.png)
+
+- 感謝製作人員的用心，過程挺有趣的，解題時順便複習了不少內容
+
+---
+
+[返回 hw1](./hw1.md)
