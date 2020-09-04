@@ -13,7 +13,7 @@ $nickname = $user['nickname'];
 
 $content = $_POST['content'];
 $sql = sprintf(
-  "INSERT INTO comments(nickname, content)
+  "INSERT INTO woo_comments(nickname, content)
     VALUES('%s', '%s')",
   $nickname,
   $content
