@@ -10,7 +10,13 @@ if (!empty($_SESSION['username'])) {
   $user = getUserFromUsername($username);
 }
 
-$sql = "SELECT * FROM woo_comments ORDER BY id DESC";
+$sql = 'SELECT ' .
+  'C.id AS id, C.content AS content, ' .
+  'C.created_at AS created_at, U.nickname AS nickname, U.username AS username ' .
+  'from woo_comments AS C ' .
+  'LEFT JOIN woo_users AS U ON C.username = U.username ' .
+  'ORDER BY C.id DESC';
+
 $stmt = $conn->prepare($sql);
 $result = $stmt->execute();
 if (!$result) {
@@ -80,7 +86,8 @@ $result = $stmt->get_result();
           <div class="card__body">
             <div class="card__info">
               <span class="card__author">
-                <?php echo escape($row['username']); ?>
+                <?php echo escape($row['nickname']); ?>
+                (@<?php echo escape($row['username']); ?>)
               </span>
               <span class="card__time">
                 <?php echo escape($row['created_at']); ?>
