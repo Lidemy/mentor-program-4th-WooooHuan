@@ -4,14 +4,15 @@ require_once("conn.php");
 require_once("utils.php");
 
 $username = NULL;
+$user = NULL;
 if (!empty($_SESSION['username'])) {
   $username = $_SESSION['username'];
+  $user = getUserFromUsername($username);
 }
 
 $sql = "SELECT * FROM woo_comments ORDER BY id DESC";
 $stmt = $conn->prepare($sql);
 $result = $stmt->execute();
-
 if (!$result) {
   die('Error:' . $conn->error);
 }
@@ -38,7 +39,15 @@ $result = $stmt->get_result();
         <a class="board__btn" href="login.php">登入</a>
       <?php } else { ?>
         <a class="board__btn" href="logout.php">登出</a>
-        <h3>你好！<?php echo $username; ?></h3>
+        <span class="board__btn update-nickname">編輯暱稱</span>
+        <form class="hide board__nickname-form board__new-comment-form" method="POST" action="update_user.php">
+          <div class="board__nickname">
+            <span>新的暱稱：</span>
+            <input type="text" name="nickname" />
+          </div>
+          <input class="board__submit-btn" type="submit" />
+        </form>
+        <h3>你好！<?php echo $user['nickname']; ?></h3>
       <?php } ?>
     </div>
 
@@ -63,24 +72,35 @@ $result = $stmt->get_result();
     </form>
     <div class="board__hr"></div>
     <section>
-      <?php while ($row = $result->fetch_assoc()) { ?>
-      <div class="card">
-        <div class="card__avatar"></div>
-        <div class="card__body">
-          <div class="card__info">
-            <span class="card__author">
-              <?php echo escape($row['nickname']); ?>
-            </span>
-            <span class="card__time">
-              <?php echo escape($row['created_at']); ?>
-            </span>
+      <?php
+      while ($row = $result->fetch_assoc()) {
+      ?>
+        <div class="card">
+          <div class="card__avatar"></div>
+          <div class="card__body">
+            <div class="card__info">
+              <span class="card__author">
+                <?php echo escape($row['username']); ?>
+              </span>
+              <span class="card__time">
+                <?php echo escape($row['created_at']); ?>
+              </span>
+            </div>
+            <p class="card__content"><?php echo escape($row['content']); ?></p>
           </div>
-          <p class="card__content"><?php echo escape($row['content']); ?></p>
         </div>
-      </div>
       <?php } ?>
+
     </section>
+
   </main>
+  <script>
+    var btn = document.querySelector('.update-nickname')
+    btn.addEventListener('click', function() {
+      var form = document.querySelector('.board__nickname-form')
+      form.classList.toggle('hide')
+    })
+  </script>
 </body>
 
 </html>
