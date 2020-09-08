@@ -13,9 +13,18 @@ if (!empty($_SESSION['username'])) {
 $sql = 'SELECT ' .
   'C.id AS id, C.content AS content, ' .
   'C.created_at AS created_at, U.nickname AS nickname, U.username AS username ' .
-  'from woo_comments AS C ' .
+  'FROM woo_comments AS C ' . 
   'LEFT JOIN woo_users AS U ON C.username = U.username ' .
+  'WHERE C.is_deleted IS NULL ' . 
   'ORDER BY C.id DESC';
+
+ /*  'select '.
+      'C.id as id, C.content as content, '.
+      'C.created_at as created_at, U.nickname as nickname, U.username as username '.
+    'from comments as C ' .
+    'left join users as U on C.username = U.username '.
+    'where C.is_deleted IS NULL '.
+    'order by C.id desc'*/
 
 $stmt = $conn->prepare($sql);
 $result = $stmt->execute();
@@ -92,6 +101,10 @@ $result = $stmt->get_result();
               <span class="card__time">
                 <?php echo escape($row['created_at']); ?>
               </span>
+              <?php if ($row['username'] === $username) { ?>
+                <a href="update_comment.php?id=<?php echo $row['id'] ?>">編輯</a>
+                <a href="delete_comment.php?id=<?php echo $row['id'] ?>">刪除</a>
+              <?php } ?>
             </div>
             <p class="card__content"><?php echo escape($row['content']); ?></p>
           </div>
