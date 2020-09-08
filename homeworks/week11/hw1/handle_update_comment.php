@@ -12,9 +12,9 @@
   $id = $_POST['id'];
   $content = $_POST['content'];
 
-  $sql = "UPDATE woo_comments SET content=? WHERE id=?";
+  $sql = "UPDATE woo_comments SET content=? WHERE id=? AND username=?";
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param('si', $content, $id);
+  $stmt->bind_param('si', $content, $id, $username);
   $result = $stmt->execute();
   if (!$result) {
     die($conn->error);

@@ -9,10 +9,11 @@ if (empty($_GET['id'])) {
 }
 
 $id = $_GET['id'];
+$username = $_SESSION['username'];
 
-$sql = "UPDATE woo_comments SET is_deleted=1 WHERE id=?";
+$sql = "UPDATE woo_comments SET is_deleted=1 WHERE id=? AND username=?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param('i', $id);
+$stmt->bind_param('i', $id, $username);
 $result = $stmt->execute();
 if (!$result) {
   die($conn->error);
