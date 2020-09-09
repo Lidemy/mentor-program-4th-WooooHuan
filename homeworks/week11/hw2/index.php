@@ -14,8 +14,7 @@ $sql = 'SELECT * ' .
   'WHERE posts.is_deleted IS NULL ' .
   'ORDER BY posts.id DESC ' .
   'LIMIT ? OFFSET ?';
-/*SELECT * FROM woo_blog_posts AS posts WHERE posts.is_deleted IS NULL ORDER BY posts.id DESC LIMIT 5 OFFSET 0*/
-
+  
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('ii', $posts_per_page, $offset);
 $result = $stmt->execute();
@@ -30,7 +29,7 @@ $result = $stmt->get_result();
 
 <head>
   <meta charset="utf-8">
-  <title>看板 Woo's Personal Board 文章列表 - Lidemy實業坊 </title>
+  <title>看板 Woo's Board 文章列表 - Lidemy實業坊 </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="./css/bbs-common.css">
   <link rel="stylesheet" type="text/css" href="./css/bbs-base.css" media="screen">
@@ -44,8 +43,8 @@ $result = $stmt->get_result();
     <div id="topbar" class="bbs-content">
       <a id="logo" href="">Lidemy實業坊</a>
       <span>›</span>
-      <a class="board" href=""><span class="board-label">看板 </span>Woo's_Personal_Board</a>
-      <a class="right small" href="">個板管理員登入</a>
+      <a class="board" href=""><span class="board-label">看板 </span>Woo's_Board</a>
+      <a class="right small" href="">管理員登入</a>
     </div>
   </div>
 

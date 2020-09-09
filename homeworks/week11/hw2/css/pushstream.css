@@ -25,7 +25,7 @@
 #article-polling {
     background-color: #222;
     color: #999;
-    cursor: pointer;
+    cursor: default;
     /* bbs-screen */
 	margin: 10px auto;
     padding: 0;

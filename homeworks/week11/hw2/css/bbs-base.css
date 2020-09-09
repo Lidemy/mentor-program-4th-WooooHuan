@@ -3,6 +3,8 @@
 /* Copyright (c) 2015 ptt.cc */
 /* Licensed under The MIT License. */
 
+@import url(//fonts.googleapis.com/css?family=Inconsolata);
+
 /* ansi colors */
 .b0 { background-color: #000; }
 .b1 { background-color: #b00; }
@@ -45,7 +47,7 @@
 }
 
 .bbs-content {
-	font-family: "細明體", "AR PL UMing TW", "LiSongPro", monospace;
+	font-family: "細明體", "AR PL UMing TW", "Inconsolata", "LiSongPro", monospace;
 }
 
 .bbs-footer-message {
@@ -484,7 +486,7 @@ img {
 	text-align: center;
 	height: 100%;
 	margin: 0 0 0.5ex 0;
-	cursor: default;
+	cursor: pointer;
 }
 .article-menu.shown {
 	background-color: #333;
