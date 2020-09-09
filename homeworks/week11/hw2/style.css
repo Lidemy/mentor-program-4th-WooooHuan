@@ -1,3 +1,9 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 body {
 	background-color: black;
 }
@@ -15,7 +21,8 @@ body {
 
 #topbar {
 	margin: 0 auto;
-    width: 100%;
+	width: 100%;
+	max-width: 1200px;
 	height: 40px;
 	box-sizing: border-box;
 	color: #aaa;
@@ -37,6 +44,7 @@ body {
 }
 #topbar .board {
 	color: #fff;
+	font-size: 24px;
 }
 #topbar .board-label {
 	font-size: small;
@@ -52,6 +60,7 @@ body {
 }
 #logo:link, #logo:visited, #logo:hover {
 	text-decoration: none;
+	font-size: 24px;
 	color: #ff6;
 }
 
