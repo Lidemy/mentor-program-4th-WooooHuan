@@ -37,16 +37,16 @@ $result = $stmt->get_result();
 <body>
   <div id="topbar-container">
     <div id="topbar" class="bbs-content">
-      <a id="logo" href="">Lidemy實業坊</a>
+      <a id="logo" href="index.php">Lidemy實業坊</a>
       <span>›</span>
-      <a class="board" href=""><span class="board-label">看板 </span>Woo's_Board</a>
-      <a class="right small" href="">管理員登入</a>
+      <a class="board" href="index.php"><span class="board-label">看板 </span>Woo's_Board</a>
+      <a class="right small" href="login.php">管理員登入</a>
     </div>
   </div>
 
   <div id="navigation-container">
     <div id="navigation" class="bbs-content">
-      <a class="board" href="https://www.ptt.cc/bbs/Gossiping/index.html">返回看板</a>
+      <a class="board" href="index.php">返回看板</a>
       <div class="bar"></div>
     </div>
   </div>

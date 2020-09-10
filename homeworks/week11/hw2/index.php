@@ -1,6 +1,14 @@
 <?php
 session_start();
 require_once("conn.php");
+require_once("utils.php");
+
+$account = NULL;
+$acc_info = NULL;
+if (!empty($_SESSION['account'])) {
+  $account = $_SESSION['account'];
+  $acc_info = getInfoFromAccount($account);
+}
 
 $page = 1;
 if (!empty($_GET['page'])) {
@@ -11,10 +19,10 @@ $offset = ($page - 1) * $posts_per_page;
 
 $sql = 'SELECT * ' .
   'FROM woo_blog_posts AS posts ' .
-  'WHERE posts.is_deleted IS NULL ' .
+  //'WHERE posts.is_deleted IS NULL ' .
   'ORDER BY posts.id DESC ' .
   'LIMIT ? OFFSET ?';
-  
+
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('ii', $posts_per_page, $offset);
 $result = $stmt->execute();
@@ -41,24 +49,38 @@ $result = $stmt->get_result();
 <body>
   <div id="topbar-container">
     <div id="topbar" class="bbs-content">
-      <a id="logo" href="">Lidemy實業坊</a>
+      <a id="logo" href="index.php">Lidemy實業坊</a>
       <span>›</span>
-      <a class="board" href=""><span class="board-label">看板 </span>Woo's_Board</a>
-      <a class="right small" href="">管理員登入</a>
+      <a class="board" href="index.php"><span class="board-label">看板 </span>Woo's_Board</a>
+      <?php
+      echo $account ? '<a class="right small" href="logout.php">管理員登出</a>' : '<a class="right small" href="login.php">管理員登入</a>';
+      ?>
     </div>
   </div>
 
   <div id="action-bar-container">
     <div class="action-bar">
       <div class="btn-group btn-group-dir">
-        <a class="btn selected" href="">看板</a>
-        <a class="btn" href="">精華區</a>
+        <a class="btn selected" href="index.php">看板</a>
+        <a class="btn" href="index.php">精華區</a>
       </div>
+
+      <?php
+      $sql = 'SELECT count(id) AS count FROM woo_blog_posts WHERE 1';
+      $p_stmt = $conn->prepare($sql);
+      $p_result = $p_stmt->execute();
+      $p_result = $p_stmt->get_result();
+      $p_row = $p_result->fetch_assoc();
+      $count = $p_row['count'];
+      $total_page = ceil($count / $posts_per_page);
+      var_dump($total_page);
+      ?>
+
       <div class="btn-group btn-group-paging">
-        <a class="btn wide" href="">最舊</a>
-        <a class="btn wide" href="">‹ 上頁</a>
-        <a class="btn wide disabled">下頁 ›</a>
-        <a class="btn wide" href="">最新</a>
+        <?php echo $page != $total_page ? sprintf('<a class="btn wide" href="index.php?page=%s">最舊</a>', $total_page) : '<a class="btn wide disabled">最舊</a>' ?>
+        <?php echo $page != $total_page ? sprintf('<a class="btn wide" href="index.php?page=%s">‹ 上頁</a>', $page + 1) : '<a class="btn wide disabled">‹ 上頁</a>' ?>
+        <?php echo $page != 1 ? sprintf('<a class="btn wide" href="index.php?page=%s">下頁 ›</a>', $page - 1) : '<a class="btn wide disabled">下頁 ›</a>' ?>
+        <?php echo $page != 1 ? '<a class="btn wide" href="index.php?page=1">最新</a>' : '<a class="btn wide disabled">最新</a>' ?>
       </div>
     </div>
   </div>
@@ -75,7 +97,7 @@ $result = $stmt->get_result();
         <div class="r-ent">
           <div class="nrec"><span class="hl f2"></span></div>
           <div class="title">
-            <a href="">
+            <a href="post.php">
               <?php echo $row['title']; ?>
             </a>
           </div>
@@ -87,7 +109,7 @@ $result = $stmt->get_result();
               <div class="trigger">⋯</div>
             </div>
             <div class="date">
-              <?php echo $row['created_at']; ?>
+              <?php echo date('m/d', strtotime($row['created_at'])); ?>
             </div>
             <div class="mark"></div>
           </div>
