@@ -486,7 +486,8 @@ img {
 	text-align: center;
 	height: 100%;
 	margin: 0 0 0.5ex 0;
-	cursor: default;
+	text-decoration: none;
+	cursor: pointer;
 }
 .article-menu.shown {
 	background-color: #333;

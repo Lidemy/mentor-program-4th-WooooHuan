@@ -16,9 +16,8 @@ $stmt = $conn->prepare($sql);
 $stmt->bind_param('i', $post_id);
 $result = getResultFromStmt($stmt);
 $row = $result->fetch_assoc();
-$admin_info = getInfoFromAccount($row['account']);
-$author = escape($admin_info['account']) . 
-  ' (' . escape($admin_info['nickname']) . ')';
+$author = escape($acc_info['account']) .
+  ' (' . escape($acc_info['nickname']) . ')';
 
 ?>
 <!DOCTYPE html>
@@ -34,6 +33,7 @@ $author = escape($admin_info['account']) .
   <link rel="stylesheet" type="text/css" href="./css/bbs-custom.css">
   <link rel="stylesheet" type="text/css" href="./css/pushstream.css" media="screen">
   <link rel="stylesheet" type="text/css" href="./css/bbs-print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="./css/post.css">
 </head>
 
 <body>
@@ -48,6 +48,23 @@ $author = escape($admin_info['account']) .
     </div>
   </div>
 
+  <div class="post-container">
+    <div class="edit-post">
+      <form class="post-form" method="POST" action="handle_new_post.php">
+        <div class="post-input">
+          <input class="query" type="text" name="title" placeholder="輸入文章標題...">
+          <textarea class="post-content query" name="content" value=""></textarea>
+        </div>
+        <div><input class="login-btn btn" type="submit" /></div>
+      </form>
+      <?php if (!empty($_GET['errCode']) && $_GET['errCode'] === '1') { ?>
+        <div class="post-error">請完善內容再提交！</div>
+      <?php } ?>
+    </div>
+  </div>
+
+
+
   <div id="navigation-container">
     <div id="navigation" class="bbs-content">
       <a class="board" href="index.php">返回看板</a>
@@ -55,14 +72,6 @@ $author = escape($admin_info['account']) .
     </div>
   </div>
 
-  <div id="main-container">
-    <div id="main-content" class="bbs-screen bbs-content"><div class="article-metaline"><span class="article-meta-tag">作者</span><span class="article-meta-value"><?php echo $author; ?></span></div><div class="article-metaline-right"><span class="article-meta-tag">看板</span><span class="article-meta-value">Woo's_Board</span></div><div class="article-metaline"><span class="article-meta-tag">標題</span><span class="article-meta-value"><?php echo escape($row['title']); ?></span></div><div class="article-metaline"><span class="article-meta-tag">時間</span><span class="article-meta-value"><?php echo escape(date('D M d G:i:s o', strtotime($row['created_at']))); ?></span></div>
-<?php
-echo $row['content'] . '<br>';
-?>
-<br>--<span class="f2">
-※ 發信站: Lidemy實業坊(Lidemy.cc)</span></div><div id="article-polling">推文自動更新已關閉，也沒辦法推文哦～</div>
-  </div>
   <div class="bbs-screen bbs-footer-message"></div>
 </body>
 

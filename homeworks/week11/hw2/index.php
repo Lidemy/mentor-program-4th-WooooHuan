@@ -3,13 +3,6 @@ session_start();
 require_once("conn.php");
 require_once("utils.php");
 
-$account = NULL;
-$acc_info = NULL;
-if (!empty($_SESSION['account'])) {
-  $account = $_SESSION['account'];
-  $acc_info = getInfoFromAccount($account);
-}
-
 $page = 1;
 if (!empty($_GET['page'])) {
   $page = intval($_GET['page']);
@@ -19,7 +12,6 @@ $offset = ($page - 1) * $posts_per_page;
 
 $sql = 'SELECT * ' .
   'FROM woo_blog_posts AS posts ' .
-  //'WHERE posts.is_deleted IS NULL ' .
   'ORDER BY posts.id DESC ' .
   'LIMIT ? OFFSET ?';
 
@@ -44,6 +36,7 @@ $result = $stmt->get_result();
   <link rel="stylesheet" type="text/css" href="./css/bbs-custom.css">
   <link rel="stylesheet" type="text/css" href="./css/pushstream.css" media="screen">
   <link rel="stylesheet" type="text/css" href="./css/bbs-print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="./css/others.css">
 </head>
 
 <body>
@@ -85,9 +78,16 @@ $result = $stmt->get_result();
     </div>
   </div>
 
+  <div id="navigation-container">
+    <div id="navigation" class="bbs-content">
+      <a class="board" href="add_post.php">新增文章</a>
+      <div class="bar"></div>
+    </div>
+  </div>
+
   <div class="r-list-container action-bar-margin bbs-screen">
     <div class="search-bar">
-      <form type="get" action="https://www.ptt.cc/bbs/Gossiping/search" id="search-bar">
+      <form id="search-bar">
         <input class="query" type="text" name="q" value="" placeholder="搜尋功能維修中⋯">
       </form>
     </div>
@@ -97,19 +97,25 @@ $result = $stmt->get_result();
         <div class="r-ent">
           <div class="nrec"><span class="hl f2"></span></div>
           <div class="title">
-            <a href="post.php">
-              <?php echo $row['title']; ?>
-            </a>
+            <?php if (!$row['is_deleted']) { ?>
+              <a href="post.php?id=<?php echo $row['id'] ?>">
+                <?php echo escape($row['title']); ?>
+              </a>
+            <?php } else { ?>
+              <span class="deleted">(本文已被刪除) [woo]</span>
+            <?php } ?>
           </div>
           <div class="meta">
             <div class="author">
-              <?php echo $row['account']; ?>
+              <?php echo escape($row['account']); ?>
             </div>
             <div class="article-menu">
-              <div class="trigger">⋯</div>
+              <?php if ($account && !$row['is_deleted']) { ?>
+                <a href="edit_post.php?id=<?php echo $row['id'] ?>" class="trigger">⋯</a>
+              <?php } ?>
             </div>
             <div class="date">
-              <?php echo date('m/d', strtotime($row['created_at'])); ?>
+              <?php echo escape(date('m/d', strtotime($row['created_at']))); ?>
             </div>
             <div class="mark"></div>
           </div>
