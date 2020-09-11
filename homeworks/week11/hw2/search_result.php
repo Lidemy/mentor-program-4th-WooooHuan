@@ -3,20 +3,15 @@ session_start();
 require_once("conn.php");
 require_once("utils.php");
 
-$page = 1;
-if (!empty($_GET['page'])) {
-  $page = intval($_GET['page']);
-}
-$posts_per_page = 5;
-$offset = ($page - 1) * $posts_per_page;
-
+$search_title = '%' . $_POST['search'] . '%';
 $sql = 'SELECT * ' .
   'FROM woo_blog_posts AS posts ' .
-  'ORDER BY posts.id DESC ' .
-  'LIMIT ? OFFSET ?';
+  'WHERE posts.title LIKE ? AND posts.is_deleted IS NULL ' .
+  'ORDER BY posts.id DESC ' . 
+  'LIMIT 100 OFFSET 0 ';
 
 $stmt = $conn->prepare($sql);
-$stmt->bind_param('ii', $posts_per_page, $offset);
+$stmt->bind_param('s', $search_title);
 $result = $stmt->execute();
 if (!$result) {
   die('Error:' . $conn->error);
@@ -55,25 +50,7 @@ $result = $stmt->get_result();
     <div class="action-bar">
       <div class="btn-group btn-group-dir">
         <a class="btn selected" href="index.php">看板</a>
-        <span class="btn" href="index.php"><s>精華區</s></span>
-      </div>
-
-      <?php
-      $sql = 'SELECT count(id) AS count FROM woo_blog_posts WHERE 1';
-      $p_stmt = $conn->prepare($sql);
-      $p_result = $p_stmt->execute();
-      $p_result = $p_stmt->get_result();
-      $p_row = $p_result->fetch_assoc();
-      $count = $p_row['count'];
-      $total_page = ceil($count / $posts_per_page);
-      var_dump($total_page);
-      ?>
-
-      <div class="btn-group btn-group-paging">
-        <?php echo $page != $total_page ? sprintf('<a class="btn wide" href="index.php?page=%s">最舊</a>', $total_page) : '<a class="btn wide disabled">最舊</a>' ?>
-        <?php echo $page != $total_page ? sprintf('<a class="btn wide" href="index.php?page=%s">‹ 上頁</a>', $page + 1) : '<a class="btn wide disabled">‹ 上頁</a>' ?>
-        <?php echo $page != 1 ? sprintf('<a class="btn wide" href="index.php?page=%s">下頁 ›</a>', $page - 1) : '<a class="btn wide disabled">下頁 ›</a>' ?>
-        <?php echo $page != 1 ? '<a class="btn wide" href="index.php?page=1">最新</a>' : '<a class="btn wide disabled">最新</a>' ?>
+        <a class="btn" href="index.php">精華區</a>
       </div>
     </div>
   </div>
