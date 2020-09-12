@@ -3,9 +3,29 @@ session_start();
 require_once("conn.php");
 require_once("utils.php");
 
+$post_id = 1;
+if (!empty($_GET['id'])) {
+  $post_id = intval($_GET['id']);
+}
+
+$sql = 'SELECT * ' .
+  'FROM woo_blog_posts AS posts ' .
+  'WHERE posts.id = ?';
+
+$stmt = $conn->prepare($sql);
+$stmt->bind_param('i', $post_id);
+$result = getResultFromStmt($stmt);
+$row = $result->fetch_assoc();
 $author = escape($acc_info['account']) .
   ' (' . escape($acc_info['nickname']) . ')';
-  
+
+$title = $row['title'];
+$content = $row['content'];
+
+echo escape($title);
+
+$_SESSION['post_id'] = $post_id;
+
 ?>
 <!DOCTYPE html>
 
@@ -37,15 +57,19 @@ $author = escape($acc_info['account']) .
 
   <div class="post-container">
     <div class="edit-post">
-      <form class="post-form" method="POST" action="handle_new_post.php">
+      <form class="post-form" method="POST" action="update_post.php">
         <div class="post-input">
-          <input class="query" type="text" name="title" placeholder="輸入文章標題...">
-          <textarea class="post-content query" name="content" value=""></textarea>
+          <input class="query" type="text" name="title" value="<?php echo escape($title) ?>" placeholder="輸入文章標題...">
+          <textarea class="post-content query" name="content"><?php echo escape($content) ?></textarea>
         </div>
-        <div><input class="login-btn btn" type="submit" /></div>
+        <div><input class="login-btn btn" type="submit" value="更新" /><a class="login-btn del-btn btn" href="del_post.php">刪除</a></div>
       </form>
-      <?php if (!empty($_GET['errCode']) && $_GET['errCode'] === '1') { ?>
-        <div class="post-error">請完善內容再提交！</div>
+      <?php if (!empty($_GET['errCode'])) { ?>
+        <?php if ($_GET['errCode'] === '1') { ?>
+          <div class="post-error">請完善內容再提交！</div>
+        <?php } else if (($_GET['errCode'] === '2')) {?>
+          <div class="post-error">請不要玩 Post ID！</div>
+        <?php } ?>
       <?php } ?>
     </div>
   </div>

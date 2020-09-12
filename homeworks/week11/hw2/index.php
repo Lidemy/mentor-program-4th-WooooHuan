@@ -88,7 +88,7 @@ $result = $stmt->get_result();
   <div class="r-list-container action-bar-margin bbs-screen">
     <div class="search-bar">
       <form id="search-bar" method="POST" action="search_result.php">
-        <input class="query" type="text" name="search" value="" placeholder="搜尋功能維修中⋯">
+        <input class="query" type="text" name="search" value="" placeholder="搜尋文章⋯">
       </form>
     </div>
 
