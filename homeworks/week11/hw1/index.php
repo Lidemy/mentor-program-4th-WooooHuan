@@ -83,7 +83,7 @@ $result = $stmt->get_result();
     ?>
     <form class="board__new-comment-form" method="POST" action="handle_add_comment.php">
       <textarea name="content" rows="5"></textarea>
-      <?php if ($username && !hasPermission($user, NULL)) { ?>
+      <?php if ($username && !hasPermission($user, 'create', NULL)) { ?>
         <h3>權限不足，無法發布留言！</h3>
       <?php } else if ($username) { ?>
         <input class="board__submit-btn" type="submit" />

@@ -27,7 +27,7 @@ function escape($str)
   return htmlspecialchars($str, ENT_QUOTES);
 }
 
-function hasPermission($user, $comment)
+function hasPermission($user, $action, $comment)
 {
   switch ($user["role"]) {
     case "ADMIN":
@@ -36,6 +36,9 @@ function hasPermission($user, $comment)
     case "NORMAL":
       return $comment["username"] === $user["username"];
     case "BANNED":
+      if ($action === 'update') {
+        return $comment["username"] === $user["username"];
+      }
       return false;
       break;
   }
