@@ -13,7 +13,7 @@ $author = escape($acc_info['account']) .
 
 <head>
   <meta charset="utf-8">
-  <title>看板 Woo's Board 文章列表 - Lidemy實業坊 </title>
+  <title>看板 Woo's Board 新增文章 - Lidemy實業坊 </title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="./css/bbs-common.css">
   <link rel="stylesheet" type="text/css" href="./css/bbs-base.css" media="screen">
