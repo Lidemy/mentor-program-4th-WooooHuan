@@ -26,3 +26,22 @@ function escape($str)
 {
   return htmlspecialchars($str, ENT_QUOTES);
 }
+
+function hasPermission($user, $comment)
+{
+  switch ($user["role"]) {
+    case "ADMIN":
+      return true;
+      break;
+    case "NORMAL":
+      return $comment["username"] === $user["username"];
+    case "BANNED":
+      return false;
+      break;
+  }
+}
+
+function isAdmin($user)
+{
+  return $user["role"] === "ADMIN";
+}

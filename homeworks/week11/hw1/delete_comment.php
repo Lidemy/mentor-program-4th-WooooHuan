@@ -10,10 +10,20 @@ if (empty($_GET['id'])) {
 
 $id = $_GET['id'];
 $username = $_SESSION['username'];
+$user = getUserFromUsername($username);
 
 $sql = "UPDATE woo_comments SET is_deleted=1 WHERE id=? AND username=?";
+if (isAdmin($user)) {
+  $sql = "UPDATE woo_comments SET is_deleted=1 WHERE id=?";
+}
 $stmt = $conn->prepare($sql);
-$stmt->bind_param('i', $id, $username);
+
+if (isAdmin($user)) {
+  $stmt->bind_param('i', $id);
+} else {
+  $stmt->bind_param('is', $id, $username);
+}
+
 $result = $stmt->execute();
 if (!$result) {
   die($conn->error);

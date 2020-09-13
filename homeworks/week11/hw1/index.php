@@ -56,6 +56,9 @@ $result = $stmt->get_result();
       <?php } else { ?>
         <a class="board__btn" href="logout.php">登出</a>
         <span class="board__btn update-nickname">編輯暱稱</span>
+        <?php if ($user && $user['role'] === 'ADMIN') { ?>
+          <a class="board__btn" href="admin.php">管理後台</a>
+        <?php } ?>
         <form class="hide board__nickname-form board__new-comment-form" method="POST" action="update_user.php">
           <div class="board__nickname">
             <span>新的暱稱：</span>
@@ -80,7 +83,9 @@ $result = $stmt->get_result();
     ?>
     <form class="board__new-comment-form" method="POST" action="handle_add_comment.php">
       <textarea name="content" rows="5"></textarea>
-      <?php if ($username) { ?>
+      <?php if ($username && !hasPermission($user, NULL)) { ?>
+        <h3>權限不足，無法發布留言！</h3>
+      <?php } else if ($username) { ?>
         <input class="board__submit-btn" type="submit" />
       <?php } else { ?>
         <h3>請登入發布留言</h3>
@@ -102,7 +107,7 @@ $result = $stmt->get_result();
               <span class="card__time">
                 <?php echo escape($row['created_at']); ?>
               </span>
-              <?php if ($row['username'] === $username) { ?>
+              <?php if ($user && hasPermission($user, 'update', $row)) { ?>
                 <a href="update_comment.php?id=<?php echo $row['id'] ?>">編輯</a>
                 <a href="delete_comment.php?id=<?php echo $row['id'] ?>">刪除</a>
               <?php } ?>
