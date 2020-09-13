@@ -78,12 +78,14 @@ $result = $stmt->get_result();
     </div>
   </div>
 
-  <div id="navigation-container">
-    <div id="navigation" class="bbs-content">
-      <a class="board" href="add_post.php">新增文章</a>
-      <div class="bar"></div>
+  <?php if ($account) { ?>
+    <div id="navigation-container">
+      <div id="navigation" class="bbs-content">
+        <a class="board" href="add_post.php">新增文章</a>
+        <div class="bar"></div>
+      </div>
     </div>
-  </div>
+  <?php } ?>
 
   <div class="r-list-container action-bar-margin bbs-screen">
     <div class="search-bar">

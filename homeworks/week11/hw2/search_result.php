@@ -50,7 +50,7 @@ $result = $stmt->get_result();
     <div class="action-bar">
       <div class="btn-group btn-group-dir">
         <a class="btn selected" href="index.php">看板</a>
-        <a class="btn" href="index.php">精華區</a>
+        <span class="btn" href="index.php"><s>精華區</s></span>
       </div>
     </div>
   </div>
