@@ -4,6 +4,8 @@ require_once 'utils.php';
 header('Content-type:application/json;charset=utf-8');
 header('Access-Control-Allow-Origin: *');
 
+if(empty($_GET['site_key'])) send_response(false);
+
 $site_key = corrected_site_key($_GET['site_key']);
 $sql = 'SELECT nickname, content, created_at
   FROM woo_w12_comments
