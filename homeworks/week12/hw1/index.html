@@ -15,6 +15,7 @@
   <div class="list-cover">
     <div class="list-area">
       <div class="list-main common-convex">
+        
         <div class="list-title">📝Message Board</div>
         <div class="list-new-task">
           <input class="new-task-input common-concave input-nickname" type="text" placeholder="Nickname">
@@ -22,7 +23,13 @@
           <button class="new-task-btn common-btn" value="newBtn">📄</button>
         </div>
 
-        <div class="list-tasks">
+        <div class="list-tasks"></div>
+
+        <div class="more-element">
+          <div class="new-task-divider common-concave"></div>
+          <div class="task-content list-more">
+            <button class="more-btn common-btn" value="moreBtn">Show More</button>
+          </div>
         </div>
 
       </div>
@@ -39,8 +46,8 @@
     </div>
   </div>
 
-  <script src="./script/get_comments.js"></script>
-  <script src="./script/post_comment.js"></script>
+  <script type="module" src="./script/init_comments.js"></script>
+  <script type="module" src="./script/post_comment.js"></script>
 </body>
 
 </html>

@@ -179,6 +179,19 @@ body {
   left: -2px;
 }
 
+.list-more {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 18px;
+}
+
+.more-btn {
+  height: 36px;
+  width: 120px;
+}
+
 @media(max-width: 640px) {
   .list-area {
     margin-top: 0;
