@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Todo List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./normalize.css"></link>
+  <link rel="stylesheet" href="./style.css"></link>
+  <script src="./_jQuery.js"></script>
+</head>
+
+<body>
+	<div class="list-cover">
+		<div class="list-area">
+      <div class="list-main common-convex">
+
+        <div class="list-title">📝Todo List</div>
+
+        <div class="list-tools-bar">
+          <span class="tools-id-label">🗿</span>
+          <input class="tools-id common-concave" type="text" placeholder="User ID">
+          <button class="tools-btn common-btn" id="push-btn">Push 📤</button>
+          <button class="tools-btn common-btn" id="pull-btn">Pull 📥</button>
+          <button class="tools-btn common-btn" id="clean-btn">Delete All 🗑️</button>
+        </div>
+
+        <div class="list-new-task">
+          <span class="tools-id-label">✏️</span>
+          <input class="new-task-input common-concave" type="text" placeholder="Write a title for the new task">
+          <button class="new-task-btn common-btn" id="new-btn">📄</button>
+        </div>
+
+        <div class="list-task-category">
+          <label class="input-category-cover"><input class="input-category" id="category-all" name="category" type="radio" checked></input> All</label>
+          <label class="input-category-cover"><input class="input-category" id="category-todo" name="category" type="radio"></input> Todo</label>
+					<label class="input-category-cover"><input class="input-category" id="category-done" name="category" type="radio"></input> Done</label>
+        </div>
+        
+        <div class="list-tasks">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="task-element task-template">
+    <div class="new-task-divider common-concave"></div>
+    <div class="task-content">
+      <div class="task-sign">🚩</div>
+      <div class="task-text">Example for the standard task.</div>
+      <div class="edit-task-cover hidden">
+        <input class="edit-task-text common-concave" type="text">
+      </div> 
+      <button class="task-btn common-btn" id="check-btn">✔️</button>
+      <button class="task-btn common-btn" id="del-btn">❌</button>
+    </div>
+  </div>
+
+  <script src="./tools_bar.js"></script>
+</body>
+</html>
