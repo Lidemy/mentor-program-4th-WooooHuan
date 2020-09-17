@@ -1,9 +1,4 @@
 /* eslint-disable */
-
-const listMainNode = $('.list-main');
-console.log(listMainNode);
-
-/*
 const listMainNode = document.querySelector('.list-main');
 const newTaskTitle = document.querySelector('.new-task-input');
 const taskTemplate = document.querySelector('.task-template');
@@ -59,4 +54,3 @@ listMainNode.addEventListener('keyup', (e) => {
   const keyUp = e.key === 'Enter' || e.keyCode === 13;
   if (keyUp && newTaskTitle.value.length > 1) newBtn();
 });
-*/
