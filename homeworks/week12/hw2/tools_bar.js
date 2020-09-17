@@ -1,7 +1,9 @@
 const root = $('.list-tasks');
-let jsonData = '';
 
-function updateJsonData() {
+function pushTasks() {
+  const user = $('.tools-id').val();
+  if (!user) return;
+
   const taskList = [];
   const tasks = root.find('.task-element');
   for (task of tasks) {
@@ -10,11 +12,30 @@ function updateJsonData() {
       checked: $(task).hasClass('checked')
     });
   }
-  jsonData = JSON.stringify(taskList);
+
+  $.ajax({
+    method: "POST",
+    url: "http://localhost/woo/week12/hw2/push_tasks.php",
+    data: {
+      user,
+      json: JSON.stringify(taskList)
+    }
+  });
+}
+
+function pullTasks() {
+  const user = $('.tools-id').val();
+  if (!user) return;
+
+  $.ajax({
+    method: "POST",
+    url: "http://localhost/woo/week12/hw2/pull_tasks.php",
+    data: { user }
+  }).done(importTasksFromJson);
 }
 
 function importTasksFromJson(data) {
-  if(!data) return;
+  if(!data || !data.length) return;
   root.empty();
   const tasks = JSON.parse(data);
   for (task of tasks) {
@@ -50,5 +71,5 @@ function onNewBtn() {
 
 $('#clean-btn').click(() => root.empty());
 $('#new-btn').click(onNewBtn);
-$('#push-btn').click(updateJsonData);
-$('#pull-btn').click(() => importTasksFromJson(jsonData));
+$('#push-btn').click(pushTasks);
+$('#pull-btn').click(pullTasks);
