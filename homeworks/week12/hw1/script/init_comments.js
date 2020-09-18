@@ -50,5 +50,3 @@ function initShowMoreBtn() {
 
 initShowMoreBtn();
 getComments();
-
-export { getComments };

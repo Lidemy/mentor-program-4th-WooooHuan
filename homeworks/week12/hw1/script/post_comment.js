@@ -1,5 +1,3 @@
-import { getComments } from './init_comments.js';
-
 function postComment() {
   const nickname = $('.input-nickname').val();
   const content = $('.input-content').val();
