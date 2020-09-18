@@ -11,13 +11,10 @@ $sql = 'SELECT * FROM woo_w12_todolist WHERE user = ?';
 $types = 's';
 $params = array($_POST['user']);
 $result = execute_combined_sql($sql, $types, $params);
-$data = $result->fetch_assoc()['json'];
+
+$data = '[]';
+if ($result->num_rows > 0) {
+  $data = $result->fetch_assoc()['json'];
+}
 
 echo $data;
-
-
-
-/*$d = 
-$data = array('json' => $result->fetch_row());
-
-echo json_encode($data);*/

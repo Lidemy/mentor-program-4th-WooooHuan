@@ -1,9 +1,8 @@
 const root = $('.list-tasks');
+let visibleCategory = 'all';
+let snapshot = '';
 
-function pushTasks() {
-  const user = $('.tools-id').val();
-  if (!user) return;
-
+function getTasks() {
   const taskList = [];
   const tasks = root.find('.task-element');
   for (task of tasks) {
@@ -12,20 +11,32 @@ function pushTasks() {
       checked: $(task).hasClass('checked')
     });
   }
+  return taskList;
+}
+
+function pushTasks() {
+  const user = $('.tools-id').val();
+  if (!user) {
+    alert('User ID is null.');
+    return;
+  }
 
   $.ajax({
     method: "POST",
     url: "http://localhost/woo/week12/hw2/push_tasks.php",
     data: {
       user,
-      json: JSON.stringify(taskList)
+      json: JSON.stringify(getTasks())
     }
   });
 }
 
 function pullTasks() {
   const user = $('.tools-id').val();
-  if (!user) return;
+  if (!user) {
+    alert('User ID is null.');
+    return;
+  }
 
   $.ajax({
     method: "POST",
@@ -35,10 +46,10 @@ function pullTasks() {
 }
 
 function importTasksFromJson(data) {
-  if(!data || !data.length) return;
+  if (!data) return;
   root.empty();
   const tasks = JSON.parse(data);
-  for (task of tasks) {
+  for (task of tasks.reverse()) {
     setNewTask(task.content, task.checked);
   }
 }
@@ -50,6 +61,7 @@ function checkTask(task) {
   task.find('.task-sign').text(checked ? '🏁' : '🚩');
   task.find('.task-sign').toggleClass('checked-sign');
   task.find('.task-text').toggleClass('checked-text');
+  showTasks();
 }
 
 function setNewTask(content, checked) {
@@ -59,12 +71,16 @@ function setNewTask(content, checked) {
   task.find('#del-btn').click(() => task.remove());
   task.removeClass('task-template');
   if (checked) checkTask(task);
-  root.append(task);
+  root.prepend(task);
+  showTasks();
 }
 
 function onNewBtn() {
   const taskVal = $('.new-task-input').val();
-  if (!taskVal) return;
+  if (!taskVal) {
+    alert('Task title is null.');
+    return;
+  }
   setNewTask(taskVal, false);
   $('.new-task-input').val('');
 }
@@ -73,3 +89,34 @@ $('#clean-btn').click(() => root.empty());
 $('#new-btn').click(onNewBtn);
 $('#push-btn').click(pushTasks);
 $('#pull-btn').click(pullTasks);
+$('.input-category').click((e) => {
+  visibleCategory = e.currentTarget.value;
+  showTasks()
+});
+
+function showTasks() {
+  const tasks = root.find('.task-element');
+  for (task of tasks) {
+    switch (visibleCategory) {
+      case 'todo':
+        if ($(task).hasClass('checked')) {
+          $(task).hide();
+        } else {
+          $(task).show();
+        }
+        break;
+
+      case 'done':
+        if (!$(task).hasClass('checked')) {
+          $(task).hide();
+        } else {
+          $(task).show();
+        }
+        break;
+
+      default:
+        $(task).show();
+        break;
+    }
+  }
+}
