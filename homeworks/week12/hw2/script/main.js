@@ -3,7 +3,6 @@ let visibleCategory = 'all';
 
 function importTasksFromJson(data) {
   if (!data) return;
-  
   root.empty();
   const tasks = JSON.parse(data);
   for (task of tasks.reverse()) {
@@ -51,16 +50,21 @@ function renderTasks() {
   }
 }
 
-function onNewBtnClicked() {
+function addNewTask() {
   const taskVal = $('.new-task-input').val();
   if (!taskVal) { alert('Task title is null.'); return; }
-
   initNewTask(taskVal, false);
   $('.new-task-input').val('');
 }
 
+function onKeyUp(e) {
+  const keyUp = e.key === 'Enter' || e.keyCode === 13;
+  if (keyUp) addNewTask();
+}
+
 $('#clean-btn').click(() => root.empty());
-$('#new-btn').click(onNewBtnClicked);
+$('#new-btn').click(addNewTask);
+$('.new-task-input').keyup(onKeyUp);
 $('.input-category').click((e) => {
   visibleCategory = e.currentTarget.value;
   renderTasks();
