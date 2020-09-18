@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>Todo List</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./normalize.css"></link>
-  <link rel="stylesheet" href="./style.css"></link>
-  <script src="./_jQuery.js"></script>
+  <link rel="stylesheet" href="./css/normalize.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="./script/_jQuery.js"></script>
 </head>
 
 <body>
-	<div class="list-cover">
-		<div class="list-area">
+  <div class="list-cover">
+    <div class="list-area">
       <div class="list-main common-convex">
 
         <div class="list-title">📝Todo List</div>
@@ -32,11 +33,14 @@
         </div>
 
         <div class="list-task-category">
-          <label class="input-category-cover"><input class="input-category" id="category-all" value="all" name="category" type="radio" checked></input> All</label>
-          <label class="input-category-cover"><input class="input-category" id="category-todo" value="todo" name="category" type="radio"></input> Todo</label>
-					<label class="input-category-cover"><input class="input-category" id="category-done" value="done" name="category" type="radio"></input> Done</label>
+          <label class="input-category-cover"><input class="input-category" id="category-all" value="all"
+              name="category" type="radio" checked></input> All</label>
+          <label class="input-category-cover"><input class="input-category" id="category-todo" value="todo"
+              name="category" type="radio"></input> Todo</label>
+          <label class="input-category-cover"><input class="input-category" id="category-done" value="done"
+              name="category" type="radio"></input> Done</label>
         </div>
-        
+
         <div class="list-tasks">
         </div>
       </div>
@@ -50,12 +54,13 @@
       <div class="task-text">Example for the standard task.</div>
       <div class="edit-task-cover hidden">
         <input class="edit-task-text common-concave" type="text">
-      </div> 
+      </div>
       <button class="task-btn common-btn" id="check-btn">✔️</button>
       <button class="task-btn common-btn" id="del-btn">❌</button>
     </div>
   </div>
-
-  <script src="./tools_bar.js"></script>
+  <script src="./script/todo_list.js"></script>
+  <script src="./script/post_tasks.js"></script>
 </body>
+
 </html>
