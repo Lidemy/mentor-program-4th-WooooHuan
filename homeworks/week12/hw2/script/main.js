@@ -1,5 +1,8 @@
 const root = $('.list-tasks');
-let visibleCategory = 'all';
+
+function getCurrCategory() {
+  return $('input[name=\'category\']:checked').val();
+}
 
 function importTasksFromJson(data) {
   if (!data) return;
@@ -34,7 +37,7 @@ function checkTask(task) {
 function renderTasks() {
   const tasks = root.find('.task-element');
   for (task of tasks) {
-    switch (visibleCategory) {
+    switch (getCurrCategory()) {
       case 'todo':
         $(task).css("display", 
           $(task).hasClass('checked') ? 'none' : 'block');
@@ -57,15 +60,19 @@ function addNewTask() {
   $('.new-task-input').val('');
 }
 
+function cleanCompletedTasks() {
+  const tasks = root.find('.task-element');
+  for (task of tasks) {
+    if ($(task).hasClass('checked')) $(task).remove();
+  }
+}
+
 function onKeyUp(e) {
   const keyUp = e.key === 'Enter' || e.keyCode === 13;
   if (keyUp) addNewTask();
 }
 
-$('#clean-btn').click(() => root.empty());
+$('#clean-btn').click(cleanCompletedTasks);
 $('#new-btn').click(addNewTask);
 $('.new-task-input').keyup(onKeyUp);
-$('.input-category').click((e) => {
-  visibleCategory = e.currentTarget.value;
-  renderTasks();
-});
+$('.input-category').click(renderTasks);
