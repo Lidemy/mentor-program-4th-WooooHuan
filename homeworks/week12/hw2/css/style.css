@@ -224,10 +224,12 @@ input[type='radio']:checked:before {
   width: 0px;
 }
 
+.edit-text,
 .task-text {
   flex-grow: 1;
   margin-left: 48px;
   margin-right: 4px;
+  font-size: 22px;
   word-break: break-all;
 }
 

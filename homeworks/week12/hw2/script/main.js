@@ -1,4 +1,5 @@
 const root = $('.list-tasks');
+let editingTask = null;
 
 function getCurrCategory() {
   return $('input[name=\'category\']:checked').val();
@@ -16,12 +17,35 @@ function importTasksFromJson(data) {
 function initNewTask(content, checked) {
   const task = $('.task-template').clone();
   task.find('.task-text').text(content);
+  task.find('.task-text').click(() => editTask(task));
+  task.find('.task-text').click((e) => e.stopPropagation());
+  task.find('.edit-text').hide();
+  task.find('.edit-text').val(content);
+  task.find('.edit-text').click((e) => e.stopPropagation());
+  task.find('.edit-text').keyup((e) => onEnterKeyUp(e, endTheLatestEditing));
   task.find('#check-btn').click(() => checkTask(task));
   task.find('#del-btn').click(() => task.remove());
   task.removeClass('task-template');
   if (checked) checkTask(task);
   root.prepend(task);
   renderTasks();
+}
+
+function editTask(task) {
+  endTheLatestEditing();
+  editingTask = task;
+  task.find('.edit-text').show();
+  task.find('.task-text').hide();
+}
+
+function endTheLatestEditing() {
+  if (!editingTask) return;
+  editingTask.find('.task-text').text(
+    editingTask.find('.edit-text').val()
+  );
+  editingTask.find('.task-text').show();
+  editingTask.find('.edit-text').hide();
+  editingTask = null;
 }
 
 function checkTask(task) {
@@ -67,12 +91,13 @@ function cleanCompletedTasks() {
   }
 }
 
-function onKeyUp(e) {
+function onEnterKeyUp(e, fn) {
   const keyUp = e.key === 'Enter' || e.keyCode === 13;
-  if (keyUp) addNewTask();
+  if (keyUp) fn.call();
 }
 
 $('#clean-btn').click(cleanCompletedTasks);
 $('#new-btn').click(addNewTask);
-$('.new-task-input').keyup(onKeyUp);
 $('.input-category').click(renderTasks);
+$('.new-task-input').keyup((e) => onEnterKeyUp(e, addNewTask));
+$(window).click(endTheLatestEditing);
