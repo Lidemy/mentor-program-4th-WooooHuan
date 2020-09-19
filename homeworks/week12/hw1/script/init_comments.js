@@ -10,7 +10,7 @@ function cleanLayout() {
 function getComments() {
   $.ajax({
     type: "GET",
-    url: `http://localhost/woo/week12/hw1/php/api_get_comments.php?site_key=woo&limit=${limit + 1}`
+    url: `http://mentor-program.co/mtr04group5/woo/week12/hw1/php/api_get_comments.php?site_key=woo&limit=${limit + 1}`
   }).done(initComments);
 }
 
@@ -36,7 +36,7 @@ function initComments(data) {
 function deleteComment(data) {
   $.ajax({
     method: "POST",
-    url: "http://localhost/woo/week12/hw1/php/api_del_comment.php",
+    url: "http://mentor-program.co/mtr04group5/woo/week12/hw1/php/api_del_comment.php",
     data
   }).done(getComments);
 }

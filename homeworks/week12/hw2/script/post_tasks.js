@@ -16,7 +16,7 @@ function pushTasks() {
 
   $.ajax({
     method: "POST",
-    url: "http://localhost/woo/week12/hw2/php/push_tasks.php",
+    url: "http://mentor-program.co/mtr04group5/woo/week12/hw2/php/push_tasks.php",
     data: {
       user,
       json: JSON.stringify(getTasks())
@@ -30,7 +30,7 @@ function pullTasks() {
 
   $.ajax({
     method: "POST",
-    url: "http://localhost/woo/week12/hw2/php/pull_tasks.php",
+    url: "http://mentor-program.co/mtr04group5/woo/week12/hw2/php/pull_tasks.php",
     data: { user }
   }).done(importTasksFromJson);
 }
