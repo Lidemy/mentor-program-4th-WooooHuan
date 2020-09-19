@@ -35,15 +35,5 @@ function pullTasks() {
   }).done(importTasksFromJson);
 }
 
-function importTasksFromJson(data) {
-  if (!data) return;
-  root.empty();
-  const tasks = JSON.parse(data);
-  if (!tasks.length) return;
-  for (task of tasks.reverse()) {
-    initNewTask(task.content, task.checked);
-  }
-}
-
 $('#push-btn').click(pushTasks);
 $('#pull-btn').click(pullTasks);

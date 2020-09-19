@@ -9,9 +9,19 @@ function importTasksFromJson(data) {
   if (!data) return;
   root.empty();
   const tasks = JSON.parse(data);
+  if (!tasks.length) return;
   for (task of tasks.reverse()) {
     initNewTask(task.content, task.checked);
   }
+  renderTasks();
+}
+
+function addNewTask() {
+  const taskVal = $('.new-task-input').val();
+  if (!taskVal) { alert('Task title is null.'); return; }
+  initNewTask(taskVal, false);
+  $('.new-task-input').val('');
+  renderTasks();
 }
 
 function initNewTask(content, checked) {
@@ -28,7 +38,6 @@ function initNewTask(content, checked) {
   task.removeClass('task-template');
   if (checked) checkTask(task);
   root.prepend(task);
-  renderTasks();
 }
 
 function editTask(task) {
@@ -58,6 +67,13 @@ function checkTask(task) {
   renderTasks();
 }
 
+function cleanCompletedTasks() {
+  const tasks = root.find('.task-element');
+  for (task of tasks) {
+    if ($(task).hasClass('checked')) $(task).remove();
+  }
+}
+
 function renderTasks() {
   const tasks = root.find('.task-element');
   for (task of tasks) {
@@ -74,20 +90,6 @@ function renderTasks() {
         $(task).show();
         break;
     }
-  }
-}
-
-function addNewTask() {
-  const taskVal = $('.new-task-input').val();
-  if (!taskVal) { alert('Task title is null.'); return; }
-  initNewTask(taskVal, false);
-  $('.new-task-input').val('');
-}
-
-function cleanCompletedTasks() {
-  const tasks = root.find('.task-element');
-  for (task of tasks) {
-    if ($(task).hasClass('checked')) $(task).remove();
   }
 }
 
