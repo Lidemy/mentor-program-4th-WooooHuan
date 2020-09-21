@@ -1,0 +1,285 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  outline: none;
+}
+
+input
+
+::placeholder {
+  color: #afafaf;
+}
+
+body {
+  background: #008080;
+}
+
+.common-convex {
+  border-width: 2px;
+  border-style: solid;
+  border-color: white #393939 #393939 white;
+}
+
+.common-concave {
+  border-width: 2px;
+  border-style: solid;
+  border-color:#393939 white white #393939;
+}
+
+.common-btn {
+  position: relative;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #a0a0a0 #4c4c4c #4c4c4c #a0a0a0;
+  background: #bdbdbd;
+}
+
+.common-btn::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: white #858585 #858585 white;
+  background: transparent;
+}
+
+.common-btn:active {
+  border-color:#4c4c4c #a0a0a0 #a0a0a0 #4c4c4c;
+  padding-left: 3px;
+  padding-top: 3px;
+}
+
+.common-btn:active::before {
+  border-color:#858585 white white #858585;
+}
+
+.list-cover {
+  display: flex;
+  justify-content: center;
+}
+
+.list-area {
+  margin-top: 150px;
+  width: 640px;
+  max-width: 640px;
+}
+
+.list-main {
+  background: #bdbdbd;
+  margin-bottom: 150px;
+}
+
+.list-title {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  margin: 2px;
+  padding-left: 4px;
+  color: white;
+  background: #000181;
+}
+
+.list-new-task {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  margin-top: 6px;
+}
+
+.list-tools-bar,
+.list-task-category {
+  display: flex;
+  align-items: center;
+  height: 64px;
+}
+
+.tools-id-label {
+  margin-left: 18px;
+  margin-right: 12px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.tools-id {
+  margin-left: 7px;
+  margin-right: 18px;
+  padding: 0px 6px;
+  height: 32px;
+  flex: 1;
+}
+
+.tools-btn {
+  margin-right: 18px;
+  padding: 0px 9px;
+  height: 36px;
+}
+
+.tools-btn:active {
+  margin-right: 18px;
+  height: 36px;
+  padding-left: 12px;
+  padding-right: 6px;
+  padding-top: 3px;
+}
+
+.tools-btn {
+  margin-right: 18px;
+  padding: 0px 9px;
+  height: 36px;
+}
+
+.new-task-input {
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: 34px;
+  max-width: 540px;
+  padding-left: 12px;
+}
+
+.new-task-btn {
+  flex-shrink: 0;
+  margin-left: 18px;
+  margin-right: 18px;
+  width: 48px;
+  height: 36px;
+}
+
+.list-task-category {
+  display: flex;
+  align-items: center;
+  height: 32px;
+}
+
+#category-all {
+  margin-left: 50px;
+}
+
+.input-category-cover {
+  margin-left: 12px;
+}
+
+.input-category {
+  border: green 10px solid;
+}
+
+input[type="radio"] {
+  color: black;
+  border: black 5px so;
+}
+
+input[type='radio']:after {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: relative;
+  background-color: white;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid;
+  border-color: #393939 #cccccc #cccccc #393939;
+}
+
+input[type='radio']:checked:after {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border-width: 0;
+  position: relative;
+  background-color: black;
+  top: -22px;
+  left: 4px;
+}
+
+input[type='radio']:checked:before {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  position: relative;
+  background-color: white;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid;
+  border-color: #393939 #dddddd #dddddd #393939;
+}
+
+.task-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 36px 18px 36px 18px;
+}
+
+.task-sign {
+  margin-top: -8px;
+  margin-left: 6px;
+  font-size: 24px;
+  width: 0px;
+}
+
+.edit-text,
+.task-text {
+  flex-grow: 1;
+  margin-left: 48px;
+  margin-right: 4px;
+  font-size: 22px;
+  word-break: break-all;
+}
+
+.task-btn {
+  justify-content: start;
+  flex-shrink: 0;
+  width: 48px;
+  height: 32px;
+  margin-left: 12px;
+}
+
+.task-template {
+  display: none;
+}
+
+.checked-text {
+  color: #808080;
+  text-decoration: line-through;
+}
+
+.checked-sign::after {
+  position: relative;
+  content: "Done!";
+  font-size: 12px;
+  font-weight: bold;
+  top: -8;
+  left: -2px;
+}
+
+.hidden {
+  display: none;
+}
+
+@media(max-width: 640px) {
+  .list-area {
+    margin-top: 0;
+  }
+
+  .list-main {
+    margin-bottom: 0;
+  }
+
+  .tools-btn {
+    font-size: 12px;
+  }
+}
+
+
+@media(max-width: 512px) {
+  .tools-id {
+    max-width: 200px;
+  }
+}

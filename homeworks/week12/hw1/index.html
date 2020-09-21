@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Message Board</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div class="list-cover">
+    <div class="list-area">
+      <div class="list-main common-convex">
+        
+        <div class="list-title">📝Message Board</div>
+        <div class="list-new-task">
+          <input class="new-task-input common-concave input-nickname" type="text" placeholder="Nickname">
+          <input class="new-task-input common-concave input-content" type="text" placeholder="Write somthing...">
+          <button class="new-task-btn common-btn" value="newBtn">📄</button>
+        </div>
+
+        <div class="list-tasks"></div>
+
+        <div class="more-element">
+          <div class="new-task-divider common-concave"></div>
+          <div class="task-content list-more">
+            <button class="more-btn common-btn" value="moreBtn">Show More</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="task-element task-template">
+    <div class="new-task-divider common-concave"></div>
+    <div class="task-content">
+      <div class="task-nickname">Woo</div>
+      <span class="input-diliver">:</span>
+      <div class="task-text">Hello, world!</div>
+      <button class="task-btn common-btn del-btn" value="delBtn">❌</button>
+    </div>
+  </div>
+  
+  <script src="./script/_jQuery.js"></script>
+  <script src="./script/init_comments.js"></script>
+  <script src="./script/post_comment.js"></script>
+</body>
+
+</html>
