@@ -40,7 +40,7 @@
 
 <br>
 
-考慮到 AWS 的部署資訊，在課程中已經相當豐富且完整，  
+考慮到 AWS 的相關資訊，在課程中已經相當豐富且完整，  
 
 ~~也因為 google 再三保證絕不自動扣款，~~
 
@@ -50,7 +50,7 @@
 
 ---
 
-## Google Cloud Platform 
+## Google Cloud Platform 部署筆記
 
 - 註冊 Google Cloud Platform 
 
@@ -72,11 +72,11 @@
 
     <br>
 
-- 在主控的 VPC Network 項目中，選擇 Firewall 進行防火牆設定
+- 在主控的 VPC Network 項目中，進行防火牆設定
 
-    - 設定新規則 mysql, 為 mysql 提供訪問權限
+    - 設定新規則，命名為 'mysql', 為 mysql 提供訪問權限
 
-    - 篩選規則選擇 ip 範圍，並將範圍指定為 0.0.0.0/0 （我全都要
+    - 設定「篩選規則」為「ip 範圍」，並將範圍指定為 0.0.0.0/0 （我全都要
 
     - 設定通訊協定 / 通訊埠 tcp: 3306
 
@@ -90,7 +90,7 @@
 
     - 可透過指令生成金鑰並與 GCP 連動
 
-    - 可透過指令以 SSH 方式操作 VM
+    - 可透過指令以 SSH 操作 VM
 
     <br>
 
@@ -100,7 +100,7 @@
 
         - 透過 gcloud 指令
 
-        - 透過 VM Instance 面板中選擇
+        - 透過 VM Instance 面板中選擇操作方式
         
 
     - 更新 ubuntu
