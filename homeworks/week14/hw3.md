@@ -4,7 +4,7 @@
 
 - 提供 Domain Name 與 ip 的 mapping 功能
 
-- 其中，以 [record types](https://en.wikipedia.org/wiki/List_of_DNS_record_types) 形式為不同用途的對映關係進行細分
+- 其中，以 [record types](https://en.wikipedia.org/wiki/List_of_DNS_record_types) 形式，為不同用途的對映關係進行細分
 
 <br>
 
@@ -16,6 +16,8 @@
     - 快，還要更快
 
     - 相對更安全
+
+    - ~~免費~~
 
 - Google
 
@@ -71,15 +73,13 @@
 
         - 不允許讀取正在寫入中的資料
 
-        - Insert, Delete  
-
         <br>
 
 ## 為什麼我們需要 lock？
 
-- 為使每一筆 transaction 對資料庫進行存取時，不受干涉
+- 使每一筆 transaction 對資料庫進行存取時，不受干涉
 
-- 過程中其中一方產生錯誤時，能讓資料回到訪問前的狀態
+- 過程中，其中一方產生錯誤時，讓資料有能力回到訪問前的狀態
 
 - Database transaction
 
@@ -119,13 +119,13 @@
 
 - 原子性（Atomicity）
 
-    - transaction 被視為一個整體被執行，不可分割
+    - 將 transaction 視為一個整體執行，不可分割
     
-    - 只有已完整執行、或未執行狀態，沒有模糊空間
+    - 狀態只有已完整執行、或未執行，沒有模糊空間
 
 - 一致性（Consistency）
 
-    - transaction 在執行的前後，資料內容仍保持完整且符合預設標準
+    - 在 transaction 執行的前後，資料內容仍保持完整，並符合預設標準
 
 - 隔離性（Isolation）
 
@@ -135,7 +135,7 @@
 
     - 當 transaction 執行完畢後，其改寫內容應該被永久儲存在資料庫中
 
-    - 保證內容不因預期外的狀況，而永久毀損或丟失（總之要能復原啦
+    - 保證內容不因預期外的狀況，而永久毀損或丟失（~~總之要能復原啦~~
 
         <br>
 
