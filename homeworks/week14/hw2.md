@@ -187,4 +187,6 @@
 
 - 等候一段時間，即可以網域名稱訪問主機
 
-- http://woooohuan.tw/gcp-practice-todolist/index.html
+- 完成！
+
+> http://woooohuan.tw/gcp-practice-todolist/index.html
