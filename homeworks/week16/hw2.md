@@ -70,7 +70,7 @@ for(var i=0; i<5; i++) {
 
 2. setTimeout(() => console.log(i), i * 1000) 
 
-    - 此時堆疊的是 setTimeout 本身，內容尚未執行
+    - 此時堆疊的是 setTimeout 本身，內容尚未被執行
 
     - 此時 i = 0, 得出延遲為 0 ms
 
@@ -84,9 +84,9 @@ for(var i=0; i<5; i++) {
 
 4. setTimeout(() => console.log(i), i * 1000) 
 
-    - 此時堆疊的是 setTimeout 本身，內容尚未執行
+    - 此時堆疊的是 setTimeout 本身，內容尚未被執行
 
-    - 此時 i = 1, 得出延遲為 1000 ms
+    - i = 1, 得出延遲為 1000 ms
 
 <br>
 
@@ -96,9 +96,9 @@ for(var i=0; i<5; i++) {
 
 6. setTimeout(() => console.log(i), i * 1000) 
 
-    - 此時堆疊的是 setTimeout 本身，內容尚未執行
+    - 此時堆疊的是 setTimeout 本身，內容尚未被執行
 
-    - 此時 i = 2, 得出延遲為 2000 ms
+    - i = 2, 得出延遲為 2000 ms
 
 <br>
 
@@ -108,9 +108,9 @@ for(var i=0; i<5; i++) {
 
 8. setTimeout(() => console.log(i), i * 1000) 
 
-    - 此時堆疊的是 setTimeout 本身，內容尚未執行
+    - 此時堆疊的是 setTimeout 本身，內容尚未被執行
 
-    - 此時 i = 3, 得出延遲為 3000 ms
+    - i = 3, 得出延遲為 3000 ms
 
 <br>
 
@@ -120,9 +120,9 @@ for(var i=0; i<5; i++) {
 
 10. setTimeout(() => console.log(i), i * 1000) 
 
-    - 此時堆疊的是 setTimeout 本身，內容尚未執行
+    - 此時堆疊的是 setTimeout 本身，內容尚未被執行
 
-    - 此時 i = 4, 得出延遲為 4000 ms
+    - i = 4, 得出延遲為 4000 ms
 
     - 執行完畢後，開始執行等候中的 setTimeout 
 
@@ -193,4 +193,4 @@ i: 4
 5 (3000 ms)  
 5 (4000 ms)  
 
-> ( 括號內容為描述延遲時間用，非真實輸出 )
+> ( 括號內容為延遲時間的輔助描述)
