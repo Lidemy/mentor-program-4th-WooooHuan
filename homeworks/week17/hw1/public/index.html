@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>看板 Woo's Board 文章列表 - Lidemy實業坊 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="./css/bbs-common.css">
+  <link rel="stylesheet" type="text/css" href="./css/bbs-base.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="./css/bbs-custom.css">
+  <link rel="stylesheet" type="text/css" href="./css/pushstream.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="./css/bbs-print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="./css/others.css">
+</head>
+
+<body>
+  <div id="topbar-container"></div>
+
+  <div id="action-bar-container">
+    <div class="action-bar">
+      <div class="btn-group btn-group-dir">
+        <a class="btn selected" href="index.php">看板</a>
+        <span class="btn" href="index.php"><s>精華區</s></span>
+      </div>
+
+      <div class="btn-group btn-group-paging">
+      </div>
+    </div>
+  </div>
+
+  <div id="navigation-container"></div>
+
+  <div class="r-list-container action-bar-margin bbs-screen">
+    <div class="search-bar">
+      <form id="search-bar" method="POST" action="search_result.php">
+        <input class="query" type="text" name="search" value="" placeholder="搜尋文章⋯">
+      </form>
+    </div>
+
+    <section class="post-root">
+    </section>
+
+    <div class="post-padding"></div>
+
+  </div>
+
+  <div class="bbs-screen bbs-footer-message"></div>
+  <script src="./_jQuery.js"></script>
+  <script src="./utils.js"></script>
+  <script src="./template.js"></script>
+  <script src="./init.js"></script>
+  <script src="./topBar.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

@@ -1,7 +1,4 @@
-const {
-  Post,
-  Admin
-} = require('./db');
+const { Post } = require('./db');
 
 const postController = {
   getAllPosts: (req, res) => {
@@ -25,15 +22,18 @@ const postController = {
   },
 
   createPost: (req, res) => {
-    Post.create(req.body).then(data => {
-      res.send(`The post that "id: ${data.id}" is created!`);
-    });
+    if (req.session.isLogin) {
+      Post.create(req.body).then(data => {
+        res.send(`The post that "id: ${data.id}" is created!`);
+      });
+    }
   },
 
   updatePost: (req, res) => {
     Post.update(req.body, {
       where: {
         id: req.body.id,
+        author: req.session.account,
       },
     }).then(data => {
       res.send(`The post that "id: ${req.body.id}" is updated!`);
@@ -44,7 +44,10 @@ const postController = {
     Post.update({
       isDelete: '1',
     }, {
-      where: req.body,
+      where: {
+        id: req.body.id,
+        author: req.session.account,
+      },
     }).then(data => {
       res.send(`The post that "id: ${req.body.id}" is deleted!`);
     });
