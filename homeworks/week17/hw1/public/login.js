@@ -1,7 +1,6 @@
 const inputAcc = $('#input-account');
 const inputPsw = $('#input-password');
 const failedHint = $('.login-error');
-$('.login-btn').click(onBtnClick);
  
 function onBtnClick() {
   if(!inputAcc.val() || !inputPsw.val()) {
@@ -37,5 +36,7 @@ function loginFailed() {
 init().then((data) => {
   if (data.session.isLogin) {
     document.location = 'index.html';
+    return;
   }
+  $('.login-btn').click(onBtnClick);
 });

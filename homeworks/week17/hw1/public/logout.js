@@ -1,5 +1,5 @@
 function handleLogout() {
-  console.log('lll');
+  console.log('start logout');
   $.ajax({
     method: 'POST',
     url: 'http://localhost:5001/logout',
@@ -9,4 +9,5 @@ function handleLogout() {
   });
 }
 
+console.log('init logout');
 init().then(handleLogout);

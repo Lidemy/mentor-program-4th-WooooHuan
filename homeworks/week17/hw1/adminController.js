@@ -15,15 +15,14 @@ const adminController = {
       const result = data[0];
       if (getLoginResult(req.body, result)) {
         req.session.isLogin = true;
-        req.session.account = req.body.account;
+        req.session.account = result.account;
       }
       res.send(getLoginResult(req.body, result));
     });
   },
 
   logout: (req, res) => {
-    req.session.account = null;
-    req.session.isLogin = false;
+    req.session = {};
     res.send('logout!');
   },
 

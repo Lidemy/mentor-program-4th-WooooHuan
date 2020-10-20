@@ -24,7 +24,7 @@ const postController = {
   createPost: (req, res) => {
     if (req.session.isLogin) {
       Post.create(req.body).then(data => {
-        res.send(`The post that "id: ${data.id}" is created!`);
+        res.send(data);
       });
     }
   },
@@ -36,7 +36,7 @@ const postController = {
         author: req.session.account,
       },
     }).then(data => {
-      res.send(`The post that "id: ${req.body.id}" is updated!`);
+      res.send(data);
     });
   },
 
