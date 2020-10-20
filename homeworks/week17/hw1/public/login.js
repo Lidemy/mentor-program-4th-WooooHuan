@@ -1,12 +1,17 @@
 const inputAcc = $('#input-account');
 const inputPsw = $('#input-password');
 const failedHint = $('.login-error');
-
-$('.login-btn').click(() => {
+$('.login-btn').click(onBtnClick);
+ 
+function onBtnClick() {
   if(!inputAcc.val() || !inputPsw.val()) {
     loginFailed();
     return;
   }
+  handleLogin();
+}
+
+function handleLogin() {
   $.ajax({
     method: 'POST',
     url: 'http://localhost:5001/login',
@@ -14,28 +19,23 @@ $('.login-btn').click(() => {
       account: inputAcc.val(),
       password: inputPsw.val(),
     },
-  }).done(result => {
-    console.log(result);
-    if (result) {
-      $.ajax({
-        method: 'POST',
-        url: 'http://localhost:5001/isLogin',
-      }).done(data => {
-        console.log(data);
-      });
-    } else {
-      loginFailed();
-    }
-  });
-});
+  }).done(handleResult);
+}
+
+function handleResult(result) {
+  if (result) {
+    document.location = 'index.html';
+  } else {
+    loginFailed();
+  }
+}
 
 function loginFailed() {
   failedHint.removeClass('hidden');
 }
 
-$.ajax({
-  method: 'POST',
-  url: 'http://localhost:5001/isLogin',
-}).done(data => {
-  console.log(data);
+init().then((data) => {
+  if (data.session.isLogin) {
+    document.location = 'index.html';
+  }
 });

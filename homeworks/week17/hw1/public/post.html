@@ -15,33 +15,23 @@
 </head>
 
 <body>
-  <div id="topbar-container">
-    <div id="topbar" class="bbs-content">
-      <a id="logo" href="index.php">Lidemy實業坊</a>
-      <span>›</span>
-      <a class="board" href="index.php"><span class="board-label">看板 </span>Woo's_Board</a>
-      <?php
-      echo $account ? '<a class="right small" href="logout.php">管理員登出</a>' : '<a class="right small" href="login.php">管理員登入</a>';
-      ?>
-    </div>
-  </div>
+  <div id="topbar-container"></div>
 
   <div id="navigation-container">
     <div id="navigation" class="bbs-content">
-      <a class="board" href="index.php">返回看板</a>
+      <a class="board" href="index.html">返回看板</a>
       <div class="bar"></div>
     </div>
   </div>
 
-  <div id="main-container">
-    <div id="main-content" class="bbs-screen bbs-content"><div class="article-metaline"><span class="article-meta-tag">作者</span><span class="article-meta-value"><?php echo $author; ?></span></div><div class="article-metaline-right"><span class="article-meta-tag">看板</span><span class="article-meta-value">Woo's_Board</span></div><div class="article-metaline"><span class="article-meta-tag">標題</span><span class="article-meta-value"><?php echo escape($row['title']); ?></span></div><div class="article-metaline"><span class="article-meta-tag">時間</span><span class="article-meta-value"><?php echo escape(date('D M d G:i:s o', strtotime($row['created_at']))); ?></span></div>
-<?php
-echo $row['content'] . '<br>';
-?>
-<br>--<span class="f2">
-※ 發信站: Lidemy實業坊(Lidemy.cc)</span></div><div id="article-polling">推文自動更新已關閉，也沒辦法推文哦～</div>
-  </div>
+  <div id="main-container"></div>
   <div class="bbs-screen bbs-footer-message"></div>
+  <script src="./_jQuery.js"></script>
+  <script src="./utils.js"></script>
+  <script src="./template.js"></script>
+  <script src="./init.js"></script>
+  <script src="./topBar.js"></script>
+  <script src="./post.js"></script>
 </body>
 
 </html>

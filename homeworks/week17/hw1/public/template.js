@@ -1,3 +1,22 @@
+function getSimpleDate(date) {
+  const d = new Date(date);
+  return `${d.getMonth() + 1}/${d.getDate()}`;
+}
+
+function getFullDate(date) {
+  const d = new Date(date);
+  const dStr = d.toDateString().split(' ');
+  const time = d.toTimeString().split(' ');
+  return `${dStr[0]} ${dStr[1]} ${dStr[2]} ${time[0]} ${dStr[3]}`;
+}
+
+function getTitle(post) {
+  const title = post.isDelete ? 
+    `<span class="deleted">(本文已被刪除) [woo]</span>` : 
+    `<a href="post.html?id=${post.id}">${post.title}</a>`
+  return title;
+}
+
 function getPostTmp(post, isLogin) {
   const postTemplate = 
   `<div class="r-ent">
@@ -11,18 +30,6 @@ function getPostTmp(post, isLogin) {
     </div>
   </div>`;
   return postTemplate;
-}
-
-function getTitle(post) {
-  const title = post.isDelete ? 
-    `<span class="deleted">(本文已被刪除) [woo]</span>` : 
-    `<a href="post.html?id=${post.id}">${post.title}</a>`
-  return title;
-}
-
-function getSimpleDate(date) {
-  const d = new Date(date);
-  return `${d.getMonth() + 1}/${d.getDate()}`;
 }
 
 function getArticleMenu(post, isLogin) {
@@ -52,7 +59,7 @@ function getPaging(currPage, totalPage) {
 function getIndexFooter() {
   const footer = 
   `<div id="navigation" class="bbs-content">
-    <a class="board" href="add_post.php">新增文章</a>
+    <a class="board" href="add_post.html">新增文章</a>
     <div class="bar"></div>
   </div>`;
   return footer;
@@ -69,5 +76,13 @@ function getTopBarContent(isLogin) {
     <a class="board" href="index.html"><span class="board-label">看板 </span>Woo's_Board</a>
     ${anchor}
   </div>`
+  return content;
+}
+
+function getPostContent(post) {
+  const content = `<div id="main-content" class="bbs-screen bbs-content"><div class="article-metaline"><span class="article-meta-tag">作者</span><span class="article-meta-value">${post.author}</span></div><div class="article-metaline-right"><span class="article-meta-tag">看板</span><span class="article-meta-value">Woo's_Board</span></div><div class="article-metaline"><span class="article-meta-tag">標題</span><span class="article-meta-value">${post.title}</span></div><div class="article-metaline"><span class="article-meta-tag">時間</span><span class="article-meta-value">${getFullDate(post.createdAt)}</span></div>
+${post.content}<br>
+--<span class="f2">
+※ 發信站: Lidemy實業坊(Lidemy.cc)</span></div><div id="article-polling">推文自動更新已關閉，也沒辦法推文哦～</div>`
   return content;
 }

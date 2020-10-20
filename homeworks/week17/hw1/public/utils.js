@@ -19,3 +19,14 @@ function getPosts() {
   });
 }
 
+function getPost(id) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      method: 'POST',
+      url: 'http://localhost:5001/getPost',
+      data: { id },
+    }).done(result => {
+      resolve(JSON.parse(result)[0]);
+    });
+  });
+}
