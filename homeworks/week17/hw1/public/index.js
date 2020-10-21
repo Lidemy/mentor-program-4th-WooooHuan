@@ -27,7 +27,6 @@ function renderPaging(posts) {
 function renderFooter(isLogin) {
   if (!isLogin) return;
   const footer = getIndexFooter();
-  console.log(footer);
   footerRoot.append(footer);
 }
 
@@ -38,6 +37,20 @@ async function renderIndex(data) {
   renderPosts(posts, isLogin);
   renderPaging(posts);
   renderFooter(isLogin);
+  searchTest();
+}
+
+function searchTest() {
+  $.ajax({
+    method: 'POST',
+    url: 'http://localhost:5001/searchPost',
+    data: {
+      key: '9',
+    }
+  }).done(result => {
+    console.log(JSON.parse(result));
+    //resolve(JSON.parse(result));
+  });
 }
 
 init().then(renderIndex);

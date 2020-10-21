@@ -1,12 +1,14 @@
-const { Post } = require('./db');
+const { Post, Op } = require('./db');
 
 const postController = {
   searchPost: (req, res) => {
+    console.log('search');
     Post.findAll({
       where: {
         title: {
-          $like: `%${req.body.content}%`
-        }
+          [Op.like]: `%${req.body.key}%`,
+        },
+        isDelete: null,
       },
       order: [
         ['id', 'DESC'],

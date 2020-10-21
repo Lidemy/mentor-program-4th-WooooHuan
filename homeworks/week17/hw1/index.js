@@ -16,6 +16,7 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+app.post('/searchPost', postController.searchPost);
 app.post('/getAllPosts', postController.getAllPosts);
 app.post('/getPost', postController.getPost);
 app.post('/createPost', postController.createPost);
