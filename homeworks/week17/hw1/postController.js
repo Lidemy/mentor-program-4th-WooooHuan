@@ -1,6 +1,21 @@
 const { Post } = require('./db');
 
 const postController = {
+  searchPost: (req, res) => {
+    Post.findAll({
+      where: {
+        title: {
+          $like: `%${req.body.content}%`
+        }
+      },
+      order: [
+        ['id', 'DESC'],
+      ],
+    }).then(posts => {
+      res.send(JSON.stringify(posts, null, 2));
+    });
+  },
+
   getAllPosts: (req, res) => {
     Post.findAll({
       order: [
@@ -30,6 +45,7 @@ const postController = {
   },
 
   updatePost: (req, res) => {
+    if(!req.session) res.send(false);
     Post.update(req.body, {
       where: {
         id: req.body.id,
@@ -37,10 +53,13 @@ const postController = {
       },
     }).then(data => {
       res.send(data);
+    }).catch(() => {
+      res.send(false);
     });
   },
 
   deletePost: (req, res) => {
+    if(!req.session) res.send(false);
     Post.update({
       isDelete: '1',
     }, {
@@ -49,7 +68,9 @@ const postController = {
         author: req.session.account,
       },
     }).then(data => {
-      res.send(`The post that "id: ${req.body.id}" is deleted!`);
+      res.send(data);
+    }).catch(() => {
+      res.send(false);
     });
   },
 }

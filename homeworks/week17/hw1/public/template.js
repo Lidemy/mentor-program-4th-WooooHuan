@@ -33,7 +33,7 @@ function getPostTmp(post, isLogin) {
 }
 
 function getArticleMenu(post, isLogin) {
-  return isLogin ?
+  return isLogin && !post.isDelete ?
     `<a href="edit_post.html?id=${post.id}" class="trigger">⋯</a>`: 
     ``;
 }
