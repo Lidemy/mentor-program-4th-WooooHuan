@@ -1,6 +1,7 @@
 const postsRoot = $('.post-root');
 const pagingRoot = $('.btn-group-paging');
 const footerRoot = $('#navigation-container');
+const inputSearch = $('.input-search');
 const currPage = getPage();
 const postsPerPage = 20;
 
@@ -30,6 +31,11 @@ function renderFooter(isLogin) {
   footerRoot.append(footer);
 }
 
+function onSearch() {
+  if (!inputSearch.val()) return;
+  document.location = `search.html?key=${inputSearch.val()}`;
+}
+
 async function renderIndex(data) {
   console.log(data);
   const isLogin = data.session.isLogin;
@@ -37,8 +43,9 @@ async function renderIndex(data) {
   renderPosts(posts, isLogin);
   renderPaging(posts);
   renderFooter(isLogin);
-  searchTest();
+  inputSearch.keyup((e) => onEnterKeyUp(e, onSearch));
 }
+
 
 function searchTest() {
   $.ajax({

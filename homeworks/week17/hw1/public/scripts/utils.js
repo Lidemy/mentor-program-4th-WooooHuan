@@ -30,3 +30,20 @@ function getPost(id) {
     });
   });
 }
+
+function searchPost(key) {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      method: 'POST',
+      url: 'http://localhost:5001/searchPost',
+      data: { key },
+    }).done(result => {
+      resolve(JSON.parse(result));
+    });
+  });
+}
+
+function onEnterKeyUp(e, fn) {
+  const keyUp = e.key === 'Enter' || e.keyCode === 13;
+  if (keyUp) fn.call();
+}

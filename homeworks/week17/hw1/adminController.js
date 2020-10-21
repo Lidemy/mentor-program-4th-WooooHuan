@@ -22,8 +22,8 @@ const adminController = {
   },
 
   logout: (req, res) => {
-    req.session = {};
-    res.send('logout!');
+    req.session.isLogin = false;
+    req.session.account = null;
   },
 
   getSession: (req, res) => {

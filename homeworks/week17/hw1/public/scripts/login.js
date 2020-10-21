@@ -1,9 +1,9 @@
 const inputAcc = $('#input-account');
 const inputPsw = $('#input-password');
 const failedHint = $('.login-error');
- 
+
 function onBtnClick() {
-  if(!inputAcc.val() || !inputPsw.val()) {
+  if (!inputAcc.val() || !inputPsw.val()) {
     loginFailed();
     return;
   }
@@ -39,4 +39,6 @@ init().then((data) => {
     return;
   }
   $('.login-btn').click(onBtnClick);
+  inputAcc.keyup((e) => onEnterKeyUp(e, onBtnClick));
+  inputPsw.keyup((e) => onEnterKeyUp(e, onBtnClick));
 });
