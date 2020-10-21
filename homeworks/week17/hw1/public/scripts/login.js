@@ -2,6 +2,16 @@ const inputAcc = $('#input-account');
 const inputPsw = $('#input-password');
 const failedHint = $('.login-error');
 
+init().then((data) => {
+  if (data.session.isLogin) {
+    document.location = 'index.html';
+    return;
+  }
+  $('.login-btn').click(onBtnClick);
+  inputAcc.keyup((e) => onEnterKeyUp(e, onBtnClick));
+  inputPsw.keyup((e) => onEnterKeyUp(e, onBtnClick));
+});
+
 function onBtnClick() {
   if (!inputAcc.val() || !inputPsw.val()) {
     loginFailed();
@@ -32,13 +42,3 @@ function handleResult(result) {
 function loginFailed() {
   failedHint.removeClass('hidden');
 }
-
-init().then((data) => {
-  if (data.session.isLogin) {
-    document.location = 'index.html';
-    return;
-  }
-  $('.login-btn').click(onBtnClick);
-  inputAcc.keyup((e) => onEnterKeyUp(e, onBtnClick));
-  inputPsw.keyup((e) => onEnterKeyUp(e, onBtnClick));
-});

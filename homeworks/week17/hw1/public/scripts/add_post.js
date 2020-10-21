@@ -3,20 +3,29 @@ const inputContent = $('.input-content');
 const failedHint = $('.post-error');
 let session = {};
 
+init().then((data) => {
+  if (!data.session.isLogin) {
+    document.location = 'index.html';
+    return;
+  }
+  session = data.session;
+  $('.submit-btn').click(onBtnClick);
+});
+
 function onBtnClick() {
   if(!inputTitle.val() || !inputContent.val()) {
     submitFailed();
     return;
   }
-  handlePost();
+  createPost(session.account);
 }
 
-function handlePost() {
+function createPost(author) {
   $.ajax({
     method: "POST",
     url: "http://localhost:5001/createPost",
     data: {
-      author: session.account,
+      author,
       title: inputTitle.val(), 
       content: inputContent.val(),
     },
@@ -28,13 +37,3 @@ function handlePost() {
 function submitFailed() {
   failedHint.removeClass('hidden');
 }
-
-init().then((data) => {
-  if (!data.session.isLogin) {
-    document.location = 'index.html';
-    return;
-  }
-  session = data.session;
-  $('.submit-btn').click(onBtnClick);
-});
-

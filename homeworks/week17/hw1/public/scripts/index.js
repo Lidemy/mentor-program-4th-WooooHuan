@@ -5,9 +5,15 @@ const inputSearch = $('.input-search');
 const currPage = getPage();
 const postsPerPage = 20;
 
-function getPage() {
-  if (!getParam('page')) setParam('page', 1);
-  return parseInt(getParam('page'));
+init().then(renderIndex);
+
+async function renderIndex(data) {
+  const isLogin = data.session.isLogin;
+  const posts = await getPosts();
+  renderPosts(posts, isLogin);
+  renderPaging(posts);
+  renderFooter(isLogin);
+  inputSearch.keyup((e) => onEnterKeyUp(e, onSearch));
 }
 
 function renderPosts(posts, isLogin) {
@@ -36,28 +42,7 @@ function onSearch() {
   document.location = `search.html?key=${inputSearch.val()}`;
 }
 
-async function renderIndex(data) {
-  console.log(data);
-  const isLogin = data.session.isLogin;
-  const posts = await getPosts();
-  renderPosts(posts, isLogin);
-  renderPaging(posts);
-  renderFooter(isLogin);
-  inputSearch.keyup((e) => onEnterKeyUp(e, onSearch));
+function getPage() {
+  if (!getParam('page')) setParam('page', 1);
+  return parseInt(getParam('page'));
 }
-
-
-function searchTest() {
-  $.ajax({
-    method: 'POST',
-    url: 'http://localhost:5001/searchPost',
-    data: {
-      key: '9',
-    }
-  }).done(result => {
-    console.log(JSON.parse(result));
-    //resolve(JSON.parse(result));
-  });
-}
-
-init().then(renderIndex);
