@@ -9,24 +9,45 @@
 </head>
 
 <body>
-  <table border="1" align="center" width="256" height="256">
-    <tr>
-      <td align="center">
-        <img src="./img/icon_default.png" alt="icon_default">
-      </td>
-    </tr>
-  </table>
-  <table width="256" height="64" align="center">
-    <tr>
-      <td align="center">
-        <button style="width:100px;height:32px;">抽一個啦</button>
-      </td>
-      <td align="center">
-        <button style="width:100px;height:32px;">改設定啦</button>
-      </td>
-    </tr>
-  </table>
+  <section class="sec-lottery">
+    <table border="1" align="center" width="256" height="256">
+      <tr>
+        <td align="center">
+          <img class="reward-image" src="./img/icon_default.png" alt="icon_default">
+        </td>
+      </tr>
+    </table>
+    <table width="256" height="64" align="center">
+      <tr>
+        <td align="center">
+          <span class="reward-description">試試手氣啦！</span>
+        </td>
+      </tr>
+    </table>
+    <table width="256" height="64" align="center">
+      <tr>
+        <td align="center">
+          <button style="width:100px;height:32px;">抽一個啦</button>
+        </td>
+        <td align="center">
+          <button style="width:100px;height:32px;">改設定啦</button>
+        </td>
+      </tr>
+    </table>
+  </section>
 
+  <section class="sec-settngs" style="display: none; margin-top:30px;">
+    <table class="reward-root" align="center" width="800">
+      <tr>
+        <td align="center">Image URL</td>
+        <td align="center">Description</td>
+        <td align="center">Weight</td>
+        <td align="center"></td>
+      </tr>
+    </table>
+  </section>
+  <script src="./_jQuery.js"></script>
+  <script src="./template.js"></script>
   <script src="./script.js"></script>
 </body>
 
