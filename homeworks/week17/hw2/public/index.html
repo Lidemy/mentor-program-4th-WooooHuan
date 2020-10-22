@@ -27,22 +27,62 @@
     <table width="256" height="64" align="center">
       <tr>
         <td align="center">
-          <button style="width:100px;height:32px;">抽一個啦</button>
+          <button class="lottery-btn" style="width: 100px; height: 32px;">抽一個啦</button>
         </td>
         <td align="center">
-          <button style="width:100px;height:32px;">改設定啦</button>
+          <button class="settings-btn" style="width: 100px; height: 32px;">改設定啦</button>
         </td>
       </tr>
     </table>
   </section>
 
-  <section class="sec-settngs" style="display: none; margin-top:30px;">
+  <section class="sec-settings" style="display: none; margin-top: 30px;">
     <table class="reward-root" align="center" width="800">
       <tr>
         <td align="center">Image URL</td>
         <td align="center">Description</td>
         <td align="center">Weight</td>
         <td align="center"></td>
+      </tr>
+
+      <tr class="tr-reward">
+        <td align="center">
+        <input type="text" style="width:360px;" value="${reward.imgUrl}">
+        </td>
+        <td align="center">
+          <input type="text" style="width:360px;" value="${reward.description}">
+        </td>
+        <td align="center">
+          <input type="text" style="width:80px;" value="${reward.weight}">
+        </td>
+        <td align="center">
+          <button>Delete</button>
+        </td>
+      </tr>
+    </table>
+
+    <table align="center" width="800">
+      <tr class="tr-create-reward">
+        <td align="center">
+          <input type="text" style="width:360px;" placeholder="Image URL...">
+        </td>
+        <td align="center">
+          <input type="text" style="width:360px;" placeholder="Description...">
+        </td>
+        <td align="center">
+          <input type="text" style="width:80px;" placeholder="Weight...">
+        </td>
+        <td align="center">
+          <button class="create-btn">Create</button>
+        </td>
+      </tr>
+    </table>
+
+    <table align="center" width="800">
+      <tr>
+        <td align="center">
+          <button class="done-btn" style="width: 100px; height: 32px; margin-top: 30px;">改好了啦</button>
+        </td>
       </tr>
     </table>
   </section>

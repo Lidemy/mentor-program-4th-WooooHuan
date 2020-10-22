@@ -1,13 +1,19 @@
 const { Reward } = require('./db');
 
 const rewardController = {
-  /*createReward: (req, res) => {
+  getRewards: (req, res) => {
+    Reward.findAll().then(data => {
+      res.send(data[0].rewards);
+    })
+  },
+    
+  createRewards: (req, res) => {
     Reward.create(req.body).then(data => {
       res.send(data);
     });
-  },*/
+  },
 
-  updateReward: (req, res) => {
+  updateRewards: (req, res) => {
     Reward.update(req.body, {
       where: { id: 1 },
     }).then((data) => {

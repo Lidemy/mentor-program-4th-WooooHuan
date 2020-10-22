@@ -9,8 +9,9 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//app.post('/createReward', rewardController.createReward);
-app.post('/updateReward', rewardController.updateReward);
+app.post('/getRewards', rewardController.getRewards);
+//app.post('/createReward', rewardController.createRewards);
+app.post('/updateRewards', rewardController.updateRewards);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
