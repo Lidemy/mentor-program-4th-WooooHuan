@@ -41,6 +41,28 @@ function onSettingsBtn() {
 function onDoneBtn() {
   secLottery.show();
   secSettings.hide();
+  getInput();
+ 
+}
+
+function getInput() {
+  const inputList = $('.reward-template');
+  const tmpRewards = [];
+
+
+  for (e of inputList) {
+    const elem = $(e);
+    tmpRewards.push({
+      imgUrl: elem.find('.input-img-url').val(),
+      description: elem.find('.input-description').val(),
+      weight: elem.find('.input-weight').val(),
+    });
+  }
+  console.log(JSON.stringify(tmpRewards));
+}
+
+function parseWeight(weight) {
+  if (weight.is)
 }
 
 /*function initRewards() {

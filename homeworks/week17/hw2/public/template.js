@@ -1,6 +1,6 @@
 function getRewardHtml(reward) {
   const tmp = 
-  `<tr class="tr-reward">
+  `<tr class="reward-template">
     <td align="center">
     <input type="text" style="width:400px;" value="${reward.imgUrl}">
     </td>

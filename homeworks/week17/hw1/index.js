@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const postController = require('./postController');
-const adminController = require('./adminController');
+const postController = require('./post_controller');
+const adminController = require('./admin_controller');
 
 const app = express();
 const port = 5001;

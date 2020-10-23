@@ -44,5 +44,5 @@ function onSearch() {
 
 function getPage() {
   if (!getParam('page')) setParam('page', 1);
-  return parseInt(getParam('page'));
+  return parseInt(getParam('page'), 10);
 }
