@@ -4,15 +4,28 @@ const $secLottery = $('.sec-lottery');
 const $secSettings = $('.sec-settings');
 const $lotteryBtn = $('.lottery-btn');
 const $settingsBtn = $('.settings-btn');
-const $error = $('.error');
 const $doneBtn = $('.done-btn');
 const $createBtn = $('.create-btn');
+const $error = $('.error');
+const $img = $('.reward-image');
+const $description = $('.reward-description');
 let rewards;
+
+$lotteryBtn.click(async () => {
+  $lotteryBtn.attr('disabled', true);
+  $img.removeClass('scale-anim');
+  const result = JSON.parse(await getResult());
+  setImgUrl(result.imgUrl);
+  setDescription(result.description);
+  $lotteryBtn.attr('disabled', false);
+  
+  $img.addClass('scale-anim');
+  playImgAnim();
+});
 
 $settingsBtn.click(async () => {
   $secLottery.hide();
   showError(false);
-  resetInputValues($createRoot);
   await renderSettings();
   $secSettings.show();
 });
@@ -21,7 +34,10 @@ $doneBtn.click(async () => {
   $secSettings.hide();
   const settings = getSettings();
   await updateRewards(settings);
+  resetInputValues($createRoot);
+  resetRewardView();
   $secLottery.show();
+  playImgAnim();
 });
 
 $createBtn.click(async () => { 

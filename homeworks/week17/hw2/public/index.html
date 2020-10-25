@@ -6,14 +6,34 @@
   <meta charset="utf-8">
   <title>抽獎啦</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    @keyframes scaleEffect {
+      0% { transform: scale(1); }
+      12% { transform: scale(1.1); }
+      24% { transform: scale(0.9); }
+      36% { transform: scale(1.05); }
+      54% { transform: scale(0.95); }
+      74% { transform: scale(1.02); }
+      90% { transform: scale(0.98); }
+      100%{ transform: scale(1); }
+    }
+    
+    .scale-anim {
+      width: 256px;
+      height: 256px;
+      position: relative;
+      animation-name: scaleEffect;
+      animation-duration: 0.33s;
+    }
+  </style>
 </head>
 
 <body>
   <section class="sec-lottery">
-    <table border="1" align="center" width="256" height="256">
+    <table align="center" width="256" height="256">
       <tr>
         <td align="center">
-          <img class="reward-image" src="./img/icon_default.png" alt="icon_default">
+          <img class="reward-image scale-anim" src="./img/icon_default.png" alt="icon_default">
         </td>
       </tr>
     </table>

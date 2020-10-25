@@ -10,8 +10,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post('/getRewards', rewardController.getRewards);
-//app.post('/createReward', rewardController.createRewards);
 app.post('/updateRewards', rewardController.updateRewards);
+app.post('/getResult', rewardController.getResult);
+//app.post('/createReward', rewardController.createRewards);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);

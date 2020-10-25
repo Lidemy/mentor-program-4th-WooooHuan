@@ -22,6 +22,15 @@ function getRewards() {
   });
 }
 
+function getResult() {
+  return new Promise((resolve, reject) => {
+    $.ajax({
+      method: 'POST',
+      url: 'http://localhost:5001/getResult',
+    }).done(resolve);
+  });
+}
+
 function updateRewards(rewards) {
   return new Promise((resolve, reject) => {
     $.ajax({
@@ -75,6 +84,11 @@ function resetInputValues($root) {
   $root.find('.input-weight').val('');
 }
 
+function resetRewardView() {
+  setImgUrl('./img/icon_default.png');
+  setDescription('試試手氣啦！');
+}
+
 function parseWeight(value) {
   let weight = parseInt(value, 10);
   return isNaN(weight) ? 1 : Math.max(weight, 1);
@@ -85,4 +99,12 @@ function isThatPropsAreExist(obj) {
     if (!obj[prop]) return false;
   } 
   return true;
+}
+
+function setImgUrl(str) {
+  $img.attr('src', str);
+}
+
+function setDescription(str) {
+  $description.text(str);
 }
