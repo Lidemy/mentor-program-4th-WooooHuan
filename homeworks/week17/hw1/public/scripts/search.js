@@ -2,7 +2,7 @@ const postsRoot = $('.post-root');
 const footerRoot = $('#navigation-container');
 const inputSearch = $('.input-search');
 
-init().then(renderSearch);
+awakeQueue.add(renderSearch);
 
 async function renderSearch(data) {
   const isLogin = data.session.isLogin;

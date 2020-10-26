@@ -1,4 +1,4 @@
-init().then(renderTopBar);
+awakeQueue.add(renderTopBar);
 
 function renderTopBar(data) {
   const root = $('#topbar-container');

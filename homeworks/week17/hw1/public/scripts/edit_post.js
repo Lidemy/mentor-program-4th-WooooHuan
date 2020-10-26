@@ -3,7 +3,7 @@ const inputContent = $('.input-content');
 const failedHint = $('.post-error');
 const id = getParam('id');
 
-init().then((data) => {
+awakeQueue.add((data) => {
   if (!data.session.isLogin) {
     document.location = 'index.html';
     return;

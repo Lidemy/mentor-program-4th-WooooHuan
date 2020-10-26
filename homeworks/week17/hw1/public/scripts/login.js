@@ -2,7 +2,7 @@ const inputAcc = $('#input-account');
 const inputPsw = $('#input-password');
 const failedHint = $('.login-error');
 
-init().then((data) => {
+awakeQueue.add((data) => {
   if (data.session.isLogin) {
     document.location = 'index.html';
     return;

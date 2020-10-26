@@ -47,3 +47,17 @@ function onEnterKeyUp(e, fn) {
   const keyUp = e.key === 'Enter' || e.keyCode === 13;
   if (keyUp) fn.call();
 }
+
+function Delegate() {
+  const _fnQueue = [];
+  const delegate = {
+    add: (fn) => {
+      if (!fn instanceof Function) return;
+      _fnQueue.push(fn);
+    },
+    execute: (data) => {
+      for (fn of _fnQueue) fn(data);
+    },
+  };
+  return delegate;
+}

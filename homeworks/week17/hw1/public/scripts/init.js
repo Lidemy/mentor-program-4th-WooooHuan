@@ -1,3 +1,10 @@
+const awakeQueue = new Delegate();
+
+(async function awake() {
+  const data = await init();
+  awakeQueue.execute(data);
+})();
+
 async function init() {
   const data = {};
   data.session = await getSession();

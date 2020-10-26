@@ -1,4 +1,4 @@
-init().then(handleLogout);
+awakeQueue.add(handleLogout);
 
 function handleLogout() {
   $.ajax({

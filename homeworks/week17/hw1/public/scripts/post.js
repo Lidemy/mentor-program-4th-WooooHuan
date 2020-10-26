@@ -1,6 +1,5 @@
 const contentRoot = $('#main-container');
-
-init().then(renderPost);
+awakeQueue.add(renderPost);
 
 async function renderPost() {
   const id = getParam('id');

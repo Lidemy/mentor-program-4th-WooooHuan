@@ -5,7 +5,7 @@ const inputSearch = $('.input-search');
 const currPage = getPage();
 const postsPerPage = 20;
 
-init().then(renderIndex);
+awakeQueue.add(renderIndex);
 
 async function renderIndex(data) {
   const isLogin = data.session.isLogin;
