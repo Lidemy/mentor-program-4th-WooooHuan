@@ -23,7 +23,7 @@ function onBtnClick() {
 function createPost(author) {
   $.ajax({
     method: "POST",
-    url: "http://localhost:5001/createPost",
+    url: "http://blog-practice.woooohuan.tw/createPost",
     data: {
       author,
       title: inputTitle.val(), 

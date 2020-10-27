@@ -18,9 +18,7 @@ $lotteryBtn.click(async () => {
   setImgUrl(result.imgUrl);
   setDescription(result.description);
   $lotteryBtn.attr('disabled', false);
-  
   $img.addClass('scale-anim');
-  playImgAnim();
 });
 
 $settingsBtn.click(async () => {
@@ -37,7 +35,6 @@ $doneBtn.click(async () => {
   resetInputValues($createRoot);
   resetRewardView();
   $secLottery.show();
-  playImgAnim();
 });
 
 $createBtn.click(async () => { 

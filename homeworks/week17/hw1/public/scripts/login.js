@@ -23,7 +23,7 @@ function onBtnClick() {
 function handleLogin() {
   $.ajax({
     method: 'POST',
-    url: 'http://localhost:5001/login',
+    url: 'http://blog-practice.woooohuan.tw/login',
     data: {
       account: inputAcc.val(),
       password: inputPsw.val(),

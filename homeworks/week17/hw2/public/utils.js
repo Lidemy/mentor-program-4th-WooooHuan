@@ -17,7 +17,7 @@ function getRewards() {
   return new Promise((resolve, reject) => {
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:5001/getRewards',
+      url: 'http://lottery-practice.woooohuan.tw/getRewards',
     }).done(resolve);
   });
 }
@@ -26,7 +26,7 @@ function getResult() {
   return new Promise((resolve, reject) => {
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:5001/getResult',
+      url: 'http://lottery-practice.woooohuan.tw/getResult',
     }).done(resolve);
   });
 }
@@ -35,7 +35,7 @@ function updateRewards(rewards) {
   return new Promise((resolve, reject) => {
     $.ajax({
       method: "POST",
-      url: "http://localhost:5001/updateRewards",
+      url: 'http://lottery-practice.woooohuan.tw/updateRewards',
       data: { rewards },
     }).done(resolve);
   });

@@ -22,7 +22,7 @@ async function renderEditPost() {
 function onDelBtnClick() {
   $.ajax({
     method: "POST",
-    url: "http://localhost:5001/deletePost",
+    url: "http://blog-practice.woooohuan.tw/deletePost",
     data: {
       id,
     },
@@ -42,7 +42,7 @@ function onSubmitBtnClick() {
 function updatePost() {
   $.ajax({
     method: "POST",
-    url: "http://localhost:5001/updatePost",
+    url: "http://blog-practice.woooohuan.tw/updatePost",
     data: {
       id,
       title: inputTitle.val(),

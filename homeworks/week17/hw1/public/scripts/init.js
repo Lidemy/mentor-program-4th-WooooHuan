@@ -17,7 +17,7 @@ function getSession() {
   return new Promise((resolve, reject) => {
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:5001/getSession',
+      url: 'http://blog-practice.woooohuan.tw/getSession',
     }).done(result => {
       resolve(result);
     });

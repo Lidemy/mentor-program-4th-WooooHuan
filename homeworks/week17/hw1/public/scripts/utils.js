@@ -12,7 +12,7 @@ function getPosts() {
   return new Promise((resolve, reject) => {
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:5001/getAllPosts',
+      url: 'http://blog-practice.woooohuan.tw/getAllPosts',
     }).done(result => {
       resolve(JSON.parse(result));
     });
@@ -23,7 +23,7 @@ function getPost(id) {
   return new Promise((resolve, reject) => {
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:5001/getPost',
+      url: 'http://blog-practice.woooohuan.tw/getPost',
       data: { id },
     }).done(result => {
       resolve(JSON.parse(result)[0]);
@@ -35,7 +35,7 @@ function searchPost(key) {
   return new Promise((resolve, reject) => {
     $.ajax({
       method: 'POST',
-      url: 'http://localhost:5001/searchPost',
+      url: 'http://blog-practice.woooohuan.tw/searchPost',
       data: { key },
     }).done(result => {
       resolve(JSON.parse(result));

@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const rewardController = require('./reward_controller');
 
 const app = express();
-const port = 5001;
+const port = 5002;
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
