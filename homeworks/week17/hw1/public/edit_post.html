@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>看板 Woo's Board 文章列表 - Lidemy實業坊 </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="./css/bbs-common.css">
+  <link rel="stylesheet" type="text/css" href="./css/bbs-base.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="./css/bbs-custom.css">
+  <link rel="stylesheet" type="text/css" href="./css/pushstream.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="./css/bbs-print.css" media="print">
+  <link rel="stylesheet" type="text/css" href="./css/others.css">
+  <link rel="stylesheet" type="text/css" href="./css/post.css">
+</head>
+
+<body>
+  <div id="topbar-container">
+    <div id="topbar" class="bbs-content">
+      <a id="logo" href="index.html">Lidemy實業坊</a>
+      <span>›</span>
+      <a class="board" href="index.html"><span class="board-label">看板 </span>Woo's_Board</a>
+      <a class="right small" href="logout.html">管理員登出</a>
+    </div>
+  </div>
+
+  <div class="post-container">
+    <div class="edit-post">
+      <div class="post-input">
+        <input class="query input-title" type="text" name="title" placeholder="輸入文章標題...">
+        <textarea class="post-content query input-content" name="content" value=""></textarea>
+      </div>
+      <button class="login-btn submit-btn btn">更新</button>
+      <button class="login-btn del-btn btn">刪除</button>
+      <div class="post-error hidden">偵測到異常，請完善內容或依正常流程操作！</div>
+    </div>
+  </div>
+
+  <div id="navigation-container">
+    <div id="navigation" class="bbs-content">
+      <a class="board" href="index.html">返回看板</a>
+      <div class="bar"></div>
+    </div>
+  </div>
+
+  <div class="bbs-screen bbs-footer-message"></div>
+  <script src="./scripts/_jQuery.js"></script>
+  <script src="./scripts/utils.js"></script>
+  <script src="./scripts/template.js"></script>
+  <script src="./scripts/init.js"></script>
+  <script src="./scripts/edit_post.js"></script>
+</body>
+
+</html>

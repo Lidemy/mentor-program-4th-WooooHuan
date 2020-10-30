@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>抽獎啦</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    @keyframes scaleEffect {
+      0% { transform: scale(1); }
+      12% { transform: scale(1.1); }
+      24% { transform: scale(0.9); }
+      36% { transform: scale(1.05); }
+      54% { transform: scale(0.95); }
+      74% { transform: scale(1.02); }
+      90% { transform: scale(0.98); }
+      100%{ transform: scale(1); }
+    }
+    
+    .scale-anim {
+      width: 256px;
+      height: 256px;
+      position: relative;
+      animation-name: scaleEffect;
+      animation-duration: 0.33s;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="sec-lottery">
+    <table align="center" width="256" height="256">
+      <tr>
+        <td align="center">
+          <img class="reward-image scale-anim" src="./img/icon_default.png" alt="icon_default">
+        </td>
+      </tr>
+    </table>
+    <table width="256" height="64" align="center">
+      <tr>
+        <td align="center">
+          <span class="reward-description">試試手氣啦！</span>
+        </td>
+      </tr>
+    </table>
+    <table width="256" height="64" align="center">
+      <tr>
+        <td align="center">
+          <button class="lottery-btn" style="width: 100px; height: 32px;">抽一個啦</button>
+        </td>
+        <td align="center">
+          <button class="settings-btn" style="width: 100px; height: 32px;">改設定啦</button>
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section class="sec-settings" style="display: none; margin-top: 30px;">
+    <table class="reward-root" align="center" width="800">
+      <tr>
+        <td align="center">Image URL</td>
+        <td align="center">Description</td>
+        <td align="center">Weight</td>
+        <td align="center"></td>
+      </tr>
+    </table>
+
+    <table align="center" width="800">
+      <tr class="tr-create-reward">
+        <td align="center">
+          <input class="input-img-url" type="text" style="width:360px;" placeholder="Image URL...">
+        </td>
+        <td align="center">
+          <input class="input-description" type="text" style="width:360px;" placeholder="Description...">
+        </td>
+        <td align="center">
+          <input class="input-weight" type="text" style="width:80px;" placeholder="Weight...">
+        </td>
+        <td align="center">
+          <button class="create-btn">Create</button>
+        </td>
+      </tr>
+    </table>
+
+    <table align="center" width="800">
+      <tr>
+        <td align="center">
+          <span class="error" style="display: none; color: red; margin-top: 30px;">把資料填好啦！</span>
+        </td>
+      </tr>
+    </table>
+
+    <table align="center" width="800">
+      <tr>
+        <td align="center">
+          <button class="done-btn" style="width: 100px; height: 32px; margin-top: 30px;">改好了啦</button>
+        </td>
+      </tr>
+    </table>
+  </section>
+  <script src="./_jQuery.js"></script>
+  <script src="./utils.js"></script>
+  <script src="./init.js"></script>
+</body>
+
+</html>
