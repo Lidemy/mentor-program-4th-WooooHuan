@@ -1,11 +1,14 @@
 import { useRef } from 'react';
 import './NewTaskHandler.css';
 
+// 設 key 用
 let taskId = 0;
 
+// 處理新增 task 的相關內容
 function NewTaskHandler({ tasks, setTasks }) {
-  const inputRef = useRef(null);
+  const inputRef = useRef(null);  // 透過 ref 建立參考 input element 的途徑
 
+  // 新增鍵，依照輸入的內容建立新的 task
   function onNewTaskBtnClicked() {
     const content = inputRef.current.value;
     if (!content) {
