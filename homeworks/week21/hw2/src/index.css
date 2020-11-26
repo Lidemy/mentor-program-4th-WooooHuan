@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  overflow: hidden;
+  background: radial-gradient(
+    circle, 
+    #ffeee0 0%,
+    #ffe7d7 60%,   
+    #ffe1be 100%);
+}
+
+.hidden {
+  display: none !important;
+}

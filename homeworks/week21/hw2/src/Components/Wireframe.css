@@ -1,0 +1,33 @@
+.grid-transformer {
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: rotate(45deg) perspective(1200px);
+}
+
+.grid-background {
+  transform: rotate3d(1, -1, 0, 60deg);
+  width: 688px;
+  height: 688px;
+  border: 2px solid black;
+  background: radial-gradient(
+    circle, 
+    #f8e9da 0%,
+    #f8e9da 10%,   
+    #ffdbb8 100%);
+}
+
+.grid-container {
+  display: grid;
+  position: absolute;
+  grid-template-columns: repeat(18, 36px);
+  grid-template-rows: repeat(18, 36px);
+  margin: 20px;
+  border: 1px solid black;
+}
+
+.grid-item {
+  font-size: 6px;
+  text-align: center;
+  background: transparent;
+  border: 1px solid black;
+}

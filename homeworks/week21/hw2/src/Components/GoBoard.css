@@ -1,0 +1,21 @@
+.input-transformer {
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: rotate(225deg) perspective(1200px);
+}
+
+.input-background {
+  transform: rotate3d(-1, 1, 0, 60deg);
+  width: 688px;
+  height: 688px;
+}
+
+.input-container {
+  display: grid;
+  position: absolute;
+  grid-template-columns: repeat(19, 32px);
+  grid-template-rows: repeat(19, 32px);
+  grid-gap: 4px;
+  margin: 2px;
+  overflow: hidden;
+}

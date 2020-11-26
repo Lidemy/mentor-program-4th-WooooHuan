@@ -1,0 +1,125 @@
+.black-go-item::before,
+.black-go-item::after,
+.white-go-item::before,
+.white-go-item::after {
+  position: absolute;
+  content: "";
+  transform: scale(1);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin: 1px;
+  animation-name: pop-anim;
+  animation-duration: 0.4s;
+}
+
+.black-go-item::before {
+  background: radial-gradient(
+    circle,
+    rgba(0,0,0,1) 0%, 
+    rgba(0,0,0,1) 30%, 
+    rgb(200, 163, 128) 100%);
+}
+
+.black-go-item::after {
+  background: radial-gradient(
+    circle at 18px 18px, 
+    rgba(128,128,200,1) 0%,  
+    rgba(0,0,0,1) 45%, 
+    transparent 70%, 
+    transparent 100%);
+}
+
+.white-go-item::before {
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,1) 0%, 
+    rgb(200, 163, 128) 40%, 
+    rgb(200, 163, 128) 100%);
+}
+
+.white-go-item::after {
+  background: radial-gradient(
+    circle at 18px 18px, 
+    rgba(255,255,255,1) 0%,  
+    rgba(180,180,255,1) 45%, 
+    transparent 90%, 
+    transparent 100%);
+}
+
+.shadow-effect::before {
+  position: absolute;
+  content: "";
+  transform: scale(2);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin: -4px;
+  background: radial-gradient(
+    circle,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,0) 40%,
+    rgba(0,0,0,0) 100%);
+  z-index: -1;
+}
+
+.click-effect::before,
+.click-effect::after {
+  position: absolute;
+  content: "";
+  transform: scale(0);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin: 0.5px;
+  z-index: -1;
+  animation-timing-function: cubic-bezier(0, 0.55, 0.45, 1);
+  animation-duration: 0.6s;
+}
+
+.click-effect::before {
+  animation-name: effect-anim-before;
+}
+
+.click-effect::after {
+  animation-name: effect-anim-after;
+}
+
+@keyframes pop-anim {
+  0% { transform: scale(1); }
+  20% { transform: scale(0.9); }
+  40% { transform: scale(1.08); }
+  60% { transform: scale(0.98); }
+  80% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+@keyframes effect-anim-before {
+  0% {
+    transform: scale(0, 0.5);
+    background: rgba(255, 255, 255, 1);
+  }
+  5% {
+    transform: scale(0, 0.5);
+    background: rgba(255, 255, 255, 1);
+  }
+  100% {
+    transform: scale(90, 0);
+    background: transparent;
+  }
+}
+
+@keyframes effect-anim-after {
+  0% {
+    transform: scale(0.5, 0);
+    background: rgba(255, 255, 255, 1);
+  }
+  5% {
+    transform: scale(0.5, 0);
+    background: rgba(255, 255, 255, 1);
+  }
+  100% {
+    transform: scale(0, 90);
+    background: transparent;
+  }
+}

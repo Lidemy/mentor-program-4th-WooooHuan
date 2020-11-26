@@ -1,0 +1,29 @@
+.list-container {
+  display: flex;
+  justify-content: center;
+}
+
+.list-window {  
+  width: 640px;
+  max-width: 640px;
+  margin-top: 150px;
+  margin-bottom: 150px;
+  background: #bdbdbd;
+}
+
+.window-title {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  margin: 2px;
+  padding-left: 4px;
+  color: white;
+  background: #000181;
+}
+
+@media(max-width: 640px) {
+  .list-window {
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+}
