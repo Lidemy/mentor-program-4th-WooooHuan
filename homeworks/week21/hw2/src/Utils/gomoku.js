@@ -11,7 +11,7 @@ class Vector2 {
   static add(a, b) {
     return new Vector2(a.x + b.x, a.y + b.y);
   }
-  // 靜態方法，向量相減
+  // 靜態方法，向量 a 減去向量 b
   static subtract(a, b) {
     return new Vector2(a.x - b.x, a.y - b.y);
   }
