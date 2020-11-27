@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import './MainContainer.css';
 import ToolBar from './ToolBar';
 import NewTaskHandler from './NewTaskHandler';
