@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './style.css';
 import LazyForm from './Components/LazyForm';
 
+// 單純為了實現樣式切出來的容器
 function MainContainer() {
   return (
     <div>

@@ -2,12 +2,15 @@ import InputItem from './InputItem';
 import RadioInputItem from './RadioInputItem';
 import ExtraInputItem from './ExtraInputItem';
 
+// 記錄各項 input 用的 map
 let inputInfoMap = new Map();
 
+// 表單內容本體
 function LazyForm() {
-  const mailRule = /^.+@.+\./;
-  const numRule = /^09\d{8}$/;
+  const mailRule = /^.+@.+\./;  // mail 的檢測規則
+  const numRule = /^09\d{8}$/;  // 手機號碼的檢測規則 (只限台灣地區)
 
+  // 判斷 map 中的所有輸入，是否都通過檢測
   function isLegal() {
     const result = [];
     inputInfoMap.forEach(value => {
@@ -16,6 +19,7 @@ function LazyForm() {
     return result.every(e => e);
   }
 
+  // 送出鍵，當所有輸入都通過檢測時，以 alert 輸出表單內容
   function onSubmit() {
     if (!isLegal()) return;
 
@@ -26,10 +30,16 @@ function LazyForm() {
     alert(result.join('\n'));
   }
 
+  // 更新輸入資訊，子元件與表單的溝通管道 (子元件負責 input 的相關職責)
+  // title 必須為唯一值才會如預期般運作 (理應不會出現 title 重複出現的 use case)
   function updateInput(title, isLegal, getValue) {
     inputInfoMap.set(title, { isLegal, getValue });
   }
 
+  // InputItem - 必填屬性的輸入項目，title 決定顯示主題，rule 為內容檢測規則 (選填)
+  // RadioInputItem - radio 輸入，當時有點懶，內容沒有模組化，僅符合需求寫死而已
+  // ExtraInputItem - 非必填的輸入項目，除了 title 外，可以額外設置 subTitle
+  // 剩下一些沒元件化價值的內容就直接打在 jsx 裡了
   return (
     <div className="form-content-area">
       <div className="content-title">新拖延運動報名表單</div>
