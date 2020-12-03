@@ -1,0 +1,53 @@
+.black-go-btn::before,
+.black-go-btn::after,
+.white-go-btn::before,
+.white-go-btn::after {
+  position: absolute;
+  content: "";
+  transform: scale(0);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin: 1px;
+  transition: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.015, 2, 0.8, 0.6);
+}
+
+.black-go-btn:hover::before {
+  transform: scale(1);
+  background: radial-gradient(
+    circle,
+    rgba(0,0,0,1) 0%, 
+    rgba(0,0,0,1) 30%, 
+    rgb(200, 163, 128) 100%);
+}
+
+.black-go-btn:hover::after {
+  transform: scale(1);
+  background: radial-gradient(
+    circle at 18px 18px, 
+    rgba(128,128,200,1) 0%,  
+    rgba(0,0,0,1) 45%, 
+    transparent 70%, 
+    transparent 100%);
+}
+
+.white-go-btn:hover::before {
+  transform: scale(1);
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,1) 0%, 
+    rgb(200, 163, 128) 40%, 
+    rgb(200, 163, 128) 100%);
+}
+
+.white-go-btn:hover::after {
+  transform: scale(1);
+  background: radial-gradient(
+    circle at 18px 18px, 
+    rgba(255,255,255,1) 0%,  
+    rgba(180,180,255,1) 45%, 
+    transparent 90%, 
+    transparent 100%);
+}

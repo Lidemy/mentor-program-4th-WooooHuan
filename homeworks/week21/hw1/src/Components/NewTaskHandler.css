@@ -1,0 +1,28 @@
+.new-task-handler {
+  display: flex;
+  align-items: center;
+  height: 36px;
+  margin-top: 6px;
+}
+
+.new-task-icon {
+  margin-left: 18px;
+  margin-right: 12px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.new-task-input {
+  height: 34px;
+  max-width: 487px;
+  padding-left: 12px;
+  flex: 1;
+}
+
+.new-task-btn {
+  flex-shrink: 0;
+  margin-left: 18px;
+  margin-right: 18px;
+  width: 48px;
+  height: 36px;
+}
