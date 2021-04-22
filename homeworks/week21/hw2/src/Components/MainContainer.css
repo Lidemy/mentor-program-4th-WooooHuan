@@ -1,0 +1,38 @@
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+}
+
+.board-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.shake-anim {
+  animation: shake 0.2s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0, 2px);
+  }
+  20% {
+    transform: translate(0, 0px);
+  }
+  40% {
+    transform: translate(0, -2px);
+  }
+  60% {
+    transform: translate(0, 0px);
+  }
+  80% {
+    transform: translate(0, -1px);
+  }
+  100% {
+    transform: translate(0, -0px);
+  }
+}
